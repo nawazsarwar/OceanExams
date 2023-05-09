@@ -41,14 +41,6 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.employee.fields.email') }}
-                        </th>
-                        <td>
-                            {{ $employee->email }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
                             {{ trans('cruds.employee.fields.date_of_birth') }}
                         </th>
                         <td>
@@ -89,12 +81,52 @@
                     </tr>
                     <tr>
                         <th>
+                            {{ trans('cruds.employee.fields.date_of_joining') }}
+                        </th>
+                        <td>
+                            {{ $employee->date_of_joining }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
                             {{ trans('cruds.employee.fields.subjects') }}
                         </th>
                         <td>
                             @foreach($employee->subjects as $key => $subjects)
                                 <span class="label label-info">{{ $subjects->name }}</span>
                             @endforeach
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.employee.fields.designation') }}
+                        </th>
+                        <td>
+                            {{ $employee->designation->name ?? '' }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.employee.fields.employee_type') }}
+                        </th>
+                        <td>
+                            {{ $employee->employee_type->title ?? '' }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.employee.fields.institution') }}
+                        </th>
+                        <td>
+                            {{ $employee->institution->name ?? '' }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.employee.fields.user') }}
+                        </th>
+                        <td>
+                            {{ $employee->user->name ?? '' }}
                         </td>
                     </tr>
                 </tbody>

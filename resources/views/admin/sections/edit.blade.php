@@ -27,16 +27,16 @@
                 <span class="help-block">{{ trans('cruds.section.fields.capacity_helper') }}</span>
             </div>
             <div class="form-group">
-                <label class="required" for="grade_id">{{ trans('cruds.section.fields.grade') }}</label>
-                <select class="form-control select2 {{ $errors->has('grade') ? 'is-invalid' : '' }}" name="grade_id" id="grade_id" required>
-                    @foreach($grades as $id => $entry)
-                        <option value="{{ $id }}" {{ (old('grade_id') ? old('grade_id') : $section->grade->id ?? '') == $id ? 'selected' : '' }}>{{ $entry }}</option>
+                <label class="required" for="course_id">{{ trans('cruds.section.fields.course') }}</label>
+                <select class="form-control select2 {{ $errors->has('course') ? 'is-invalid' : '' }}" name="course_id" id="course_id" required>
+                    @foreach($courses as $id => $entry)
+                        <option value="{{ $id }}" {{ (old('course_id') ? old('course_id') : $section->course->id ?? '') == $id ? 'selected' : '' }}>{{ $entry }}</option>
                     @endforeach
                 </select>
-                @if($errors->has('grade'))
-                    <span class="text-danger">{{ $errors->first('grade') }}</span>
+                @if($errors->has('course'))
+                    <span class="text-danger">{{ $errors->first('course') }}</span>
                 @endif
-                <span class="help-block">{{ trans('cruds.section.fields.grade_helper') }}</span>
+                <span class="help-block">{{ trans('cruds.section.fields.course_helper') }}</span>
             </div>
             <div class="form-group">
                 <button class="btn btn-danger" type="submit">

@@ -27,7 +27,7 @@ class UpdateSectionRequest extends FormRequest
                 'min:-2147483648',
                 'max:2147483647',
             ],
-            'grade_id' => [
+            'course_id' => [
                 'required',
                 'integer',
             ],

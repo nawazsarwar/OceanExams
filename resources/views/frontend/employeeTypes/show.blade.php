@@ -42,6 +42,14 @@
                                         {{ $employeeType->institute->name ?? '' }}
                                     </td>
                                 </tr>
+                                <tr>
+                                    <th>
+                                        {{ trans('cruds.employeeType.fields.institution') }}
+                                    </th>
+                                    <td>
+                                        {{ $employeeType->institution->name ?? '' }}
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                         <div class="form-group">

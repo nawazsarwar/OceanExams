@@ -36,6 +36,9 @@
                                         {{ trans('cruds.employeeType.fields.institute') }}
                                     </th>
                                     <th>
+                                        {{ trans('cruds.employeeType.fields.institution') }}
+                                    </th>
+                                    <th>
                                         &nbsp;
                                     </th>
                                 </tr>
@@ -51,6 +54,9 @@
                                         </td>
                                         <td>
                                             {{ $employeeType->institute->name ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $employeeType->institution->name ?? '' }}
                                         </td>
                                         <td>
                                             @can('employee_type_show')

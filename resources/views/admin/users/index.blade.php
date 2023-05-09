@@ -32,9 +32,6 @@
                         {{ trans('cruds.user.fields.name') }}
                     </th>
                     <th>
-                        {{ trans('cruds.user.fields.mobile_no') }}
-                    </th>
-                    <th>
                         {{ trans('cruds.user.fields.email') }}
                     </th>
                     <th>
@@ -48,6 +45,9 @@
                     </th>
                     <th>
                         {{ trans('cruds.user.fields.roles') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.user.fields.institution') }}
                     </th>
                     <th>
                         &nbsp;
@@ -107,12 +107,12 @@
       { data: 'placeholder', name: 'placeholder' },
 { data: 'id', name: 'id' },
 { data: 'name', name: 'name' },
-{ data: 'mobile_no', name: 'mobile_no' },
 { data: 'email', name: 'email' },
 { data: 'email_verified_at', name: 'email_verified_at' },
 { data: 'verified', name: 'verified' },
 { data: 'two_factor', name: 'two_factor' },
 { data: 'roles', name: 'roles.title' },
+{ data: 'institution_name', name: 'institution.name' },
 { data: 'actions', name: '{{ trans('global.actions') }}' }
     ],
     orderCellsTop: true,

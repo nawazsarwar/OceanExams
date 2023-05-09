@@ -38,6 +38,9 @@
                         {{ trans('cruds.designation.fields.pay_grade') }}
                     </th>
                     <th>
+                        {{ trans('cruds.designation.fields.institution') }}
+                    </th>
+                    <th>
                         &nbsp;
                     </th>
                 </tr>
@@ -97,6 +100,7 @@
 { data: 'name', name: 'name' },
 { data: 'code', name: 'code' },
 { data: 'pay_grade', name: 'pay_grade' },
+{ data: 'institution_name', name: 'institution.name' },
 { data: 'actions', name: '{{ trans('global.actions') }}' }
     ],
     orderCellsTop: true,

@@ -32,16 +32,31 @@
                         {{ trans('cruds.institute.fields.name') }}
                     </th>
                     <th>
-                        {{ trans('cruds.institute.fields.logo') }}
+                        {{ trans('cruds.institute.fields.email') }}
                     </th>
                     <th>
-                        {{ trans('cruds.institute.fields.email') }}
+                        {{ trans('cruds.institute.fields.logo') }}
                     </th>
                     <th>
                         {{ trans('cruds.institute.fields.subdomain') }}
                     </th>
                     <th>
                         {{ trans('cruds.institute.fields.hostname') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.institute.fields.public_email') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.institute.fields.public_mobile') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.institute.fields.address') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.institute.fields.header_background_color') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.institute.fields.footer_background_color') }}
                     </th>
                     <th>
                         {{ trans('cruds.institute.fields.type') }}
@@ -65,16 +80,13 @@
                         {{ trans('cruds.institute.fields.longitude') }}
                     </th>
                     <th>
-                        {{ trans('cruds.institute.fields.about') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.institute.fields.public_email') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.institute.fields.public_mobile') }}
-                    </th>
-                    <th>
                         {{ trans('cruds.institute.fields.partner') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.institute.fields.status') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.institute.fields.remarks') }}
                     </th>
                     <th>
                         &nbsp;
@@ -134,10 +146,15 @@
       { data: 'placeholder', name: 'placeholder' },
 { data: 'id', name: 'id' },
 { data: 'name', name: 'name' },
-{ data: 'logo', name: 'logo', sortable: false, searchable: false },
 { data: 'email', name: 'email' },
+{ data: 'logo', name: 'logo', sortable: false, searchable: false },
 { data: 'subdomain', name: 'subdomain' },
 { data: 'hostname', name: 'hostname' },
+{ data: 'public_email', name: 'public_email' },
+{ data: 'public_mobile', name: 'public_mobile' },
+{ data: 'address', name: 'address' },
+{ data: 'header_background_color', name: 'header_background_color' },
+{ data: 'footer_background_color', name: 'footer_background_color' },
 { data: 'type_title', name: 'type.title' },
 { data: 'level_name', name: 'level.name' },
 { data: 'affiliation', name: 'affiliations.name' },
@@ -145,10 +162,9 @@
 { data: 'template', name: 'template' },
 { data: 'latitude', name: 'latitude' },
 { data: 'longitude', name: 'longitude' },
-{ data: 'about', name: 'about' },
-{ data: 'public_email', name: 'public_email' },
-{ data: 'public_mobile', name: 'public_mobile' },
 { data: 'partner_name', name: 'partner.name' },
+{ data: 'status', name: 'status' },
+{ data: 'remarks', name: 'remarks' },
 { data: 'actions', name: '{{ trans('global.actions') }}' }
     ],
     orderCellsTop: true,

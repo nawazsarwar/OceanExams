@@ -23,25 +23,25 @@ class PartnersController extends Controller
         abort_if(Gate::denies('partner_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         if ($request->ajax()) {
-            $query = Partner::query()->select(sprintf('%s.*', (new Partner())->table));
+            $query = Partner::query()->select(sprintf('%s.*', (new Partner)->table));
             $table = Datatables::of($query);
 
             $table->addColumn('placeholder', '&nbsp;');
             $table->addColumn('actions', '&nbsp;');
 
             $table->editColumn('actions', function ($row) {
-                $viewGate = 'partner_show';
-                $editGate = 'partner_edit';
-                $deleteGate = 'partner_delete';
+                $viewGate      = 'partner_show';
+                $editGate      = 'partner_edit';
+                $deleteGate    = 'partner_delete';
                 $crudRoutePart = 'partners';
 
                 return view('partials.datatablesActions', compact(
-                'viewGate',
-                'editGate',
-                'deleteGate',
-                'crudRoutePart',
-                'row'
-            ));
+                    'viewGate',
+                    'editGate',
+                    'deleteGate',
+                    'crudRoutePart',
+                    'row'
+                ));
             });
 
             $table->editColumn('id', function ($row) {
@@ -50,28 +50,49 @@ class PartnersController extends Controller
             $table->editColumn('name', function ($row) {
                 return $row->name ? $row->name : '';
             });
-            $table->editColumn('prefix', function ($row) {
-                return $row->prefix ? $row->prefix : '';
+            $table->editColumn('product_name', function ($row) {
+                return $row->product_name ? $row->product_name : '';
             });
-            $table->editColumn('primary_url', function ($row) {
-                return $row->primary_url ? $row->primary_url : '';
-            });
-            $table->editColumn('header_logo', function ($row) {
-                if ($photo = $row->header_logo) {
+            $table->editColumn('logo', function ($row) {
+                if ($photo = $row->logo) {
                     return sprintf(
-        '<a href="%s" target="_blank"><img src="%s" width="50px" height="50px"></a>',
-        $photo->url,
-        $photo->thumbnail
-    );
+                        '<a href="%s" target="_blank"><img src="%s" width="50px" height="50px"></a>',
+                        $photo->url,
+                        $photo->thumbnail
+                    );
                 }
 
                 return '';
             });
+            $table->editColumn('subdomain', function ($row) {
+                return $row->subdomain ? $row->subdomain : '';
+            });
+            $table->editColumn('hostname', function ($row) {
+                return $row->hostname ? $row->hostname : '';
+            });
+            $table->editColumn('public_email', function ($row) {
+                return $row->public_email ? $row->public_email : '';
+            });
+            $table->editColumn('public_mobile', function ($row) {
+                return $row->public_mobile ? $row->public_mobile : '';
+            });
+            $table->editColumn('address', function ($row) {
+                return $row->address ? $row->address : '';
+            });
             $table->editColumn('header_background_color', function ($row) {
                 return $row->header_background_color ? $row->header_background_color : '';
             });
+            $table->editColumn('footer_background_color', function ($row) {
+                return $row->footer_background_color ? $row->footer_background_color : '';
+            });
+            $table->editColumn('status', function ($row) {
+                return $row->status ? Partner::STATUS_SELECT[$row->status] : '';
+            });
+            $table->editColumn('remarks', function ($row) {
+                return $row->remarks ? $row->remarks : '';
+            });
 
-            $table->rawColumns(['actions', 'placeholder', 'header_logo']);
+            $table->rawColumns(['actions', 'placeholder', 'logo']);
 
             return $table->make(true);
         }
@@ -90,8 +111,8 @@ class PartnersController extends Controller
     {
         $partner = Partner::create($request->all());
 
-        if ($request->input('header_logo', false)) {
-            $partner->addMedia(storage_path('tmp/uploads/' . basename($request->input('header_logo'))))->toMediaCollection('header_logo');
+        if ($request->input('logo', false)) {
+            $partner->addMedia(storage_path('tmp/uploads/' . basename($request->input('logo'))))->toMediaCollection('logo');
         }
 
         if ($media = $request->input('ck-media', false)) {
@@ -112,15 +133,15 @@ class PartnersController extends Controller
     {
         $partner->update($request->all());
 
-        if ($request->input('header_logo', false)) {
-            if (!$partner->header_logo || $request->input('header_logo') !== $partner->header_logo->file_name) {
-                if ($partner->header_logo) {
-                    $partner->header_logo->delete();
+        if ($request->input('logo', false)) {
+            if (! $partner->logo || $request->input('logo') !== $partner->logo->file_name) {
+                if ($partner->logo) {
+                    $partner->logo->delete();
                 }
-                $partner->addMedia(storage_path('tmp/uploads/' . basename($request->input('header_logo'))))->toMediaCollection('header_logo');
+                $partner->addMedia(storage_path('tmp/uploads/' . basename($request->input('logo'))))->toMediaCollection('logo');
             }
-        } elseif ($partner->header_logo) {
-            $partner->header_logo->delete();
+        } elseif ($partner->logo) {
+            $partner->logo->delete();
         }
 
         return redirect()->route('admin.partners.index');
@@ -144,7 +165,11 @@ class PartnersController extends Controller
 
     public function massDestroy(MassDestroyPartnerRequest $request)
     {
-        Partner::whereIn('id', request('ids'))->delete();
+        $partners = Partner::find(request('ids'));
+
+        foreach ($partners as $partner) {
+            $partner->delete();
+        }
 
         return response(null, Response::HTTP_NO_CONTENT);
     }

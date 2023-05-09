@@ -21,17 +21,29 @@ class StorePartnerRequest extends FormRequest
                 'string',
                 'required',
             ],
-            'prefix' => [
+            'product_name' => [
                 'string',
                 'required',
                 'unique:partners',
             ],
-            'primary_url' => [
+            'subdomain' => [
                 'string',
                 'required',
                 'unique:partners',
+            ],
+            'hostname' => [
+                'string',
+                'required',
+            ],
+            'public_mobile' => [
+                'string',
+                'nullable',
             ],
             'header_background_color' => [
+                'string',
+                'nullable',
+            ],
+            'footer_background_color' => [
                 'string',
                 'nullable',
             ],

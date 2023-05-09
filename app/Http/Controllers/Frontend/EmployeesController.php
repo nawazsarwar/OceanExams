@@ -3,12 +3,17 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Traits\CsvImportTrait;
 use App\Http\Controllers\Traits\MediaUploadingTrait;
 use App\Http\Requests\MassDestroyEmployeeRequest;
 use App\Http\Requests\StoreEmployeeRequest;
 use App\Http\Requests\UpdateEmployeeRequest;
+use App\Models\Designation;
 use App\Models\Employee;
+use App\Models\EmployeeType;
+use App\Models\Institute;
 use App\Models\Subject;
+use App\Models\User;
 use Gate;
 use Illuminate\Http\Request;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -16,13 +21,13 @@ use Symfony\Component\HttpFoundation\Response;
 
 class EmployeesController extends Controller
 {
-    use MediaUploadingTrait;
+    use MediaUploadingTrait, CsvImportTrait;
 
     public function index()
     {
         abort_if(Gate::denies('employee_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $employees = Employee::with(['subjects', 'media'])->get();
+        $employees = Employee::with(['subjects', 'designation', 'employee_type', 'institution', 'user', 'media'])->get();
 
         return view('frontend.employees.index', compact('employees'));
     }
@@ -33,7 +38,15 @@ class EmployeesController extends Controller
 
         $subjects = Subject::pluck('name', 'id');
 
-        return view('frontend.employees.create', compact('subjects'));
+        $designations = Designation::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+
+        $employee_types = EmployeeType::pluck('title', 'id')->prepend(trans('global.pleaseSelect'), '');
+
+        $institutions = Institute::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+
+        $users = User::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+
+        return view('frontend.employees.create', compact('designations', 'employee_types', 'institutions', 'subjects', 'users'));
     }
 
     public function store(StoreEmployeeRequest $request)
@@ -61,9 +74,17 @@ class EmployeesController extends Controller
 
         $subjects = Subject::pluck('name', 'id');
 
-        $employee->load('subjects');
+        $designations = Designation::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        return view('frontend.employees.edit', compact('employee', 'subjects'));
+        $employee_types = EmployeeType::pluck('title', 'id')->prepend(trans('global.pleaseSelect'), '');
+
+        $institutions = Institute::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+
+        $users = User::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+
+        $employee->load('subjects', 'designation', 'employee_type', 'institution', 'user');
+
+        return view('frontend.employees.edit', compact('designations', 'employee', 'employee_types', 'institutions', 'subjects', 'users'));
     }
 
     public function update(UpdateEmployeeRequest $request, Employee $employee)
@@ -99,7 +120,7 @@ class EmployeesController extends Controller
     {
         abort_if(Gate::denies('employee_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $employee->load('subjects');
+        $employee->load('subjects', 'designation', 'employee_type', 'institution', 'user');
 
         return view('frontend.employees.show', compact('employee'));
     }

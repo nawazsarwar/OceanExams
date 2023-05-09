@@ -6,6 +6,10 @@
             <a class="btn btn-success" href="{{ route('admin.employees.create') }}">
                 {{ trans('global.add') }} {{ trans('cruds.employee.title_singular') }}
             </a>
+            <button class="btn btn-warning" data-toggle="modal" data-target="#csvImportModal">
+                {{ trans('global.app_csvImport') }}
+            </button>
+            @include('csvImport.modal', ['model' => 'Employee', 'route' => 'admin.employees.parseCsvImport'])
         </div>
     </div>
 @endcan
@@ -31,9 +35,6 @@
                         {{ trans('cruds.employee.fields.contact') }}
                     </th>
                     <th>
-                        {{ trans('cruds.employee.fields.email') }}
-                    </th>
-                    <th>
                         {{ trans('cruds.employee.fields.date_of_birth') }}
                     </th>
                     <th>
@@ -46,7 +47,22 @@
                         {{ trans('cruds.employee.fields.signature') }}
                     </th>
                     <th>
+                        {{ trans('cruds.employee.fields.date_of_joining') }}
+                    </th>
+                    <th>
                         {{ trans('cruds.employee.fields.subjects') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.employee.fields.designation') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.employee.fields.employee_type') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.employee.fields.institution') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.employee.fields.user') }}
                     </th>
                     <th>
                         &nbsp;
@@ -107,12 +123,16 @@
 { data: 'id', name: 'id' },
 { data: 'name', name: 'name' },
 { data: 'contact', name: 'contact' },
-{ data: 'email', name: 'email' },
 { data: 'date_of_birth', name: 'date_of_birth' },
 { data: 'gender', name: 'gender' },
 { data: 'photo', name: 'photo', sortable: false, searchable: false },
 { data: 'signature', name: 'signature', sortable: false, searchable: false },
+{ data: 'date_of_joining', name: 'date_of_joining' },
 { data: 'subjects', name: 'subjects.name' },
+{ data: 'designation_name', name: 'designation.name' },
+{ data: 'employee_type_title', name: 'employee_type.title' },
+{ data: 'institution_name', name: 'institution.name' },
+{ data: 'user_name', name: 'user.name' },
 { data: 'actions', name: '{{ trans('global.actions') }}' }
     ],
     orderCellsTop: true,

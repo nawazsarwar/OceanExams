@@ -32,6 +32,8 @@ class LoginController extends Controller
 
     /**
      * Create a new controller instance.
+     *
+     * @return void
      */
     public function __construct()
     {
@@ -47,11 +49,11 @@ class LoginController extends Controller
         return '/home';
     }
 
-    protected function authenticated(Request $request, $user)
-    {
-        if ($user->two_factor) {
-            $user->generateTwoFactorCode();
-            $user->notify(new TwoFactorCodeNotification());
-        }
+protected function authenticated(Request $request, $user)
+{
+    if ($user->two_factor) {
+        $user->generateTwoFactorCode();
+        $user->notify(new TwoFactorCodeNotification());
     }
+}
 }

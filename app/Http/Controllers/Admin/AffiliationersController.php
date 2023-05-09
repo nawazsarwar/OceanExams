@@ -22,25 +22,25 @@ class AffiliationersController extends Controller
         abort_if(Gate::denies('affiliationer_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         if ($request->ajax()) {
-            $query = Affiliationer::query()->select(sprintf('%s.*', (new Affiliationer())->table));
+            $query = Affiliationer::query()->select(sprintf('%s.*', (new Affiliationer)->table));
             $table = Datatables::of($query);
 
             $table->addColumn('placeholder', '&nbsp;');
             $table->addColumn('actions', '&nbsp;');
 
             $table->editColumn('actions', function ($row) {
-                $viewGate = 'affiliationer_show';
-                $editGate = 'affiliationer_edit';
-                $deleteGate = 'affiliationer_delete';
+                $viewGate      = 'affiliationer_show';
+                $editGate      = 'affiliationer_edit';
+                $deleteGate    = 'affiliationer_delete';
                 $crudRoutePart = 'affiliationers';
 
                 return view('partials.datatablesActions', compact(
-                'viewGate',
-                'editGate',
-                'deleteGate',
-                'crudRoutePart',
-                'row'
-            ));
+                    'viewGate',
+                    'editGate',
+                    'deleteGate',
+                    'crudRoutePart',
+                    'row'
+                ));
             });
 
             $table->editColumn('id', function ($row) {
@@ -104,7 +104,11 @@ class AffiliationersController extends Controller
 
     public function massDestroy(MassDestroyAffiliationerRequest $request)
     {
-        Affiliationer::whereIn('id', request('ids'))->delete();
+        $affiliationers = Affiliationer::find(request('ids'));
+
+        foreach ($affiliationers as $affiliationer) {
+            $affiliationer->delete();
+        }
 
         return response(null, Response::HTTP_NO_CONTENT);
     }

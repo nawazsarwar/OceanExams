@@ -34,6 +34,14 @@
                                         {{ $academicSession->name }}
                                     </td>
                                 </tr>
+                                <tr>
+                                    <th>
+                                        {{ trans('cruds.academicSession.fields.position') }}
+                                    </th>
+                                    <td>
+                                        {{ $academicSession->position }}
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                         <div class="form-group">

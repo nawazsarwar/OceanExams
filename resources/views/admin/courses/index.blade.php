@@ -34,13 +34,13 @@
                         {{ trans('cruds.course.fields.description') }}
                     </th>
                     <th>
-                        {{ trans('cruds.course.fields.price') }}
-                    </th>
-                    <th>
                         {{ trans('cruds.course.fields.thumbnail') }}
                     </th>
                     <th>
                         {{ trans('cruds.course.fields.is_published') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.course.fields.institute') }}
                     </th>
                     <th>
                         &nbsp;
@@ -102,9 +102,9 @@
 { data: 'title', name: 'title' },
 { data: 'subjects', name: 'subjects.name' },
 { data: 'description', name: 'description' },
-{ data: 'price', name: 'price' },
 { data: 'thumbnail', name: 'thumbnail', sortable: false, searchable: false },
 { data: 'is_published', name: 'is_published' },
+{ data: 'institute_name', name: 'institute.name' },
 { data: 'actions', name: '{{ trans('global.actions') }}' }
     ],
     orderCellsTop: true,

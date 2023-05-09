@@ -29,11 +29,31 @@ class UpdateEmployeeRequest extends FormRequest
                 'date_format:' . config('panel.date_format'),
                 'nullable',
             ],
+            'date_of_joining' => [
+                'date_format:' . config('panel.date_format'),
+                'nullable',
+            ],
             'subjects.*' => [
                 'integer',
             ],
             'subjects' => [
                 'array',
+            ],
+            'designation_id' => [
+                'required',
+                'integer',
+            ],
+            'employee_type_id' => [
+                'required',
+                'integer',
+            ],
+            'institution_id' => [
+                'required',
+                'integer',
+            ],
+            'user_id' => [
+                'required',
+                'integer',
             ],
         ];
     }

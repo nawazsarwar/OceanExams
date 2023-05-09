@@ -51,14 +51,6 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.course.fields.price') }}
-                        </th>
-                        <td>
-                            {{ $course->price }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
                             {{ trans('cruds.course.fields.thumbnail') }}
                         </th>
                         <td>
@@ -75,6 +67,14 @@
                         </th>
                         <td>
                             <input type="checkbox" disabled="disabled" {{ $course->is_published ? 'checked' : '' }}>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.course.fields.institute') }}
+                        </th>
+                        <td>
+                            {{ $course->institute->name ?? '' }}
                         </td>
                     </tr>
                 </tbody>

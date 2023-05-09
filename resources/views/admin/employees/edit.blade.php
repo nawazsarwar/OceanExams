@@ -27,14 +27,6 @@
                 <span class="help-block">{{ trans('cruds.employee.fields.contact_helper') }}</span>
             </div>
             <div class="form-group">
-                <label for="email">{{ trans('cruds.employee.fields.email') }}</label>
-                <input class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" type="email" name="email" id="email" value="{{ old('email', $employee->email) }}">
-                @if($errors->has('email'))
-                    <span class="text-danger">{{ $errors->first('email') }}</span>
-                @endif
-                <span class="help-block">{{ trans('cruds.employee.fields.email_helper') }}</span>
-            </div>
-            <div class="form-group">
                 <label for="date_of_birth">{{ trans('cruds.employee.fields.date_of_birth') }}</label>
                 <input class="form-control date {{ $errors->has('date_of_birth') ? 'is-invalid' : '' }}" type="text" name="date_of_birth" id="date_of_birth" value="{{ old('date_of_birth', $employee->date_of_birth) }}">
                 @if($errors->has('date_of_birth'))
@@ -74,6 +66,14 @@
                 <span class="help-block">{{ trans('cruds.employee.fields.signature_helper') }}</span>
             </div>
             <div class="form-group">
+                <label for="date_of_joining">{{ trans('cruds.employee.fields.date_of_joining') }}</label>
+                <input class="form-control date {{ $errors->has('date_of_joining') ? 'is-invalid' : '' }}" type="text" name="date_of_joining" id="date_of_joining" value="{{ old('date_of_joining', $employee->date_of_joining) }}">
+                @if($errors->has('date_of_joining'))
+                    <span class="text-danger">{{ $errors->first('date_of_joining') }}</span>
+                @endif
+                <span class="help-block">{{ trans('cruds.employee.fields.date_of_joining_helper') }}</span>
+            </div>
+            <div class="form-group">
                 <label for="subjects">{{ trans('cruds.employee.fields.subjects') }}</label>
                 <div style="padding-bottom: 4px">
                     <span class="btn btn-info btn-xs select-all" style="border-radius: 0">{{ trans('global.select_all') }}</span>
@@ -88,6 +88,54 @@
                     <span class="text-danger">{{ $errors->first('subjects') }}</span>
                 @endif
                 <span class="help-block">{{ trans('cruds.employee.fields.subjects_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label class="required" for="designation_id">{{ trans('cruds.employee.fields.designation') }}</label>
+                <select class="form-control select2 {{ $errors->has('designation') ? 'is-invalid' : '' }}" name="designation_id" id="designation_id" required>
+                    @foreach($designations as $id => $entry)
+                        <option value="{{ $id }}" {{ (old('designation_id') ? old('designation_id') : $employee->designation->id ?? '') == $id ? 'selected' : '' }}>{{ $entry }}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('designation'))
+                    <span class="text-danger">{{ $errors->first('designation') }}</span>
+                @endif
+                <span class="help-block">{{ trans('cruds.employee.fields.designation_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label class="required" for="employee_type_id">{{ trans('cruds.employee.fields.employee_type') }}</label>
+                <select class="form-control select2 {{ $errors->has('employee_type') ? 'is-invalid' : '' }}" name="employee_type_id" id="employee_type_id" required>
+                    @foreach($employee_types as $id => $entry)
+                        <option value="{{ $id }}" {{ (old('employee_type_id') ? old('employee_type_id') : $employee->employee_type->id ?? '') == $id ? 'selected' : '' }}>{{ $entry }}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('employee_type'))
+                    <span class="text-danger">{{ $errors->first('employee_type') }}</span>
+                @endif
+                <span class="help-block">{{ trans('cruds.employee.fields.employee_type_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label class="required" for="institution_id">{{ trans('cruds.employee.fields.institution') }}</label>
+                <select class="form-control select2 {{ $errors->has('institution') ? 'is-invalid' : '' }}" name="institution_id" id="institution_id" required>
+                    @foreach($institutions as $id => $entry)
+                        <option value="{{ $id }}" {{ (old('institution_id') ? old('institution_id') : $employee->institution->id ?? '') == $id ? 'selected' : '' }}>{{ $entry }}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('institution'))
+                    <span class="text-danger">{{ $errors->first('institution') }}</span>
+                @endif
+                <span class="help-block">{{ trans('cruds.employee.fields.institution_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label class="required" for="user_id">{{ trans('cruds.employee.fields.user') }}</label>
+                <select class="form-control select2 {{ $errors->has('user') ? 'is-invalid' : '' }}" name="user_id" id="user_id" required>
+                    @foreach($users as $id => $entry)
+                        <option value="{{ $id }}" {{ (old('user_id') ? old('user_id') : $employee->user->id ?? '') == $id ? 'selected' : '' }}>{{ $entry }}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('user'))
+                    <span class="text-danger">{{ $errors->first('user') }}</span>
+                @endif
+                <span class="help-block">{{ trans('cruds.employee.fields.user_helper') }}</span>
             </div>
             <div class="form-group">
                 <button class="btn btn-danger" type="submit">

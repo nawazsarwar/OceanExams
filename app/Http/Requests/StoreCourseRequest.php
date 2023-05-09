@@ -33,6 +33,10 @@ class StoreCourseRequest extends FormRequest
             'thumbnail' => [
                 'array',
             ],
+            'institute_id' => [
+                'required',
+                'integer',
+            ],
         ];
     }
 }

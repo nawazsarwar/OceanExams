@@ -36,6 +36,14 @@
                                 </tr>
                                 <tr>
                                     <th>
+                                        {{ trans('cruds.institute.fields.email') }}
+                                    </th>
+                                    <td>
+                                        {{ $institute->email }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
                                         {{ trans('cruds.institute.fields.logo') }}
                                     </th>
                                     <td>
@@ -44,14 +52,6 @@
                                                 <img src="{{ $institute->logo->getUrl('thumb') }}">
                                             </a>
                                         @endif
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>
-                                        {{ trans('cruds.institute.fields.email') }}
-                                    </th>
-                                    <td>
-                                        {{ $institute->email }}
                                     </td>
                                 </tr>
                                 <tr>
@@ -68,6 +68,54 @@
                                     </th>
                                     <td>
                                         {{ $institute->hostname }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        {{ trans('cruds.institute.fields.public_email') }}
+                                    </th>
+                                    <td>
+                                        {{ $institute->public_email }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        {{ trans('cruds.institute.fields.public_mobile') }}
+                                    </th>
+                                    <td>
+                                        {{ $institute->public_mobile }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        {{ trans('cruds.institute.fields.address') }}
+                                    </th>
+                                    <td>
+                                        {{ $institute->address }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        {{ trans('cruds.institute.fields.header_background_color') }}
+                                    </th>
+                                    <td>
+                                        {{ $institute->header_background_color }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        {{ trans('cruds.institute.fields.footer_background_color') }}
+                                    </th>
+                                    <td>
+                                        {{ $institute->footer_background_color }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        {{ trans('cruds.institute.fields.about') }}
+                                    </th>
+                                    <td>
+                                        {!! $institute->about !!}
                                     </td>
                                 </tr>
                                 <tr>
@@ -130,34 +178,26 @@
                                 </tr>
                                 <tr>
                                     <th>
-                                        {{ trans('cruds.institute.fields.about') }}
-                                    </th>
-                                    <td>
-                                        {{ $institute->about }}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>
-                                        {{ trans('cruds.institute.fields.public_email') }}
-                                    </th>
-                                    <td>
-                                        {{ $institute->public_email }}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>
-                                        {{ trans('cruds.institute.fields.public_mobile') }}
-                                    </th>
-                                    <td>
-                                        {{ $institute->public_mobile }}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>
                                         {{ trans('cruds.institute.fields.partner') }}
                                     </th>
                                     <td>
                                         {{ $institute->partner->name ?? '' }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        {{ trans('cruds.institute.fields.status') }}
+                                    </th>
+                                    <td>
+                                        {{ App\Models\Institute::STATUS_SELECT[$institute->status] ?? '' }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        {{ trans('cruds.institute.fields.remarks') }}
+                                    </th>
+                                    <td>
+                                        {{ $institute->remarks }}
                                     </td>
                                 </tr>
                             </tbody>

@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\MassDestroySectionRequest;
 use App\Http\Requests\StoreSectionRequest;
 use App\Http\Requests\UpdateSectionRequest;
-use App\Models\Grade;
+use App\Models\Course;
 use App\Models\Section;
 use Gate;
 use Illuminate\Http\Request;
@@ -18,7 +18,7 @@ class SectionsController extends Controller
     {
         abort_if(Gate::denies('section_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $sections = Section::with(['grade'])->get();
+        $sections = Section::with(['course'])->get();
 
         return view('admin.sections.index', compact('sections'));
     }
@@ -27,9 +27,9 @@ class SectionsController extends Controller
     {
         abort_if(Gate::denies('section_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $grades = Grade::pluck('title', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $courses = Course::pluck('title', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        return view('admin.sections.create', compact('grades'));
+        return view('admin.sections.create', compact('courses'));
     }
 
     public function store(StoreSectionRequest $request)
@@ -43,11 +43,11 @@ class SectionsController extends Controller
     {
         abort_if(Gate::denies('section_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $grades = Grade::pluck('title', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $courses = Course::pluck('title', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $section->load('grade');
+        $section->load('course');
 
-        return view('admin.sections.edit', compact('grades', 'section'));
+        return view('admin.sections.edit', compact('courses', 'section'));
     }
 
     public function update(UpdateSectionRequest $request, Section $section)
@@ -61,7 +61,7 @@ class SectionsController extends Controller
     {
         abort_if(Gate::denies('section_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $section->load('grade');
+        $section->load('course');
 
         return view('admin.sections.show', compact('section'));
     }

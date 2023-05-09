@@ -22,25 +22,25 @@ class InstituteTypesController extends Controller
         abort_if(Gate::denies('institute_type_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         if ($request->ajax()) {
-            $query = InstituteType::query()->select(sprintf('%s.*', (new InstituteType())->table));
+            $query = InstituteType::query()->select(sprintf('%s.*', (new InstituteType)->table));
             $table = Datatables::of($query);
 
             $table->addColumn('placeholder', '&nbsp;');
             $table->addColumn('actions', '&nbsp;');
 
             $table->editColumn('actions', function ($row) {
-                $viewGate = 'institute_type_show';
-                $editGate = 'institute_type_edit';
-                $deleteGate = 'institute_type_delete';
+                $viewGate      = 'institute_type_show';
+                $editGate      = 'institute_type_edit';
+                $deleteGate    = 'institute_type_delete';
                 $crudRoutePart = 'institute-types';
 
                 return view('partials.datatablesActions', compact(
-                'viewGate',
-                'editGate',
-                'deleteGate',
-                'crudRoutePart',
-                'row'
-            ));
+                    'viewGate',
+                    'editGate',
+                    'deleteGate',
+                    'crudRoutePart',
+                    'row'
+                ));
             });
 
             $table->editColumn('id', function ($row) {
@@ -104,7 +104,11 @@ class InstituteTypesController extends Controller
 
     public function massDestroy(MassDestroyInstituteTypeRequest $request)
     {
-        InstituteType::whereIn('id', request('ids'))->delete();
+        $instituteTypes = InstituteType::find(request('ids'));
+
+        foreach ($instituteTypes as $instituteType) {
+            $instituteType->delete();
+        }
 
         return response(null, Response::HTTP_NO_CONTENT);
     }

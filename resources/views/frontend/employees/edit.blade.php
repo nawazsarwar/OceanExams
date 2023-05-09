@@ -34,16 +34,6 @@
                             <span class="help-block">{{ trans('cruds.employee.fields.contact_helper') }}</span>
                         </div>
                         <div class="form-group">
-                            <label for="email">{{ trans('cruds.employee.fields.email') }}</label>
-                            <input class="form-control" type="email" name="email" id="email" value="{{ old('email', $employee->email) }}">
-                            @if($errors->has('email'))
-                                <div class="invalid-feedback">
-                                    {{ $errors->first('email') }}
-                                </div>
-                            @endif
-                            <span class="help-block">{{ trans('cruds.employee.fields.email_helper') }}</span>
-                        </div>
-                        <div class="form-group">
                             <label for="date_of_birth">{{ trans('cruds.employee.fields.date_of_birth') }}</label>
                             <input class="form-control date" type="text" name="date_of_birth" id="date_of_birth" value="{{ old('date_of_birth', $employee->date_of_birth) }}">
                             @if($errors->has('date_of_birth'))
@@ -91,6 +81,16 @@
                             <span class="help-block">{{ trans('cruds.employee.fields.signature_helper') }}</span>
                         </div>
                         <div class="form-group">
+                            <label for="date_of_joining">{{ trans('cruds.employee.fields.date_of_joining') }}</label>
+                            <input class="form-control date" type="text" name="date_of_joining" id="date_of_joining" value="{{ old('date_of_joining', $employee->date_of_joining) }}">
+                            @if($errors->has('date_of_joining'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('date_of_joining') }}
+                                </div>
+                            @endif
+                            <span class="help-block">{{ trans('cruds.employee.fields.date_of_joining_helper') }}</span>
+                        </div>
+                        <div class="form-group">
                             <label for="subjects">{{ trans('cruds.employee.fields.subjects') }}</label>
                             <div style="padding-bottom: 4px">
                                 <span class="btn btn-info btn-xs select-all" style="border-radius: 0">{{ trans('global.select_all') }}</span>
@@ -107,6 +107,62 @@
                                 </div>
                             @endif
                             <span class="help-block">{{ trans('cruds.employee.fields.subjects_helper') }}</span>
+                        </div>
+                        <div class="form-group">
+                            <label class="required" for="designation_id">{{ trans('cruds.employee.fields.designation') }}</label>
+                            <select class="form-control select2" name="designation_id" id="designation_id" required>
+                                @foreach($designations as $id => $entry)
+                                    <option value="{{ $id }}" {{ (old('designation_id') ? old('designation_id') : $employee->designation->id ?? '') == $id ? 'selected' : '' }}>{{ $entry }}</option>
+                                @endforeach
+                            </select>
+                            @if($errors->has('designation'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('designation') }}
+                                </div>
+                            @endif
+                            <span class="help-block">{{ trans('cruds.employee.fields.designation_helper') }}</span>
+                        </div>
+                        <div class="form-group">
+                            <label class="required" for="employee_type_id">{{ trans('cruds.employee.fields.employee_type') }}</label>
+                            <select class="form-control select2" name="employee_type_id" id="employee_type_id" required>
+                                @foreach($employee_types as $id => $entry)
+                                    <option value="{{ $id }}" {{ (old('employee_type_id') ? old('employee_type_id') : $employee->employee_type->id ?? '') == $id ? 'selected' : '' }}>{{ $entry }}</option>
+                                @endforeach
+                            </select>
+                            @if($errors->has('employee_type'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('employee_type') }}
+                                </div>
+                            @endif
+                            <span class="help-block">{{ trans('cruds.employee.fields.employee_type_helper') }}</span>
+                        </div>
+                        <div class="form-group">
+                            <label class="required" for="institution_id">{{ trans('cruds.employee.fields.institution') }}</label>
+                            <select class="form-control select2" name="institution_id" id="institution_id" required>
+                                @foreach($institutions as $id => $entry)
+                                    <option value="{{ $id }}" {{ (old('institution_id') ? old('institution_id') : $employee->institution->id ?? '') == $id ? 'selected' : '' }}>{{ $entry }}</option>
+                                @endforeach
+                            </select>
+                            @if($errors->has('institution'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('institution') }}
+                                </div>
+                            @endif
+                            <span class="help-block">{{ trans('cruds.employee.fields.institution_helper') }}</span>
+                        </div>
+                        <div class="form-group">
+                            <label class="required" for="user_id">{{ trans('cruds.employee.fields.user') }}</label>
+                            <select class="form-control select2" name="user_id" id="user_id" required>
+                                @foreach($users as $id => $entry)
+                                    <option value="{{ $id }}" {{ (old('user_id') ? old('user_id') : $employee->user->id ?? '') == $id ? 'selected' : '' }}>{{ $entry }}</option>
+                                @endforeach
+                            </select>
+                            @if($errors->has('user'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('user') }}
+                                </div>
+                            @endif
+                            <span class="help-block">{{ trans('cruds.employee.fields.user_helper') }}</span>
                         </div>
                         <div class="form-group">
                             <button class="btn btn-danger" type="submit">

@@ -7,6 +7,7 @@ use App\Http\Controllers\Traits\CsvImportTrait;
 use App\Http\Requests\MassDestroyUserRequest;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Models\Institute;
 use App\Models\Role;
 use App\Models\User;
 use Gate;
@@ -21,7 +22,7 @@ class UsersController extends Controller
     {
         abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $users = User::with(['roles'])->get();
+        $users = User::with(['roles', 'institution'])->get();
 
         return view('frontend.users.index', compact('users'));
     }
@@ -32,7 +33,9 @@ class UsersController extends Controller
 
         $roles = Role::pluck('title', 'id');
 
-        return view('frontend.users.create', compact('roles'));
+        $institutions = Institute::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+
+        return view('frontend.users.create', compact('institutions', 'roles'));
     }
 
     public function store(StoreUserRequest $request)
@@ -49,9 +52,11 @@ class UsersController extends Controller
 
         $roles = Role::pluck('title', 'id');
 
-        $user->load('roles');
+        $institutions = Institute::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        return view('frontend.users.edit', compact('roles', 'user'));
+        $user->load('roles', 'institution');
+
+        return view('frontend.users.edit', compact('institutions', 'roles', 'user'));
     }
 
     public function update(UpdateUserRequest $request, User $user)
@@ -66,7 +71,7 @@ class UsersController extends Controller
     {
         abort_if(Gate::denies('user_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $user->load('roles');
+        $user->load('roles', 'institution');
 
         return view('frontend.users.show', compact('user'));
     }

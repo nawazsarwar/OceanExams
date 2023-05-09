@@ -9,6 +9,10 @@
                         <a class="btn btn-success" href="{{ route('frontend.employees.create') }}">
                             {{ trans('global.add') }} {{ trans('cruds.employee.title_singular') }}
                         </a>
+                        <button class="btn btn-warning" data-toggle="modal" data-target="#csvImportModal">
+                            {{ trans('global.app_csvImport') }}
+                        </button>
+                        @include('csvImport.modal', ['model' => 'Employee', 'route' => 'admin.employees.parseCsvImport'])
                     </div>
                 </div>
             @endcan
@@ -32,9 +36,6 @@
                                         {{ trans('cruds.employee.fields.contact') }}
                                     </th>
                                     <th>
-                                        {{ trans('cruds.employee.fields.email') }}
-                                    </th>
-                                    <th>
                                         {{ trans('cruds.employee.fields.date_of_birth') }}
                                     </th>
                                     <th>
@@ -47,7 +48,22 @@
                                         {{ trans('cruds.employee.fields.signature') }}
                                     </th>
                                     <th>
+                                        {{ trans('cruds.employee.fields.date_of_joining') }}
+                                    </th>
+                                    <th>
                                         {{ trans('cruds.employee.fields.subjects') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.employee.fields.designation') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.employee.fields.employee_type') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.employee.fields.institution') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.employee.fields.user') }}
                                     </th>
                                     <th>
                                         &nbsp;
@@ -65,9 +81,6 @@
                                         </td>
                                         <td>
                                             {{ $employee->contact ?? '' }}
-                                        </td>
-                                        <td>
-                                            {{ $employee->email ?? '' }}
                                         </td>
                                         <td>
                                             {{ $employee->date_of_birth ?? '' }}
@@ -90,9 +103,24 @@
                                             @endif
                                         </td>
                                         <td>
+                                            {{ $employee->date_of_joining ?? '' }}
+                                        </td>
+                                        <td>
                                             @foreach($employee->subjects as $key => $item)
                                                 <span>{{ $item->name }}</span>
                                             @endforeach
+                                        </td>
+                                        <td>
+                                            {{ $employee->designation->name ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $employee->employee_type->title ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $employee->institution->name ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $employee->user->name ?? '' }}
                                         </td>
                                         <td>
                                             @can('employee_show')

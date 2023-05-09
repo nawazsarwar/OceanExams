@@ -29,13 +29,13 @@
                         {{ trans('cruds.chapter.fields.id') }}
                     </th>
                     <th>
-                        {{ trans('cruds.chapter.fields.name') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.chapter.fields.grade_subject') }}
+                        {{ trans('cruds.chapter.fields.title') }}
                     </th>
                     <th>
                         {{ trans('cruds.chapter.fields.status') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.chapter.fields.subject') }}
                     </th>
                     <th>
                         &nbsp;
@@ -94,9 +94,9 @@
     columns: [
       { data: 'placeholder', name: 'placeholder' },
 { data: 'id', name: 'id' },
-{ data: 'name', name: 'name' },
-{ data: 'grade_subject_title', name: 'grade_subject.title' },
+{ data: 'title', name: 'title' },
 { data: 'status', name: 'status' },
+{ data: 'subject_name', name: 'subject.name' },
 { data: 'actions', name: '{{ trans('global.actions') }}' }
     ],
     orderCellsTop: true,

@@ -25,18 +25,10 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.chapter.fields.name') }}
+                            {{ trans('cruds.chapter.fields.title') }}
                         </th>
                         <td>
-                            {{ $chapter->name }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            {{ trans('cruds.chapter.fields.grade_subject') }}
-                        </th>
-                        <td>
-                            {{ $chapter->grade_subject->title ?? '' }}
+                            {{ $chapter->title }}
                         </td>
                     </tr>
                     <tr>
@@ -45,6 +37,14 @@
                         </th>
                         <td>
                             {{ $chapter->status }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.chapter.fields.subject') }}
+                        </th>
+                        <td>
+                            {{ $chapter->subject->name ?? '' }}
                         </td>
                     </tr>
                 </tbody>

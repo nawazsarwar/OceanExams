@@ -43,29 +43,15 @@ class StoreStudentRequest extends FormRequest
             ],
             'parents_contact' => [
                 'string',
-                'required',
-            ],
-            'course_id' => [
-                'required',
-                'integer',
-            ],
-            'batch_id' => [
-                'required',
-                'integer',
+                'nullable',
             ],
             'date_of_birth' => [
                 'required',
                 'date_format:' . config('panel.date_format'),
             ],
             'date_of_joining' => [
-                'required',
                 'date_format:' . config('panel.date_format'),
-            ],
-            'image' => [
-                'required',
-            ],
-            'image_verified' => [
-                'required',
+                'nullable',
             ],
             'enrollment_no' => [
                 'string',
@@ -78,6 +64,20 @@ class StoreStudentRequest extends FormRequest
             'id_card_no' => [
                 'string',
                 'nullable',
+            ],
+            'sections.*' => [
+                'integer',
+            ],
+            'sections' => [
+                'required',
+                'array',
+            ],
+            'users.*' => [
+                'integer',
+            ],
+            'users' => [
+                'required',
+                'array',
             ],
         ];
     }

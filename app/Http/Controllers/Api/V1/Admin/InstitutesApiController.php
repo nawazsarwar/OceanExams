@@ -48,7 +48,7 @@ class InstitutesApiController extends Controller
         $institute->update($request->all());
         $institute->affiliations()->sync($request->input('affiliations', []));
         if ($request->input('logo', false)) {
-            if (!$institute->logo || $request->input('logo') !== $institute->logo->file_name) {
+            if (! $institute->logo || $request->input('logo') !== $institute->logo->file_name) {
                 if ($institute->logo) {
                     $institute->logo->delete();
                 }

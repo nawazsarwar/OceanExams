@@ -33,16 +33,31 @@
                                         {{ trans('cruds.institute.fields.name') }}
                                     </th>
                                     <th>
-                                        {{ trans('cruds.institute.fields.logo') }}
+                                        {{ trans('cruds.institute.fields.email') }}
                                     </th>
                                     <th>
-                                        {{ trans('cruds.institute.fields.email') }}
+                                        {{ trans('cruds.institute.fields.logo') }}
                                     </th>
                                     <th>
                                         {{ trans('cruds.institute.fields.subdomain') }}
                                     </th>
                                     <th>
                                         {{ trans('cruds.institute.fields.hostname') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.institute.fields.public_email') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.institute.fields.public_mobile') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.institute.fields.address') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.institute.fields.header_background_color') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.institute.fields.footer_background_color') }}
                                     </th>
                                     <th>
                                         {{ trans('cruds.institute.fields.type') }}
@@ -66,16 +81,13 @@
                                         {{ trans('cruds.institute.fields.longitude') }}
                                     </th>
                                     <th>
-                                        {{ trans('cruds.institute.fields.about') }}
-                                    </th>
-                                    <th>
-                                        {{ trans('cruds.institute.fields.public_email') }}
-                                    </th>
-                                    <th>
-                                        {{ trans('cruds.institute.fields.public_mobile') }}
-                                    </th>
-                                    <th>
                                         {{ trans('cruds.institute.fields.partner') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.institute.fields.status') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.institute.fields.remarks') }}
                                     </th>
                                     <th>
                                         &nbsp;
@@ -92,6 +104,9 @@
                                             {{ $institute->name ?? '' }}
                                         </td>
                                         <td>
+                                            {{ $institute->email ?? '' }}
+                                        </td>
+                                        <td>
                                             @if($institute->logo)
                                                 <a href="{{ $institute->logo->getUrl() }}" target="_blank" style="display: inline-block">
                                                     <img src="{{ $institute->logo->getUrl('thumb') }}">
@@ -99,13 +114,25 @@
                                             @endif
                                         </td>
                                         <td>
-                                            {{ $institute->email ?? '' }}
-                                        </td>
-                                        <td>
                                             {{ $institute->subdomain ?? '' }}
                                         </td>
                                         <td>
                                             {{ $institute->hostname ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $institute->public_email ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $institute->public_mobile ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $institute->address ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $institute->header_background_color ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $institute->footer_background_color ?? '' }}
                                         </td>
                                         <td>
                                             {{ $institute->type->title ?? '' }}
@@ -131,16 +158,13 @@
                                             {{ $institute->longitude ?? '' }}
                                         </td>
                                         <td>
-                                            {{ $institute->about ?? '' }}
-                                        </td>
-                                        <td>
-                                            {{ $institute->public_email ?? '' }}
-                                        </td>
-                                        <td>
-                                            {{ $institute->public_mobile ?? '' }}
-                                        </td>
-                                        <td>
                                             {{ $institute->partner->name ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ App\Models\Institute::STATUS_SELECT[$institute->status] ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $institute->remarks ?? '' }}
                                         </td>
                                         <td>
                                             @can('institute_show')

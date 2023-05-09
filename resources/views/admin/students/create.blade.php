@@ -58,36 +58,12 @@
                 <span class="help-block">{{ trans('cruds.student.fields.mothers_name_helper') }}</span>
             </div>
             <div class="form-group">
-                <label class="required" for="parents_contact">{{ trans('cruds.student.fields.parents_contact') }}</label>
-                <input class="form-control {{ $errors->has('parents_contact') ? 'is-invalid' : '' }}" type="text" name="parents_contact" id="parents_contact" value="{{ old('parents_contact', '') }}" required>
+                <label for="parents_contact">{{ trans('cruds.student.fields.parents_contact') }}</label>
+                <input class="form-control {{ $errors->has('parents_contact') ? 'is-invalid' : '' }}" type="text" name="parents_contact" id="parents_contact" value="{{ old('parents_contact', '') }}">
                 @if($errors->has('parents_contact'))
                     <span class="text-danger">{{ $errors->first('parents_contact') }}</span>
                 @endif
                 <span class="help-block">{{ trans('cruds.student.fields.parents_contact_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <label class="required" for="course_id">{{ trans('cruds.student.fields.course') }}</label>
-                <select class="form-control select2 {{ $errors->has('course') ? 'is-invalid' : '' }}" name="course_id" id="course_id" required>
-                    @foreach($courses as $id => $entry)
-                        <option value="{{ $id }}" {{ old('course_id') == $id ? 'selected' : '' }}>{{ $entry }}</option>
-                    @endforeach
-                </select>
-                @if($errors->has('course'))
-                    <span class="text-danger">{{ $errors->first('course') }}</span>
-                @endif
-                <span class="help-block">{{ trans('cruds.student.fields.course_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <label class="required" for="batch_id">{{ trans('cruds.student.fields.batch') }}</label>
-                <select class="form-control select2 {{ $errors->has('batch') ? 'is-invalid' : '' }}" name="batch_id" id="batch_id" required>
-                    @foreach($batches as $id => $entry)
-                        <option value="{{ $id }}" {{ old('batch_id') == $id ? 'selected' : '' }}>{{ $entry }}</option>
-                    @endforeach
-                </select>
-                @if($errors->has('batch'))
-                    <span class="text-danger">{{ $errors->first('batch') }}</span>
-                @endif
-                <span class="help-block">{{ trans('cruds.student.fields.batch_helper') }}</span>
             </div>
             <div class="form-group">
                 <label class="required" for="date_of_birth">{{ trans('cruds.student.fields.date_of_birth') }}</label>
@@ -98,23 +74,15 @@
                 <span class="help-block">{{ trans('cruds.student.fields.date_of_birth_helper') }}</span>
             </div>
             <div class="form-group">
-                <label class="required" for="date_of_joining">{{ trans('cruds.student.fields.date_of_joining') }}</label>
-                <input class="form-control date {{ $errors->has('date_of_joining') ? 'is-invalid' : '' }}" type="text" name="date_of_joining" id="date_of_joining" value="{{ old('date_of_joining') }}" required>
+                <label for="date_of_joining">{{ trans('cruds.student.fields.date_of_joining') }}</label>
+                <input class="form-control date {{ $errors->has('date_of_joining') ? 'is-invalid' : '' }}" type="text" name="date_of_joining" id="date_of_joining" value="{{ old('date_of_joining') }}">
                 @if($errors->has('date_of_joining'))
                     <span class="text-danger">{{ $errors->first('date_of_joining') }}</span>
                 @endif
                 <span class="help-block">{{ trans('cruds.student.fields.date_of_joining_helper') }}</span>
             </div>
             <div class="form-group">
-                <label for="email">{{ trans('cruds.student.fields.email') }}</label>
-                <input class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" type="email" name="email" id="email" value="{{ old('email') }}">
-                @if($errors->has('email'))
-                    <span class="text-danger">{{ $errors->first('email') }}</span>
-                @endif
-                <span class="help-block">{{ trans('cruds.student.fields.email_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <label class="required" for="image">{{ trans('cruds.student.fields.image') }}</label>
+                <label for="image">{{ trans('cruds.student.fields.image') }}</label>
                 <div class="needsclick dropzone {{ $errors->has('image') ? 'is-invalid' : '' }}" id="image-dropzone">
                 </div>
                 @if($errors->has('image'))
@@ -124,8 +92,9 @@
             </div>
             <div class="form-group">
                 <div class="form-check {{ $errors->has('image_verified') ? 'is-invalid' : '' }}">
-                    <input class="form-check-input" type="checkbox" name="image_verified" id="image_verified" value="1" required {{ old('image_verified', 0) == 1 ? 'checked' : '' }}>
-                    <label class="required form-check-label" for="image_verified">{{ trans('cruds.student.fields.image_verified') }}</label>
+                    <input type="hidden" name="image_verified" value="0">
+                    <input class="form-check-input" type="checkbox" name="image_verified" id="image_verified" value="1" {{ old('image_verified', 0) == 1 ? 'checked' : '' }}>
+                    <label class="form-check-label" for="image_verified">{{ trans('cruds.student.fields.image_verified') }}</label>
                 </div>
                 @if($errors->has('image_verified'))
                     <span class="text-danger">{{ $errors->first('image_verified') }}</span>
@@ -166,6 +135,38 @@
                     <span class="text-danger">{{ $errors->first('id_card_no') }}</span>
                 @endif
                 <span class="help-block">{{ trans('cruds.student.fields.id_card_no_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label class="required" for="sections">{{ trans('cruds.student.fields.section') }}</label>
+                <div style="padding-bottom: 4px">
+                    <span class="btn btn-info btn-xs select-all" style="border-radius: 0">{{ trans('global.select_all') }}</span>
+                    <span class="btn btn-info btn-xs deselect-all" style="border-radius: 0">{{ trans('global.deselect_all') }}</span>
+                </div>
+                <select class="form-control select2 {{ $errors->has('sections') ? 'is-invalid' : '' }}" name="sections[]" id="sections" multiple required>
+                    @foreach($sections as $id => $section)
+                        <option value="{{ $id }}" {{ in_array($id, old('sections', [])) ? 'selected' : '' }}>{{ $section }}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('sections'))
+                    <span class="text-danger">{{ $errors->first('sections') }}</span>
+                @endif
+                <span class="help-block">{{ trans('cruds.student.fields.section_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label class="required" for="users">{{ trans('cruds.student.fields.user') }}</label>
+                <div style="padding-bottom: 4px">
+                    <span class="btn btn-info btn-xs select-all" style="border-radius: 0">{{ trans('global.select_all') }}</span>
+                    <span class="btn btn-info btn-xs deselect-all" style="border-radius: 0">{{ trans('global.deselect_all') }}</span>
+                </div>
+                <select class="form-control select2 {{ $errors->has('users') ? 'is-invalid' : '' }}" name="users[]" id="users" multiple required>
+                    @foreach($users as $id => $user)
+                        <option value="{{ $id }}" {{ in_array($id, old('users', [])) ? 'selected' : '' }}>{{ $user }}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('users'))
+                    <span class="text-danger">{{ $errors->first('users') }}</span>
+                @endif
+                <span class="help-block">{{ trans('cruds.student.fields.user_helper') }}</span>
             </div>
             <div class="form-group">
                 <label for="transport_route_id">{{ trans('cruds.student.fields.transport_route') }}</label>

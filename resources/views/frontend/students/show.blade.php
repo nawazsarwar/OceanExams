@@ -84,22 +84,6 @@
                                 </tr>
                                 <tr>
                                     <th>
-                                        {{ trans('cruds.student.fields.course') }}
-                                    </th>
-                                    <td>
-                                        {{ $student->course->title ?? '' }}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>
-                                        {{ trans('cruds.student.fields.batch') }}
-                                    </th>
-                                    <td>
-                                        {{ $student->batch->title ?? '' }}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>
                                         {{ trans('cruds.student.fields.date_of_birth') }}
                                     </th>
                                     <td>
@@ -112,14 +96,6 @@
                                     </th>
                                     <td>
                                         {{ $student->date_of_joining }}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>
-                                        {{ trans('cruds.student.fields.email') }}
-                                    </th>
-                                    <td>
-                                        {{ $student->email }}
                                     </td>
                                 </tr>
                                 <tr>
@@ -172,6 +148,26 @@
                                     </th>
                                     <td>
                                         {{ $student->id_card_no }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        {{ trans('cruds.student.fields.section') }}
+                                    </th>
+                                    <td>
+                                        @foreach($student->sections as $key => $section)
+                                            <span class="label label-info">{{ $section->title }}</span>
+                                        @endforeach
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        {{ trans('cruds.student.fields.user') }}
+                                    </th>
+                                    <td>
+                                        @foreach($student->users as $key => $user)
+                                            <span class="label label-info">{{ $user->name }}</span>
+                                        @endforeach
                                     </td>
                                 </tr>
                                 <tr>

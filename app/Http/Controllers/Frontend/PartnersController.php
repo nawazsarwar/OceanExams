@@ -37,8 +37,8 @@ class PartnersController extends Controller
     {
         $partner = Partner::create($request->all());
 
-        if ($request->input('header_logo', false)) {
-            $partner->addMedia(storage_path('tmp/uploads/' . basename($request->input('header_logo'))))->toMediaCollection('header_logo');
+        if ($request->input('logo', false)) {
+            $partner->addMedia(storage_path('tmp/uploads/' . basename($request->input('logo'))))->toMediaCollection('logo');
         }
 
         if ($media = $request->input('ck-media', false)) {
@@ -59,15 +59,15 @@ class PartnersController extends Controller
     {
         $partner->update($request->all());
 
-        if ($request->input('header_logo', false)) {
-            if (!$partner->header_logo || $request->input('header_logo') !== $partner->header_logo->file_name) {
-                if ($partner->header_logo) {
-                    $partner->header_logo->delete();
+        if ($request->input('logo', false)) {
+            if (! $partner->logo || $request->input('logo') !== $partner->logo->file_name) {
+                if ($partner->logo) {
+                    $partner->logo->delete();
                 }
-                $partner->addMedia(storage_path('tmp/uploads/' . basename($request->input('header_logo'))))->toMediaCollection('header_logo');
+                $partner->addMedia(storage_path('tmp/uploads/' . basename($request->input('logo'))))->toMediaCollection('logo');
             }
-        } elseif ($partner->header_logo) {
-            $partner->header_logo->delete();
+        } elseif ($partner->logo) {
+            $partner->logo->delete();
         }
 
         return redirect()->route('frontend.partners.index');

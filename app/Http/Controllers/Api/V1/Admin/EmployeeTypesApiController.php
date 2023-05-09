@@ -17,7 +17,7 @@ class EmployeeTypesApiController extends Controller
     {
         abort_if(Gate::denies('employee_type_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new EmployeeTypeResource(EmployeeType::with(['institute'])->get());
+        return new EmployeeTypeResource(EmployeeType::with(['institute', 'institution'])->get());
     }
 
     public function store(StoreEmployeeTypeRequest $request)
@@ -33,7 +33,7 @@ class EmployeeTypesApiController extends Controller
     {
         abort_if(Gate::denies('employee_type_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new EmployeeTypeResource($employeeType->load(['institute']));
+        return new EmployeeTypeResource($employeeType->load(['institute', 'institution']));
     }
 
     public function update(UpdateEmployeeTypeRequest $request, EmployeeType $employeeType)

@@ -35,13 +35,13 @@
                                         {{ trans('cruds.course.fields.description') }}
                                     </th>
                                     <th>
-                                        {{ trans('cruds.course.fields.price') }}
-                                    </th>
-                                    <th>
                                         {{ trans('cruds.course.fields.thumbnail') }}
                                     </th>
                                     <th>
                                         {{ trans('cruds.course.fields.is_published') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.course.fields.institute') }}
                                     </th>
                                     <th>
                                         &nbsp;
@@ -66,9 +66,6 @@
                                             {{ $course->description ?? '' }}
                                         </td>
                                         <td>
-                                            {{ $course->price ?? '' }}
-                                        </td>
-                                        <td>
                                             @foreach($course->thumbnail as $key => $media)
                                                 <a href="{{ $media->getUrl() }}" target="_blank" style="display: inline-block">
                                                     <img src="{{ $media->getUrl('thumb') }}">
@@ -78,6 +75,9 @@
                                         <td>
                                             <span style="display:none">{{ $course->is_published ?? '' }}</span>
                                             <input type="checkbox" disabled="disabled" {{ $course->is_published ? 'checked' : '' }}>
+                                        </td>
+                                        <td>
+                                            {{ $course->institute->name ?? '' }}
                                         </td>
                                         <td>
                                             @can('course_show')

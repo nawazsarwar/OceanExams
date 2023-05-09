@@ -19,25 +19,25 @@ class OmrBasedTestsController extends Controller
         abort_if(Gate::denies('omr_based_test_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         if ($request->ajax()) {
-            $query = OmrBasedTest::query()->select(sprintf('%s.*', (new OmrBasedTest())->table));
+            $query = OmrBasedTest::query()->select(sprintf('%s.*', (new OmrBasedTest)->table));
             $table = Datatables::of($query);
 
             $table->addColumn('placeholder', '&nbsp;');
             $table->addColumn('actions', '&nbsp;');
 
             $table->editColumn('actions', function ($row) {
-                $viewGate = 'omr_based_test_show';
-                $editGate = 'omr_based_test_edit';
-                $deleteGate = 'omr_based_test_delete';
+                $viewGate      = 'omr_based_test_show';
+                $editGate      = 'omr_based_test_edit';
+                $deleteGate    = 'omr_based_test_delete';
                 $crudRoutePart = 'omr-based-tests';
 
                 return view('partials.datatablesActions', compact(
-                'viewGate',
-                'editGate',
-                'deleteGate',
-                'crudRoutePart',
-                'row'
-            ));
+                    'viewGate',
+                    'editGate',
+                    'deleteGate',
+                    'crudRoutePart',
+                    'row'
+                ));
             });
 
             $table->editColumn('id', function ($row) {

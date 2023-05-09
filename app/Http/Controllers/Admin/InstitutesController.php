@@ -55,6 +55,9 @@ class InstitutesController extends Controller
             $table->editColumn('name', function ($row) {
                 return $row->name ? $row->name : '';
             });
+            $table->editColumn('email', function ($row) {
+                return $row->email ? $row->email : '';
+            });
             $table->editColumn('logo', function ($row) {
                 if ($photo = $row->logo) {
                     return sprintf(
@@ -66,14 +69,26 @@ class InstitutesController extends Controller
 
                 return '';
             });
-            $table->editColumn('email', function ($row) {
-                return $row->email ? $row->email : '';
-            });
             $table->editColumn('subdomain', function ($row) {
                 return $row->subdomain ? $row->subdomain : '';
             });
             $table->editColumn('hostname', function ($row) {
                 return $row->hostname ? $row->hostname : '';
+            });
+            $table->editColumn('public_email', function ($row) {
+                return $row->public_email ? $row->public_email : '';
+            });
+            $table->editColumn('public_mobile', function ($row) {
+                return $row->public_mobile ? $row->public_mobile : '';
+            });
+            $table->editColumn('address', function ($row) {
+                return $row->address ? $row->address : '';
+            });
+            $table->editColumn('header_background_color', function ($row) {
+                return $row->header_background_color ? $row->header_background_color : '';
+            });
+            $table->editColumn('footer_background_color', function ($row) {
+                return $row->footer_background_color ? $row->footer_background_color : '';
             });
             $table->addColumn('type_title', function ($row) {
                 return $row->type ? $row->type->title : '';
@@ -103,17 +118,15 @@ class InstitutesController extends Controller
             $table->editColumn('longitude', function ($row) {
                 return $row->longitude ? $row->longitude : '';
             });
-            $table->editColumn('about', function ($row) {
-                return $row->about ? $row->about : '';
-            });
-            $table->editColumn('public_email', function ($row) {
-                return $row->public_email ? $row->public_email : '';
-            });
-            $table->editColumn('public_mobile', function ($row) {
-                return $row->public_mobile ? $row->public_mobile : '';
-            });
             $table->addColumn('partner_name', function ($row) {
                 return $row->partner ? $row->partner->name : '';
+            });
+
+            $table->editColumn('status', function ($row) {
+                return $row->status ? Institute::STATUS_SELECT[$row->status] : '';
+            });
+            $table->editColumn('remarks', function ($row) {
+                return $row->remarks ? $row->remarks : '';
             });
 
             $table->rawColumns(['actions', 'placeholder', 'logo', 'type', 'level', 'affiliation', 'partner']);

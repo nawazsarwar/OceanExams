@@ -23,6 +23,7 @@ class EmployeeType extends Model
     protected $fillable = [
         'title',
         'institute_id',
+        'institution_id',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -36,5 +37,10 @@ class EmployeeType extends Model
     public function institute()
     {
         return $this->belongsTo(Institute::class, 'institute_id');
+    }
+
+    public function institution()
+    {
+        return $this->belongsTo(Institute::class, 'institution_id');
     }
 }

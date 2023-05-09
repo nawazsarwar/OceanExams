@@ -9,6 +9,10 @@
                         <a class="btn btn-success" href="{{ route('frontend.students.create') }}">
                             {{ trans('global.add') }} {{ trans('cruds.student.title_singular') }}
                         </a>
+                        <button class="btn btn-warning" data-toggle="modal" data-target="#csvImportModal">
+                            {{ trans('global.app_csvImport') }}
+                        </button>
+                        @include('csvImport.modal', ['model' => 'Student', 'route' => 'admin.students.parseCsvImport'])
                     </div>
                 </div>
             @endcan
@@ -41,43 +45,19 @@
                                         {{ trans('cruds.student.fields.parents_contact') }}
                                     </th>
                                     <th>
-                                        {{ trans('cruds.student.fields.course') }}
-                                    </th>
-                                    <th>
-                                        {{ trans('cruds.student.fields.batch') }}
-                                    </th>
-                                    <th>
                                         {{ trans('cruds.student.fields.date_of_birth') }}
-                                    </th>
-                                    <th>
-                                        {{ trans('cruds.student.fields.date_of_joining') }}
-                                    </th>
-                                    <th>
-                                        {{ trans('cruds.student.fields.email') }}
                                     </th>
                                     <th>
                                         {{ trans('cruds.student.fields.image') }}
                                     </th>
                                     <th>
-                                        {{ trans('cruds.student.fields.image_verified') }}
-                                    </th>
-                                    <th>
                                         {{ trans('cruds.student.fields.archived') }}
-                                    </th>
-                                    <th>
-                                        {{ trans('cruds.student.fields.enrollment_no') }}
                                     </th>
                                     <th>
                                         {{ trans('cruds.student.fields.roll_no') }}
                                     </th>
                                     <th>
-                                        {{ trans('cruds.student.fields.id_card_no') }}
-                                    </th>
-                                    <th>
-                                        {{ trans('cruds.student.fields.transport_route') }}
-                                    </th>
-                                    <th>
-                                        {{ trans('cruds.student.fields.transport_stop') }}
+                                        {{ trans('cruds.student.fields.section') }}
                                     </th>
                                     <th>
                                         &nbsp;
@@ -106,19 +86,7 @@
                                             {{ $student->parents_contact ?? '' }}
                                         </td>
                                         <td>
-                                            {{ $student->course->title ?? '' }}
-                                        </td>
-                                        <td>
-                                            {{ $student->batch->title ?? '' }}
-                                        </td>
-                                        <td>
                                             {{ $student->date_of_birth ?? '' }}
-                                        </td>
-                                        <td>
-                                            {{ $student->date_of_joining ?? '' }}
-                                        </td>
-                                        <td>
-                                            {{ $student->email ?? '' }}
                                         </td>
                                         <td>
                                             @if($student->image)
@@ -128,27 +96,16 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <span style="display:none">{{ $student->image_verified ?? '' }}</span>
-                                            <input type="checkbox" disabled="disabled" {{ $student->image_verified ? 'checked' : '' }}>
-                                        </td>
-                                        <td>
                                             <span style="display:none">{{ $student->archived ?? '' }}</span>
                                             <input type="checkbox" disabled="disabled" {{ $student->archived ? 'checked' : '' }}>
-                                        </td>
-                                        <td>
-                                            {{ $student->enrollment_no ?? '' }}
                                         </td>
                                         <td>
                                             {{ $student->roll_no ?? '' }}
                                         </td>
                                         <td>
-                                            {{ $student->id_card_no ?? '' }}
-                                        </td>
-                                        <td>
-                                            {{ $student->transport_route->name ?? '' }}
-                                        </td>
-                                        <td>
-                                            {{ $student->transport_stop->name ?? '' }}
+                                            @foreach($student->sections as $key => $item)
+                                                <span>{{ $item->title }}</span>
+                                            @endforeach
                                         </td>
                                         <td>
                                             @can('student_show')

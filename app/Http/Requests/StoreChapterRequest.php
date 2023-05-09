@@ -17,17 +17,17 @@ class StoreChapterRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => [
+            'title' => [
                 'string',
                 'required',
-            ],
-            'grade_subject_id' => [
-                'required',
-                'integer',
             ],
             'status' => [
                 'string',
                 'nullable',
+            ],
+            'subject_id' => [
+                'required',
+                'integer',
             ],
         ];
     }

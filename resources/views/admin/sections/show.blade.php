@@ -41,10 +41,10 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.section.fields.grade') }}
+                            {{ trans('cruds.section.fields.course') }}
                         </th>
                         <td>
-                            {{ $section->grade->title ?? '' }}
+                            {{ $section->course->title ?? '' }}
                         </td>
                     </tr>
                 </tbody>
