@@ -24,6 +24,16 @@
                             <span class="help-block">{{ trans('cruds.academicSession.fields.name_helper') }}</span>
                         </div>
                         <div class="form-group">
+                            <label for="position">{{ trans('cruds.academicSession.fields.position') }}</label>
+                            <input class="form-control" type="number" name="position" id="position" value="{{ old('position', '') }}" step="1">
+                            @if($errors->has('position'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('position') }}
+                                </div>
+                            @endif
+                            <span class="help-block">{{ trans('cruds.academicSession.fields.position_helper') }}</span>
+                        </div>
+                        <div class="form-group">
                             <button class="btn btn-danger" type="submit">
                                 {{ trans('global.save') }}
                             </button>

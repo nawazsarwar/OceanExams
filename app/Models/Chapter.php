@@ -21,9 +21,9 @@ class Chapter extends Model
     ];
 
     protected $fillable = [
-        'name',
-        'grade_subject_id',
+        'title',
         'status',
+        'subject_id',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -34,8 +34,8 @@ class Chapter extends Model
         return $date->format('Y-m-d H:i:s');
     }
 
-    public function grade_subject()
+    public function subject()
     {
-        return $this->belongsTo(GradeSubject::class, 'grade_subject_id');
+        return $this->belongsTo(Subject::class, 'subject_id');
     }
 }

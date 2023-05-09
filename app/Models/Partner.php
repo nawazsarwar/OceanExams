@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use \DateTimeInterface;
 use App\Traits\Auditable;
+use DateTimeInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -13,15 +13,12 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class Partner extends Model implements HasMedia
 {
-    use SoftDeletes;
-    use InteractsWithMedia;
-    use Auditable;
-    use HasFactory;
+    use SoftDeletes, InteractsWithMedia, Auditable, HasFactory;
 
     public $table = 'partners';
 
     protected $appends = [
-        'header_logo',
+        'logo',
     ];
 
     protected $dates = [
@@ -30,15 +27,32 @@ class Partner extends Model implements HasMedia
         'deleted_at',
     ];
 
+    public const STATUS_SELECT = [
+        'Active'    => 'Active',
+        'In-active' => 'In-active',
+    ];
+
     protected $fillable = [
         'name',
-        'prefix',
-        'primary_url',
+        'product_name',
+        'subdomain',
+        'hostname',
+        'public_email',
+        'public_mobile',
+        'address',
         'header_background_color',
+        'footer_background_color',
+        'status',
+        'remarks',
         'created_at',
         'updated_at',
         'deleted_at',
     ];
+
+    protected function serializeDate(DateTimeInterface $date)
+    {
+        return $date->format('Y-m-d H:i:s');
+    }
 
     public function registerMediaConversions(Media $media = null): void
     {
@@ -46,9 +60,9 @@ class Partner extends Model implements HasMedia
         $this->addMediaConversion('preview')->fit('crop', 120, 120);
     }
 
-    public function getHeaderLogoAttribute()
+    public function getLogoAttribute()
     {
-        $file = $this->getMedia('header_logo')->last();
+        $file = $this->getMedia('logo')->last();
         if ($file) {
             $file->url       = $file->getUrl();
             $file->thumbnail = $file->getUrl('thumb');
@@ -56,10 +70,5 @@ class Partner extends Model implements HasMedia
         }
 
         return $file;
-    }
-
-    protected function serializeDate(DateTimeInterface $date)
-    {
-        return $date->format('Y-m-d H:i:s');
     }
 }

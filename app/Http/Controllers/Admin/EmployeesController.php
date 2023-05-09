@@ -3,12 +3,17 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Traits\CsvImportTrait;
 use App\Http\Controllers\Traits\MediaUploadingTrait;
 use App\Http\Requests\MassDestroyEmployeeRequest;
 use App\Http\Requests\StoreEmployeeRequest;
 use App\Http\Requests\UpdateEmployeeRequest;
+use App\Models\Designation;
 use App\Models\Employee;
+use App\Models\EmployeeType;
+use App\Models\Institute;
 use App\Models\Subject;
+use App\Models\User;
 use Gate;
 use Illuminate\Http\Request;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -17,14 +22,14 @@ use Yajra\DataTables\Facades\DataTables;
 
 class EmployeesController extends Controller
 {
-    use MediaUploadingTrait;
+    use MediaUploadingTrait, CsvImportTrait;
 
     public function index(Request $request)
     {
         abort_if(Gate::denies('employee_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         if ($request->ajax()) {
-            $query = Employee::with(['subjects'])->select(sprintf('%s.*', (new Employee)->table));
+            $query = Employee::with(['subjects', 'designation', 'employee_type', 'institution', 'user'])->select(sprintf('%s.*', (new Employee)->table));
             $table = Datatables::of($query);
 
             $table->addColumn('placeholder', '&nbsp;');
@@ -54,9 +59,6 @@ class EmployeesController extends Controller
             $table->editColumn('contact', function ($row) {
                 return $row->contact ? $row->contact : '';
             });
-            $table->editColumn('email', function ($row) {
-                return $row->email ? $row->email : '';
-            });
 
             $table->editColumn('gender', function ($row) {
                 return $row->gender ? Employee::GENDER_SELECT[$row->gender] : '';
@@ -83,6 +85,7 @@ class EmployeesController extends Controller
 
                 return '';
             });
+
             $table->editColumn('subjects', function ($row) {
                 $labels = [];
                 foreach ($row->subjects as $subject) {
@@ -91,8 +94,23 @@ class EmployeesController extends Controller
 
                 return implode(' ', $labels);
             });
+            $table->addColumn('designation_name', function ($row) {
+                return $row->designation ? $row->designation->name : '';
+            });
 
-            $table->rawColumns(['actions', 'placeholder', 'photo', 'signature', 'subjects']);
+            $table->addColumn('employee_type_title', function ($row) {
+                return $row->employee_type ? $row->employee_type->title : '';
+            });
+
+            $table->addColumn('institution_name', function ($row) {
+                return $row->institution ? $row->institution->name : '';
+            });
+
+            $table->addColumn('user_name', function ($row) {
+                return $row->user ? $row->user->name : '';
+            });
+
+            $table->rawColumns(['actions', 'placeholder', 'photo', 'signature', 'subjects', 'designation', 'employee_type', 'institution', 'user']);
 
             return $table->make(true);
         }
@@ -106,7 +124,15 @@ class EmployeesController extends Controller
 
         $subjects = Subject::pluck('name', 'id');
 
-        return view('admin.employees.create', compact('subjects'));
+        $designations = Designation::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+
+        $employee_types = EmployeeType::pluck('title', 'id')->prepend(trans('global.pleaseSelect'), '');
+
+        $institutions = Institute::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+
+        $users = User::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+
+        return view('admin.employees.create', compact('designations', 'employee_types', 'institutions', 'subjects', 'users'));
     }
 
     public function store(StoreEmployeeRequest $request)
@@ -134,9 +160,17 @@ class EmployeesController extends Controller
 
         $subjects = Subject::pluck('name', 'id');
 
-        $employee->load('subjects');
+        $designations = Designation::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        return view('admin.employees.edit', compact('employee', 'subjects'));
+        $employee_types = EmployeeType::pluck('title', 'id')->prepend(trans('global.pleaseSelect'), '');
+
+        $institutions = Institute::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+
+        $users = User::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+
+        $employee->load('subjects', 'designation', 'employee_type', 'institution', 'user');
+
+        return view('admin.employees.edit', compact('designations', 'employee', 'employee_types', 'institutions', 'subjects', 'users'));
     }
 
     public function update(UpdateEmployeeRequest $request, Employee $employee)
@@ -172,7 +206,7 @@ class EmployeesController extends Controller
     {
         abort_if(Gate::denies('employee_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $employee->load('subjects');
+        $employee->load('subjects', 'designation', 'employee_type', 'institution', 'user');
 
         return view('admin.employees.show', compact('employee'));
     }

@@ -18,29 +18,61 @@
                 <span class="help-block">{{ trans('cruds.partner.fields.name_helper') }}</span>
             </div>
             <div class="form-group">
-                <label class="required" for="prefix">{{ trans('cruds.partner.fields.prefix') }}</label>
-                <input class="form-control {{ $errors->has('prefix') ? 'is-invalid' : '' }}" type="text" name="prefix" id="prefix" value="{{ old('prefix', '') }}" required>
-                @if($errors->has('prefix'))
-                    <span class="text-danger">{{ $errors->first('prefix') }}</span>
+                <label class="required" for="product_name">{{ trans('cruds.partner.fields.product_name') }}</label>
+                <input class="form-control {{ $errors->has('product_name') ? 'is-invalid' : '' }}" type="text" name="product_name" id="product_name" value="{{ old('product_name', '') }}" required>
+                @if($errors->has('product_name'))
+                    <span class="text-danger">{{ $errors->first('product_name') }}</span>
                 @endif
-                <span class="help-block">{{ trans('cruds.partner.fields.prefix_helper') }}</span>
+                <span class="help-block">{{ trans('cruds.partner.fields.product_name_helper') }}</span>
             </div>
             <div class="form-group">
-                <label class="required" for="primary_url">{{ trans('cruds.partner.fields.primary_url') }}</label>
-                <input class="form-control {{ $errors->has('primary_url') ? 'is-invalid' : '' }}" type="text" name="primary_url" id="primary_url" value="{{ old('primary_url', '') }}" required>
-                @if($errors->has('primary_url'))
-                    <span class="text-danger">{{ $errors->first('primary_url') }}</span>
-                @endif
-                <span class="help-block">{{ trans('cruds.partner.fields.primary_url_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <label for="header_logo">{{ trans('cruds.partner.fields.header_logo') }}</label>
-                <div class="needsclick dropzone {{ $errors->has('header_logo') ? 'is-invalid' : '' }}" id="header_logo-dropzone">
+                <label for="logo">{{ trans('cruds.partner.fields.logo') }}</label>
+                <div class="needsclick dropzone {{ $errors->has('logo') ? 'is-invalid' : '' }}" id="logo-dropzone">
                 </div>
-                @if($errors->has('header_logo'))
-                    <span class="text-danger">{{ $errors->first('header_logo') }}</span>
+                @if($errors->has('logo'))
+                    <span class="text-danger">{{ $errors->first('logo') }}</span>
                 @endif
-                <span class="help-block">{{ trans('cruds.partner.fields.header_logo_helper') }}</span>
+                <span class="help-block">{{ trans('cruds.partner.fields.logo_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label class="required" for="subdomain">{{ trans('cruds.partner.fields.subdomain') }}</label>
+                <input class="form-control {{ $errors->has('subdomain') ? 'is-invalid' : '' }}" type="text" name="subdomain" id="subdomain" value="{{ old('subdomain', '') }}" required>
+                @if($errors->has('subdomain'))
+                    <span class="text-danger">{{ $errors->first('subdomain') }}</span>
+                @endif
+                <span class="help-block">{{ trans('cruds.partner.fields.subdomain_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label class="required" for="hostname">{{ trans('cruds.partner.fields.hostname') }}</label>
+                <input class="form-control {{ $errors->has('hostname') ? 'is-invalid' : '' }}" type="text" name="hostname" id="hostname" value="{{ old('hostname', '') }}" required>
+                @if($errors->has('hostname'))
+                    <span class="text-danger">{{ $errors->first('hostname') }}</span>
+                @endif
+                <span class="help-block">{{ trans('cruds.partner.fields.hostname_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label for="public_email">{{ trans('cruds.partner.fields.public_email') }}</label>
+                <input class="form-control {{ $errors->has('public_email') ? 'is-invalid' : '' }}" type="email" name="public_email" id="public_email" value="{{ old('public_email') }}">
+                @if($errors->has('public_email'))
+                    <span class="text-danger">{{ $errors->first('public_email') }}</span>
+                @endif
+                <span class="help-block">{{ trans('cruds.partner.fields.public_email_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label for="public_mobile">{{ trans('cruds.partner.fields.public_mobile') }}</label>
+                <input class="form-control {{ $errors->has('public_mobile') ? 'is-invalid' : '' }}" type="text" name="public_mobile" id="public_mobile" value="{{ old('public_mobile', '') }}">
+                @if($errors->has('public_mobile'))
+                    <span class="text-danger">{{ $errors->first('public_mobile') }}</span>
+                @endif
+                <span class="help-block">{{ trans('cruds.partner.fields.public_mobile_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label for="address">{{ trans('cruds.partner.fields.address') }}</label>
+                <textarea class="form-control {{ $errors->has('address') ? 'is-invalid' : '' }}" name="address" id="address">{{ old('address') }}</textarea>
+                @if($errors->has('address'))
+                    <span class="text-danger">{{ $errors->first('address') }}</span>
+                @endif
+                <span class="help-block">{{ trans('cruds.partner.fields.address_helper') }}</span>
             </div>
             <div class="form-group">
                 <label for="header_background_color">{{ trans('cruds.partner.fields.header_background_color') }}</label>
@@ -49,6 +81,35 @@
                     <span class="text-danger">{{ $errors->first('header_background_color') }}</span>
                 @endif
                 <span class="help-block">{{ trans('cruds.partner.fields.header_background_color_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label for="footer_background_color">{{ trans('cruds.partner.fields.footer_background_color') }}</label>
+                <input class="form-control {{ $errors->has('footer_background_color') ? 'is-invalid' : '' }}" type="text" name="footer_background_color" id="footer_background_color" value="{{ old('footer_background_color', '') }}">
+                @if($errors->has('footer_background_color'))
+                    <span class="text-danger">{{ $errors->first('footer_background_color') }}</span>
+                @endif
+                <span class="help-block">{{ trans('cruds.partner.fields.footer_background_color_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label>{{ trans('cruds.partner.fields.status') }}</label>
+                <select class="form-control {{ $errors->has('status') ? 'is-invalid' : '' }}" name="status" id="status">
+                    <option value disabled {{ old('status', null) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
+                    @foreach(App\Models\Partner::STATUS_SELECT as $key => $label)
+                        <option value="{{ $key }}" {{ old('status', 'Active') === (string) $key ? 'selected' : '' }}>{{ $label }}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('status'))
+                    <span class="text-danger">{{ $errors->first('status') }}</span>
+                @endif
+                <span class="help-block">{{ trans('cruds.partner.fields.status_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label for="remarks">{{ trans('cruds.partner.fields.remarks') }}</label>
+                <textarea class="form-control {{ $errors->has('remarks') ? 'is-invalid' : '' }}" name="remarks" id="remarks">{{ old('remarks') }}</textarea>
+                @if($errors->has('remarks'))
+                    <span class="text-danger">{{ $errors->first('remarks') }}</span>
+                @endif
+                <span class="help-block">{{ trans('cruds.partner.fields.remarks_helper') }}</span>
             </div>
             <div class="form-group">
                 <button class="btn btn-danger" type="submit">
@@ -65,7 +126,7 @@
 
 @section('scripts')
 <script>
-    Dropzone.options.headerLogoDropzone = {
+    Dropzone.options.logoDropzone = {
     url: '{{ route('admin.partners.storeMedia') }}',
     maxFilesize: 2, // MB
     acceptedFiles: '.jpeg,.jpg,.png,.gif',
@@ -80,23 +141,23 @@
       height: 4096
     },
     success: function (file, response) {
-      $('form').find('input[name="header_logo"]').remove()
-      $('form').append('<input type="hidden" name="header_logo" value="' + response.name + '">')
+      $('form').find('input[name="logo"]').remove()
+      $('form').append('<input type="hidden" name="logo" value="' + response.name + '">')
     },
     removedfile: function (file) {
       file.previewElement.remove()
       if (file.status !== 'error') {
-        $('form').find('input[name="header_logo"]').remove()
+        $('form').find('input[name="logo"]').remove()
         this.options.maxFiles = this.options.maxFiles + 1
       }
     },
     init: function () {
-@if(isset($partner) && $partner->header_logo)
-      var file = {!! json_encode($partner->header_logo) !!}
+@if(isset($partner) && $partner->logo)
+      var file = {!! json_encode($partner->logo) !!}
           this.options.addedfile.call(this, file)
       this.options.thumbnail.call(this, file, file.preview ?? file.preview_url)
       file.previewElement.classList.add('dz-complete')
-      $('form').append('<input type="hidden" name="header_logo" value="' + file.file_name + '">')
+      $('form').append('<input type="hidden" name="logo" value="' + file.file_name + '">')
       this.options.maxFiles = this.options.maxFiles - 1
 @endif
     },

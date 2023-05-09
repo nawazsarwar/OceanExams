@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
-use \DateTimeInterface;
 use App\Notifications\VerifyUserNotification;
 use App\Traits\Auditable;
 use Carbon\Carbon;
+use DateTimeInterface;
 use Hash;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -17,10 +17,7 @@ use Illuminate\Support\Str;
 
 class User extends Authenticatable
 {
-    use SoftDeletes;
-    use Notifiable;
-    use Auditable;
-    use HasFactory;
+    use SoftDeletes, Notifiable, Auditable, HasFactory;
 
     public $table = 'users';
 
@@ -40,7 +37,6 @@ class User extends Authenticatable
 
     protected $fillable = [
         'name',
-        'mobile_no',
         'email',
         'email_verified_at',
         'password',
@@ -51,39 +47,15 @@ class User extends Authenticatable
         'two_factor_expires_at',
         'two_factor_code',
         'remember_token',
+        'institution_id',
         'created_at',
         'updated_at',
         'deleted_at',
     ];
 
-    public function __construct(array $attributes = [])
+    protected function serializeDate(DateTimeInterface $date)
     {
-        parent::__construct($attributes);
-        self::created(function (User $user) {
-            if (auth()->check()) {
-                $user->verified = 1;
-                $user->verified_at = Carbon::now()->format(config('panel.date_format') . ' ' . config('panel.time_format'));
-                $user->save();
-            } elseif (!$user->verification_token) {
-                $token = Str::random(64);
-                $usedToken = User::where('verification_token', $token)->first();
-
-                while ($usedToken) {
-                    $token = Str::random(64);
-                    $usedToken = User::where('verification_token', $token)->first();
-                }
-
-                $user->verification_token = $token;
-                $user->save();
-
-                $registrationRole = config('panel.registration_default_role');
-                if (!$user->roles()->get()->contains($registrationRole)) {
-                    $user->roles()->attach($registrationRole);
-                }
-
-                $user->notify(new VerifyUserNotification($user));
-            }
-        });
+        return $date->format('Y-m-d H:i:s');
     }
 
     public function generateTwoFactorCode()
@@ -105,6 +77,36 @@ class User extends Authenticatable
     public function getIsAdminAttribute()
     {
         return $this->roles()->where('id', 1)->exists();
+    }
+
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+        self::created(function (self $user) {
+            if (auth()->check()) {
+                $user->verified    = 1;
+                $user->verified_at = Carbon::now()->format(config('panel.date_format') . ' ' . config('panel.time_format'));
+                $user->save();
+            } elseif (! $user->verification_token) {
+                $token     = Str::random(64);
+                $usedToken = self::where('verification_token', $token)->first();
+
+                while ($usedToken) {
+                    $token     = Str::random(64);
+                    $usedToken = self::where('verification_token', $token)->first();
+                }
+
+                $user->verification_token = $token;
+                $user->save();
+
+                $registrationRole = config('panel.registration_default_role');
+                if (! $user->roles()->get()->contains($registrationRole)) {
+                    $user->roles()->attach($registrationRole);
+                }
+
+                $user->notify(new VerifyUserNotification($user));
+            }
+        });
     }
 
     public function getEmailVerifiedAtAttribute($value)
@@ -154,8 +156,8 @@ class User extends Authenticatable
         return $this->belongsToMany(Role::class);
     }
 
-    protected function serializeDate(DateTimeInterface $date)
+    public function institution()
     {
-        return $date->format('Y-m-d H:i:s');
+        return $this->belongsTo(Institute::class, 'institution_id');
     }
 }

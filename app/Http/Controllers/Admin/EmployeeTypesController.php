@@ -23,7 +23,7 @@ class EmployeeTypesController extends Controller
         abort_if(Gate::denies('employee_type_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         if ($request->ajax()) {
-            $query = EmployeeType::with(['institute'])->select(sprintf('%s.*', (new EmployeeType)->table));
+            $query = EmployeeType::with(['institute', 'institution'])->select(sprintf('%s.*', (new EmployeeType)->table));
             $table = Datatables::of($query);
 
             $table->addColumn('placeholder', '&nbsp;');
@@ -54,7 +54,11 @@ class EmployeeTypesController extends Controller
                 return $row->institute ? $row->institute->name : '';
             });
 
-            $table->rawColumns(['actions', 'placeholder', 'institute']);
+            $table->addColumn('institution_name', function ($row) {
+                return $row->institution ? $row->institution->name : '';
+            });
+
+            $table->rawColumns(['actions', 'placeholder', 'institute', 'institution']);
 
             return $table->make(true);
         }
@@ -68,7 +72,9 @@ class EmployeeTypesController extends Controller
 
         $institutes = Institute::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        return view('admin.employeeTypes.create', compact('institutes'));
+        $institutions = Institute::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+
+        return view('admin.employeeTypes.create', compact('institutes', 'institutions'));
     }
 
     public function store(StoreEmployeeTypeRequest $request)
@@ -84,9 +90,11 @@ class EmployeeTypesController extends Controller
 
         $institutes = Institute::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $employeeType->load('institute');
+        $institutions = Institute::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        return view('admin.employeeTypes.edit', compact('employeeType', 'institutes'));
+        $employeeType->load('institute', 'institution');
+
+        return view('admin.employeeTypes.edit', compact('employeeType', 'institutes', 'institutions'));
     }
 
     public function update(UpdateEmployeeTypeRequest $request, EmployeeType $employeeType)
@@ -100,7 +108,7 @@ class EmployeeTypesController extends Controller
     {
         abort_if(Gate::denies('employee_type_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $employeeType->load('institute');
+        $employeeType->load('institute', 'institution');
 
         return view('admin.employeeTypes.show', compact('employeeType'));
     }

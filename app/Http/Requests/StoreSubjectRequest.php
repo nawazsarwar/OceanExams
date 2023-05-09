@@ -29,6 +29,13 @@ class StoreSubjectRequest extends FormRequest
                 'required',
                 'integer',
             ],
+            'sections.*' => [
+                'integer',
+            ],
+            'sections' => [
+                'required',
+                'array',
+            ],
         ];
     }
 }

@@ -8,6 +8,7 @@ use App\Http\Requests\MassDestroyCourseRequest;
 use App\Http\Requests\StoreCourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
 use App\Models\Course;
+use App\Models\Institute;
 use App\Models\Subject;
 use Gate;
 use Illuminate\Http\Request;
@@ -22,7 +23,7 @@ class CoursesController extends Controller
     {
         abort_if(Gate::denies('course_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $courses = Course::with(['subjects', 'media'])->get();
+        $courses = Course::with(['subjects', 'institute', 'media'])->get();
 
         return view('frontend.courses.index', compact('courses'));
     }
@@ -33,7 +34,9 @@ class CoursesController extends Controller
 
         $subjects = Subject::pluck('name', 'id');
 
-        return view('frontend.courses.create', compact('subjects'));
+        $institutes = Institute::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+
+        return view('frontend.courses.create', compact('institutes', 'subjects'));
     }
 
     public function store(StoreCourseRequest $request)
@@ -57,9 +60,11 @@ class CoursesController extends Controller
 
         $subjects = Subject::pluck('name', 'id');
 
-        $course->load('subjects');
+        $institutes = Institute::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        return view('frontend.courses.edit', compact('course', 'subjects'));
+        $course->load('subjects', 'institute');
+
+        return view('frontend.courses.edit', compact('course', 'institutes', 'subjects'));
     }
 
     public function update(UpdateCourseRequest $request, Course $course)
@@ -87,7 +92,7 @@ class CoursesController extends Controller
     {
         abort_if(Gate::denies('course_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $course->load('subjects');
+        $course->load('subjects', 'institute');
 
         return view('frontend.courses.show', compact('course'));
     }

@@ -8,6 +8,7 @@ use App\Http\Requests\MassDestroySubjectRequest;
 use App\Http\Requests\StoreSubjectRequest;
 use App\Http\Requests\UpdateSubjectRequest;
 use App\Models\Institute;
+use App\Models\Section;
 use App\Models\Subject;
 use Gate;
 use Illuminate\Http\Request;
@@ -23,7 +24,7 @@ class SubjectsController extends Controller
         abort_if(Gate::denies('subject_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         if ($request->ajax()) {
-            $query = Subject::with(['institute'])->select(sprintf('%s.*', (new Subject)->table));
+            $query = Subject::with(['institute', 'sections'])->select(sprintf('%s.*', (new Subject)->table));
             $table = Datatables::of($query);
 
             $table->addColumn('placeholder', '&nbsp;');
@@ -50,6 +51,9 @@ class SubjectsController extends Controller
             $table->editColumn('name', function ($row) {
                 return $row->name ? $row->name : '';
             });
+            $table->editColumn('category', function ($row) {
+                return $row->category ? Subject::CATEGORY_SELECT[$row->category] : '';
+            });
             $table->editColumn('status', function ($row) {
                 return $row->status ? Subject::STATUS_SELECT[$row->status] : '';
             });
@@ -60,7 +64,16 @@ class SubjectsController extends Controller
                 return $row->institute ? $row->institute->name : '';
             });
 
-            $table->rawColumns(['actions', 'placeholder', 'institute']);
+            $table->editColumn('sections', function ($row) {
+                $labels = [];
+                foreach ($row->sections as $section) {
+                    $labels[] = sprintf('<span class="label label-info label-many">%s</span>', $section->title);
+                }
+
+                return implode(' ', $labels);
+            });
+
+            $table->rawColumns(['actions', 'placeholder', 'institute', 'sections']);
 
             return $table->make(true);
         }
@@ -74,12 +87,15 @@ class SubjectsController extends Controller
 
         $institutes = Institute::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        return view('admin.subjects.create', compact('institutes'));
+        $sections = Section::pluck('title', 'id');
+
+        return view('admin.subjects.create', compact('institutes', 'sections'));
     }
 
     public function store(StoreSubjectRequest $request)
     {
         $subject = Subject::create($request->all());
+        $subject->sections()->sync($request->input('sections', []));
 
         return redirect()->route('admin.subjects.index');
     }
@@ -90,14 +106,17 @@ class SubjectsController extends Controller
 
         $institutes = Institute::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $subject->load('institute');
+        $sections = Section::pluck('title', 'id');
 
-        return view('admin.subjects.edit', compact('institutes', 'subject'));
+        $subject->load('institute', 'sections');
+
+        return view('admin.subjects.edit', compact('institutes', 'sections', 'subject'));
     }
 
     public function update(UpdateSubjectRequest $request, Subject $subject)
     {
         $subject->update($request->all());
+        $subject->sections()->sync($request->input('sections', []));
 
         return redirect()->route('admin.subjects.index');
     }
@@ -106,7 +125,7 @@ class SubjectsController extends Controller
     {
         abort_if(Gate::denies('subject_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $subject->load('institute');
+        $subject->load('institute', 'sections');
 
         return view('admin.subjects.show', compact('subject'));
     }

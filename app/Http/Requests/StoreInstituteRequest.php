@@ -34,6 +34,18 @@ class StoreInstituteRequest extends FormRequest
                 'string',
                 'nullable',
             ],
+            'public_mobile' => [
+                'string',
+                'nullable',
+            ],
+            'header_background_color' => [
+                'string',
+                'nullable',
+            ],
+            'footer_background_color' => [
+                'string',
+                'nullable',
+            ],
             'affiliations.*' => [
                 'integer',
             ],
@@ -53,10 +65,6 @@ class StoreInstituteRequest extends FormRequest
                 'nullable',
             ],
             'longitude' => [
-                'string',
-                'nullable',
-            ],
-            'public_mobile' => [
                 'string',
                 'nullable',
             ],

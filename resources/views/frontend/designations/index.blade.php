@@ -39,6 +39,9 @@
                                         {{ trans('cruds.designation.fields.pay_grade') }}
                                     </th>
                                     <th>
+                                        {{ trans('cruds.designation.fields.institution') }}
+                                    </th>
+                                    <th>
                                         &nbsp;
                                     </th>
                                 </tr>
@@ -57,6 +60,9 @@
                                         </td>
                                         <td>
                                             {{ $designation->pay_grade ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $designation->institution->name ?? '' }}
                                         </td>
                                         <td>
                                             @can('designation_show')

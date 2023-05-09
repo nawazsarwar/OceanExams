@@ -18,14 +18,6 @@
                 <span class="help-block">{{ trans('cruds.user.fields.name_helper') }}</span>
             </div>
             <div class="form-group">
-                <label for="mobile_no">{{ trans('cruds.user.fields.mobile_no') }}</label>
-                <input class="form-control {{ $errors->has('mobile_no') ? 'is-invalid' : '' }}" type="text" name="mobile_no" id="mobile_no" value="{{ old('mobile_no', '') }}">
-                @if($errors->has('mobile_no'))
-                    <span class="text-danger">{{ $errors->first('mobile_no') }}</span>
-                @endif
-                <span class="help-block">{{ trans('cruds.user.fields.mobile_no_helper') }}</span>
-            </div>
-            <div class="form-group">
                 <label class="required" for="email">{{ trans('cruds.user.fields.email') }}</label>
                 <input class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" type="email" name="email" id="email" value="{{ old('email') }}" required>
                 @if($errors->has('email'))
@@ -56,6 +48,18 @@
                     <span class="text-danger">{{ $errors->first('roles') }}</span>
                 @endif
                 <span class="help-block">{{ trans('cruds.user.fields.roles_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label for="institution_id">{{ trans('cruds.user.fields.institution') }}</label>
+                <select class="form-control select2 {{ $errors->has('institution') ? 'is-invalid' : '' }}" name="institution_id" id="institution_id">
+                    @foreach($institutions as $id => $entry)
+                        <option value="{{ $id }}" {{ old('institution_id') == $id ? 'selected' : '' }}>{{ $entry }}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('institution'))
+                    <span class="text-danger">{{ $errors->first('institution') }}</span>
+                @endif
+                <span class="help-block">{{ trans('cruds.user.fields.institution_helper') }}</span>
             </div>
             <div class="form-group">
                 <button class="btn btn-danger" type="submit">

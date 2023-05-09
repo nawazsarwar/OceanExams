@@ -6,6 +6,10 @@
             <a class="btn btn-success" href="{{ route('admin.students.create') }}">
                 {{ trans('global.add') }} {{ trans('cruds.student.title_singular') }}
             </a>
+            <button class="btn btn-warning" data-toggle="modal" data-target="#csvImportModal">
+                {{ trans('global.app_csvImport') }}
+            </button>
+            @include('csvImport.modal', ['model' => 'Student', 'route' => 'admin.students.parseCsvImport'])
         </div>
     </div>
 @endcan
@@ -40,43 +44,19 @@
                         {{ trans('cruds.student.fields.parents_contact') }}
                     </th>
                     <th>
-                        {{ trans('cruds.student.fields.course') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.student.fields.batch') }}
-                    </th>
-                    <th>
                         {{ trans('cruds.student.fields.date_of_birth') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.student.fields.date_of_joining') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.student.fields.email') }}
                     </th>
                     <th>
                         {{ trans('cruds.student.fields.image') }}
                     </th>
                     <th>
-                        {{ trans('cruds.student.fields.image_verified') }}
-                    </th>
-                    <th>
                         {{ trans('cruds.student.fields.archived') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.student.fields.enrollment_no') }}
                     </th>
                     <th>
                         {{ trans('cruds.student.fields.roll_no') }}
                     </th>
                     <th>
-                        {{ trans('cruds.student.fields.id_card_no') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.student.fields.transport_route') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.student.fields.transport_stop') }}
+                        {{ trans('cruds.student.fields.section') }}
                     </th>
                     <th>
                         &nbsp;
@@ -140,19 +120,11 @@
 { data: 'fathers_name', name: 'fathers_name' },
 { data: 'mothers_name', name: 'mothers_name' },
 { data: 'parents_contact', name: 'parents_contact' },
-{ data: 'course_title', name: 'course.title' },
-{ data: 'batch_title', name: 'batch.title' },
 { data: 'date_of_birth', name: 'date_of_birth' },
-{ data: 'date_of_joining', name: 'date_of_joining' },
-{ data: 'email', name: 'email' },
 { data: 'image', name: 'image', sortable: false, searchable: false },
-{ data: 'image_verified', name: 'image_verified' },
 { data: 'archived', name: 'archived' },
-{ data: 'enrollment_no', name: 'enrollment_no' },
 { data: 'roll_no', name: 'roll_no' },
-{ data: 'id_card_no', name: 'id_card_no' },
-{ data: 'transport_route_name', name: 'transport_route.name' },
-{ data: 'transport_stop_name', name: 'transport_stop.name' },
+{ data: 'section', name: 'sections.title' },
 { data: 'actions', name: '{{ trans('global.actions') }}' }
     ],
     orderCellsTop: true,

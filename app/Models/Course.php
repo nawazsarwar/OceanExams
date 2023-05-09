@@ -30,8 +30,8 @@ class Course extends Model implements HasMedia
     protected $fillable = [
         'title',
         'description',
-        'price',
         'is_published',
+        'institute_id',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -63,5 +63,10 @@ class Course extends Model implements HasMedia
         });
 
         return $files;
+    }
+
+    public function institute()
+    {
+        return $this->belongsTo(Institute::class, 'institute_id');
     }
 }

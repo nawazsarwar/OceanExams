@@ -33,6 +33,9 @@
                                         {{ trans('cruds.subject.fields.name') }}
                                     </th>
                                     <th>
+                                        {{ trans('cruds.subject.fields.category') }}
+                                    </th>
+                                    <th>
                                         {{ trans('cruds.subject.fields.status') }}
                                     </th>
                                     <th>
@@ -40,6 +43,9 @@
                                     </th>
                                     <th>
                                         {{ trans('cruds.subject.fields.institute') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.subject.fields.sections') }}
                                     </th>
                                     <th>
                                         &nbsp;
@@ -56,6 +62,9 @@
                                             {{ $subject->name ?? '' }}
                                         </td>
                                         <td>
+                                            {{ App\Models\Subject::CATEGORY_SELECT[$subject->category] ?? '' }}
+                                        </td>
+                                        <td>
                                             {{ App\Models\Subject::STATUS_SELECT[$subject->status] ?? '' }}
                                         </td>
                                         <td>
@@ -63,6 +72,11 @@
                                         </td>
                                         <td>
                                             {{ $subject->institute->name ?? '' }}
+                                        </td>
+                                        <td>
+                                            @foreach($subject->sections as $key => $item)
+                                                <span>{{ $item->title }}</span>
+                                            @endforeach
                                         </td>
                                         <td>
                                             @can('subject_show')

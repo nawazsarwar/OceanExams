@@ -7,6 +7,7 @@ use App\Http\Controllers\Traits\CsvImportTrait;
 use App\Http\Requests\MassDestroyUserRequest;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Models\Institute;
 use App\Models\Role;
 use App\Models\User;
 use Gate;
@@ -23,25 +24,25 @@ class UsersController extends Controller
         abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         if ($request->ajax()) {
-            $query = User::with(['roles'])->select(sprintf('%s.*', (new User())->table));
+            $query = User::with(['roles', 'institution'])->select(sprintf('%s.*', (new User)->table));
             $table = Datatables::of($query);
 
             $table->addColumn('placeholder', '&nbsp;');
             $table->addColumn('actions', '&nbsp;');
 
             $table->editColumn('actions', function ($row) {
-                $viewGate = 'user_show';
-                $editGate = 'user_edit';
-                $deleteGate = 'user_delete';
+                $viewGate      = 'user_show';
+                $editGate      = 'user_edit';
+                $deleteGate    = 'user_delete';
                 $crudRoutePart = 'users';
 
                 return view('partials.datatablesActions', compact(
-                'viewGate',
-                'editGate',
-                'deleteGate',
-                'crudRoutePart',
-                'row'
-            ));
+                    'viewGate',
+                    'editGate',
+                    'deleteGate',
+                    'crudRoutePart',
+                    'row'
+                ));
             });
 
             $table->editColumn('id', function ($row) {
@@ -49,9 +50,6 @@ class UsersController extends Controller
             });
             $table->editColumn('name', function ($row) {
                 return $row->name ? $row->name : '';
-            });
-            $table->editColumn('mobile_no', function ($row) {
-                return $row->mobile_no ? $row->mobile_no : '';
             });
             $table->editColumn('email', function ($row) {
                 return $row->email ? $row->email : '';
@@ -71,8 +69,11 @@ class UsersController extends Controller
 
                 return implode(' ', $labels);
             });
+            $table->addColumn('institution_name', function ($row) {
+                return $row->institution ? $row->institution->name : '';
+            });
 
-            $table->rawColumns(['actions', 'placeholder', 'verified', 'two_factor', 'roles']);
+            $table->rawColumns(['actions', 'placeholder', 'verified', 'two_factor', 'roles', 'institution']);
 
             return $table->make(true);
         }
@@ -86,7 +87,9 @@ class UsersController extends Controller
 
         $roles = Role::pluck('title', 'id');
 
-        return view('admin.users.create', compact('roles'));
+        $institutions = Institute::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+
+        return view('admin.users.create', compact('institutions', 'roles'));
     }
 
     public function store(StoreUserRequest $request)
@@ -103,9 +106,11 @@ class UsersController extends Controller
 
         $roles = Role::pluck('title', 'id');
 
-        $user->load('roles');
+        $institutions = Institute::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        return view('admin.users.edit', compact('roles', 'user'));
+        $user->load('roles', 'institution');
+
+        return view('admin.users.edit', compact('institutions', 'roles', 'user'));
     }
 
     public function update(UpdateUserRequest $request, User $user)
@@ -120,7 +125,7 @@ class UsersController extends Controller
     {
         abort_if(Gate::denies('user_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $user->load('roles');
+        $user->load('roles', 'institution');
 
         return view('admin.users.show', compact('user'));
     }

@@ -74,42 +74,14 @@
                             <span class="help-block">{{ trans('cruds.student.fields.mothers_name_helper') }}</span>
                         </div>
                         <div class="form-group">
-                            <label class="required" for="parents_contact">{{ trans('cruds.student.fields.parents_contact') }}</label>
-                            <input class="form-control" type="text" name="parents_contact" id="parents_contact" value="{{ old('parents_contact', $student->parents_contact) }}" required>
+                            <label for="parents_contact">{{ trans('cruds.student.fields.parents_contact') }}</label>
+                            <input class="form-control" type="text" name="parents_contact" id="parents_contact" value="{{ old('parents_contact', $student->parents_contact) }}">
                             @if($errors->has('parents_contact'))
                                 <div class="invalid-feedback">
                                     {{ $errors->first('parents_contact') }}
                                 </div>
                             @endif
                             <span class="help-block">{{ trans('cruds.student.fields.parents_contact_helper') }}</span>
-                        </div>
-                        <div class="form-group">
-                            <label class="required" for="course_id">{{ trans('cruds.student.fields.course') }}</label>
-                            <select class="form-control select2" name="course_id" id="course_id" required>
-                                @foreach($courses as $id => $entry)
-                                    <option value="{{ $id }}" {{ (old('course_id') ? old('course_id') : $student->course->id ?? '') == $id ? 'selected' : '' }}>{{ $entry }}</option>
-                                @endforeach
-                            </select>
-                            @if($errors->has('course'))
-                                <div class="invalid-feedback">
-                                    {{ $errors->first('course') }}
-                                </div>
-                            @endif
-                            <span class="help-block">{{ trans('cruds.student.fields.course_helper') }}</span>
-                        </div>
-                        <div class="form-group">
-                            <label class="required" for="batch_id">{{ trans('cruds.student.fields.batch') }}</label>
-                            <select class="form-control select2" name="batch_id" id="batch_id" required>
-                                @foreach($batches as $id => $entry)
-                                    <option value="{{ $id }}" {{ (old('batch_id') ? old('batch_id') : $student->batch->id ?? '') == $id ? 'selected' : '' }}>{{ $entry }}</option>
-                                @endforeach
-                            </select>
-                            @if($errors->has('batch'))
-                                <div class="invalid-feedback">
-                                    {{ $errors->first('batch') }}
-                                </div>
-                            @endif
-                            <span class="help-block">{{ trans('cruds.student.fields.batch_helper') }}</span>
                         </div>
                         <div class="form-group">
                             <label class="required" for="date_of_birth">{{ trans('cruds.student.fields.date_of_birth') }}</label>
@@ -122,8 +94,8 @@
                             <span class="help-block">{{ trans('cruds.student.fields.date_of_birth_helper') }}</span>
                         </div>
                         <div class="form-group">
-                            <label class="required" for="date_of_joining">{{ trans('cruds.student.fields.date_of_joining') }}</label>
-                            <input class="form-control date" type="text" name="date_of_joining" id="date_of_joining" value="{{ old('date_of_joining', $student->date_of_joining) }}" required>
+                            <label for="date_of_joining">{{ trans('cruds.student.fields.date_of_joining') }}</label>
+                            <input class="form-control date" type="text" name="date_of_joining" id="date_of_joining" value="{{ old('date_of_joining', $student->date_of_joining) }}">
                             @if($errors->has('date_of_joining'))
                                 <div class="invalid-feedback">
                                     {{ $errors->first('date_of_joining') }}
@@ -132,17 +104,7 @@
                             <span class="help-block">{{ trans('cruds.student.fields.date_of_joining_helper') }}</span>
                         </div>
                         <div class="form-group">
-                            <label for="email">{{ trans('cruds.student.fields.email') }}</label>
-                            <input class="form-control" type="email" name="email" id="email" value="{{ old('email', $student->email) }}">
-                            @if($errors->has('email'))
-                                <div class="invalid-feedback">
-                                    {{ $errors->first('email') }}
-                                </div>
-                            @endif
-                            <span class="help-block">{{ trans('cruds.student.fields.email_helper') }}</span>
-                        </div>
-                        <div class="form-group">
-                            <label class="required" for="image">{{ trans('cruds.student.fields.image') }}</label>
+                            <label for="image">{{ trans('cruds.student.fields.image') }}</label>
                             <div class="needsclick dropzone" id="image-dropzone">
                             </div>
                             @if($errors->has('image'))
@@ -154,8 +116,9 @@
                         </div>
                         <div class="form-group">
                             <div>
-                                <input type="checkbox" name="image_verified" id="image_verified" value="1" {{ $student->image_verified || old('image_verified', 0) === 1 ? 'checked' : '' }} required>
-                                <label class="required" for="image_verified">{{ trans('cruds.student.fields.image_verified') }}</label>
+                                <input type="hidden" name="image_verified" value="0">
+                                <input type="checkbox" name="image_verified" id="image_verified" value="1" {{ $student->image_verified || old('image_verified', 0) === 1 ? 'checked' : '' }}>
+                                <label for="image_verified">{{ trans('cruds.student.fields.image_verified') }}</label>
                             </div>
                             @if($errors->has('image_verified'))
                                 <div class="invalid-feedback">
@@ -206,6 +169,42 @@
                                 </div>
                             @endif
                             <span class="help-block">{{ trans('cruds.student.fields.id_card_no_helper') }}</span>
+                        </div>
+                        <div class="form-group">
+                            <label class="required" for="sections">{{ trans('cruds.student.fields.section') }}</label>
+                            <div style="padding-bottom: 4px">
+                                <span class="btn btn-info btn-xs select-all" style="border-radius: 0">{{ trans('global.select_all') }}</span>
+                                <span class="btn btn-info btn-xs deselect-all" style="border-radius: 0">{{ trans('global.deselect_all') }}</span>
+                            </div>
+                            <select class="form-control select2" name="sections[]" id="sections" multiple required>
+                                @foreach($sections as $id => $section)
+                                    <option value="{{ $id }}" {{ (in_array($id, old('sections', [])) || $student->sections->contains($id)) ? 'selected' : '' }}>{{ $section }}</option>
+                                @endforeach
+                            </select>
+                            @if($errors->has('sections'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('sections') }}
+                                </div>
+                            @endif
+                            <span class="help-block">{{ trans('cruds.student.fields.section_helper') }}</span>
+                        </div>
+                        <div class="form-group">
+                            <label class="required" for="users">{{ trans('cruds.student.fields.user') }}</label>
+                            <div style="padding-bottom: 4px">
+                                <span class="btn btn-info btn-xs select-all" style="border-radius: 0">{{ trans('global.select_all') }}</span>
+                                <span class="btn btn-info btn-xs deselect-all" style="border-radius: 0">{{ trans('global.deselect_all') }}</span>
+                            </div>
+                            <select class="form-control select2" name="users[]" id="users" multiple required>
+                                @foreach($users as $id => $user)
+                                    <option value="{{ $id }}" {{ (in_array($id, old('users', [])) || $student->users->contains($id)) ? 'selected' : '' }}>{{ $user }}</option>
+                                @endforeach
+                            </select>
+                            @if($errors->has('users'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('users') }}
+                                </div>
+                            @endif
+                            <span class="help-block">{{ trans('cruds.student.fields.user_helper') }}</span>
                         </div>
                         <div class="form-group">
                             <label for="transport_route_id">{{ trans('cruds.student.fields.transport_route') }}</label>

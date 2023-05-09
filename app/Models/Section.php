@@ -22,7 +22,7 @@ class Section extends Model
     protected $fillable = [
         'title',
         'capacity',
-        'grade_id',
+        'course_id',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -33,8 +33,8 @@ class Section extends Model
         return $date->format('Y-m-d H:i:s');
     }
 
-    public function grade()
+    public function course()
     {
-        return $this->belongsTo(Grade::class, 'grade_id');
+        return $this->belongsTo(Course::class, 'course_id');
     }
 }

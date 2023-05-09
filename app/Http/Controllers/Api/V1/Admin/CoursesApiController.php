@@ -20,7 +20,7 @@ class CoursesApiController extends Controller
     {
         abort_if(Gate::denies('course_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new CourseResource(Course::with(['subjects'])->get());
+        return new CourseResource(Course::with(['subjects', 'institute'])->get());
     }
 
     public function store(StoreCourseRequest $request)
@@ -40,7 +40,7 @@ class CoursesApiController extends Controller
     {
         abort_if(Gate::denies('course_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new CourseResource($course->load(['subjects']));
+        return new CourseResource($course->load(['subjects', 'institute']));
     }
 
     public function update(UpdateCourseRequest $request, Course $course)

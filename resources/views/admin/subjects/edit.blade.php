@@ -19,6 +19,19 @@
                 <span class="help-block">{{ trans('cruds.subject.fields.name_helper') }}</span>
             </div>
             <div class="form-group">
+                <label>{{ trans('cruds.subject.fields.category') }}</label>
+                <select class="form-control {{ $errors->has('category') ? 'is-invalid' : '' }}" name="category" id="category">
+                    <option value disabled {{ old('category', null) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
+                    @foreach(App\Models\Subject::CATEGORY_SELECT as $key => $label)
+                        <option value="{{ $key }}" {{ old('category', $subject->category) === (string) $key ? 'selected' : '' }}>{{ $label }}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('category'))
+                    <span class="text-danger">{{ $errors->first('category') }}</span>
+                @endif
+                <span class="help-block">{{ trans('cruds.subject.fields.category_helper') }}</span>
+            </div>
+            <div class="form-group">
                 <label>{{ trans('cruds.subject.fields.status') }}</label>
                 <select class="form-control {{ $errors->has('status') ? 'is-invalid' : '' }}" name="status" id="status">
                     <option value disabled {{ old('status', null) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
@@ -50,6 +63,22 @@
                     <span class="text-danger">{{ $errors->first('institute') }}</span>
                 @endif
                 <span class="help-block">{{ trans('cruds.subject.fields.institute_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label class="required" for="sections">{{ trans('cruds.subject.fields.sections') }}</label>
+                <div style="padding-bottom: 4px">
+                    <span class="btn btn-info btn-xs select-all" style="border-radius: 0">{{ trans('global.select_all') }}</span>
+                    <span class="btn btn-info btn-xs deselect-all" style="border-radius: 0">{{ trans('global.deselect_all') }}</span>
+                </div>
+                <select class="form-control select2 {{ $errors->has('sections') ? 'is-invalid' : '' }}" name="sections[]" id="sections" multiple required>
+                    @foreach($sections as $id => $section)
+                        <option value="{{ $id }}" {{ (in_array($id, old('sections', [])) || $subject->sections->contains($id)) ? 'selected' : '' }}>{{ $section }}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('sections'))
+                    <span class="text-danger">{{ $errors->first('sections') }}</span>
+                @endif
+                <span class="help-block">{{ trans('cruds.subject.fields.sections_helper') }}</span>
             </div>
             <div class="form-group">
                 <button class="btn btn-danger" type="submit">

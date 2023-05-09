@@ -21,10 +21,6 @@ class StoreUserRequest extends FormRequest
                 'string',
                 'required',
             ],
-            'mobile_no' => [
-                'string',
-                'nullable',
-            ],
             'email' => [
                 'required',
                 'unique:users',

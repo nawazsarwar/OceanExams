@@ -68,7 +68,11 @@ class AcademicSessionsController extends Controller
 
     public function massDestroy(MassDestroyAcademicSessionRequest $request)
     {
-        AcademicSession::whereIn('id', request('ids'))->delete();
+        $academicSessions = AcademicSession::find(request('ids'));
+
+        foreach ($academicSessions as $academicSession) {
+            $academicSession->delete();
+        }
 
         return response(null, Response::HTTP_NO_CONTENT);
     }

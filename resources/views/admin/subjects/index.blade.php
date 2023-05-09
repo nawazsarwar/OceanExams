@@ -32,6 +32,9 @@
                         {{ trans('cruds.subject.fields.name') }}
                     </th>
                     <th>
+                        {{ trans('cruds.subject.fields.category') }}
+                    </th>
+                    <th>
                         {{ trans('cruds.subject.fields.status') }}
                     </th>
                     <th>
@@ -39,6 +42,9 @@
                     </th>
                     <th>
                         {{ trans('cruds.subject.fields.institute') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.subject.fields.sections') }}
                     </th>
                     <th>
                         &nbsp;
@@ -98,9 +104,11 @@
       { data: 'placeholder', name: 'placeholder' },
 { data: 'id', name: 'id' },
 { data: 'name', name: 'name' },
+{ data: 'category', name: 'category' },
 { data: 'status', name: 'status' },
 { data: 'remarks', name: 'remarks' },
 { data: 'institute_name', name: 'institute.name' },
+{ data: 'sections', name: 'sections.title' },
 { data: 'actions', name: '{{ trans('global.actions') }}' }
     ],
     orderCellsTop: true,

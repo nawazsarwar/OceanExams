@@ -30,13 +30,13 @@
                                         {{ trans('cruds.chapter.fields.id') }}
                                     </th>
                                     <th>
-                                        {{ trans('cruds.chapter.fields.name') }}
-                                    </th>
-                                    <th>
-                                        {{ trans('cruds.chapter.fields.grade_subject') }}
+                                        {{ trans('cruds.chapter.fields.title') }}
                                     </th>
                                     <th>
                                         {{ trans('cruds.chapter.fields.status') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.chapter.fields.subject') }}
                                     </th>
                                     <th>
                                         &nbsp;
@@ -50,13 +50,13 @@
                                             {{ $chapter->id ?? '' }}
                                         </td>
                                         <td>
-                                            {{ $chapter->name ?? '' }}
-                                        </td>
-                                        <td>
-                                            {{ $chapter->grade_subject->title ?? '' }}
+                                            {{ $chapter->title ?? '' }}
                                         </td>
                                         <td>
                                             {{ $chapter->status ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $chapter->subject->name ?? '' }}
                                         </td>
                                         <td>
                                             @can('chapter_show')

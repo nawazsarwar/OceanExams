@@ -18,6 +18,14 @@
                 <span class="help-block">{{ trans('cruds.institute.fields.name_helper') }}</span>
             </div>
             <div class="form-group">
+                <label class="required" for="email">{{ trans('cruds.institute.fields.email') }}</label>
+                <input class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" type="email" name="email" id="email" value="{{ old('email') }}" required>
+                @if($errors->has('email'))
+                    <span class="text-danger">{{ $errors->first('email') }}</span>
+                @endif
+                <span class="help-block">{{ trans('cruds.institute.fields.email_helper') }}</span>
+            </div>
+            <div class="form-group">
                 <label for="logo">{{ trans('cruds.institute.fields.logo') }}</label>
                 <div class="needsclick dropzone {{ $errors->has('logo') ? 'is-invalid' : '' }}" id="logo-dropzone">
                 </div>
@@ -25,14 +33,6 @@
                     <span class="text-danger">{{ $errors->first('logo') }}</span>
                 @endif
                 <span class="help-block">{{ trans('cruds.institute.fields.logo_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <label class="required" for="email">{{ trans('cruds.institute.fields.email') }}</label>
-                <input class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" type="email" name="email" id="email" value="{{ old('email') }}" required>
-                @if($errors->has('email'))
-                    <span class="text-danger">{{ $errors->first('email') }}</span>
-                @endif
-                <span class="help-block">{{ trans('cruds.institute.fields.email_helper') }}</span>
             </div>
             <div class="form-group">
                 <label class="required" for="subdomain">{{ trans('cruds.institute.fields.subdomain') }}</label>
@@ -49,6 +49,54 @@
                     <span class="text-danger">{{ $errors->first('hostname') }}</span>
                 @endif
                 <span class="help-block">{{ trans('cruds.institute.fields.hostname_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label for="public_email">{{ trans('cruds.institute.fields.public_email') }}</label>
+                <input class="form-control {{ $errors->has('public_email') ? 'is-invalid' : '' }}" type="email" name="public_email" id="public_email" value="{{ old('public_email') }}">
+                @if($errors->has('public_email'))
+                    <span class="text-danger">{{ $errors->first('public_email') }}</span>
+                @endif
+                <span class="help-block">{{ trans('cruds.institute.fields.public_email_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label for="public_mobile">{{ trans('cruds.institute.fields.public_mobile') }}</label>
+                <input class="form-control {{ $errors->has('public_mobile') ? 'is-invalid' : '' }}" type="text" name="public_mobile" id="public_mobile" value="{{ old('public_mobile', '') }}">
+                @if($errors->has('public_mobile'))
+                    <span class="text-danger">{{ $errors->first('public_mobile') }}</span>
+                @endif
+                <span class="help-block">{{ trans('cruds.institute.fields.public_mobile_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label for="address">{{ trans('cruds.institute.fields.address') }}</label>
+                <textarea class="form-control {{ $errors->has('address') ? 'is-invalid' : '' }}" name="address" id="address">{{ old('address') }}</textarea>
+                @if($errors->has('address'))
+                    <span class="text-danger">{{ $errors->first('address') }}</span>
+                @endif
+                <span class="help-block">{{ trans('cruds.institute.fields.address_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label for="header_background_color">{{ trans('cruds.institute.fields.header_background_color') }}</label>
+                <input class="form-control {{ $errors->has('header_background_color') ? 'is-invalid' : '' }}" type="text" name="header_background_color" id="header_background_color" value="{{ old('header_background_color', '') }}">
+                @if($errors->has('header_background_color'))
+                    <span class="text-danger">{{ $errors->first('header_background_color') }}</span>
+                @endif
+                <span class="help-block">{{ trans('cruds.institute.fields.header_background_color_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label for="footer_background_color">{{ trans('cruds.institute.fields.footer_background_color') }}</label>
+                <input class="form-control {{ $errors->has('footer_background_color') ? 'is-invalid' : '' }}" type="text" name="footer_background_color" id="footer_background_color" value="{{ old('footer_background_color', '') }}">
+                @if($errors->has('footer_background_color'))
+                    <span class="text-danger">{{ $errors->first('footer_background_color') }}</span>
+                @endif
+                <span class="help-block">{{ trans('cruds.institute.fields.footer_background_color_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label for="about">{{ trans('cruds.institute.fields.about') }}</label>
+                <textarea class="form-control ckeditor {{ $errors->has('about') ? 'is-invalid' : '' }}" name="about" id="about">{!! old('about') !!}</textarea>
+                @if($errors->has('about'))
+                    <span class="text-danger">{{ $errors->first('about') }}</span>
+                @endif
+                <span class="help-block">{{ trans('cruds.institute.fields.about_helper') }}</span>
             </div>
             <div class="form-group">
                 <label for="type_id">{{ trans('cruds.institute.fields.type') }}</label>
@@ -123,30 +171,6 @@
                 <span class="help-block">{{ trans('cruds.institute.fields.longitude_helper') }}</span>
             </div>
             <div class="form-group">
-                <label for="about">{{ trans('cruds.institute.fields.about') }}</label>
-                <textarea class="form-control {{ $errors->has('about') ? 'is-invalid' : '' }}" name="about" id="about">{{ old('about') }}</textarea>
-                @if($errors->has('about'))
-                    <span class="text-danger">{{ $errors->first('about') }}</span>
-                @endif
-                <span class="help-block">{{ trans('cruds.institute.fields.about_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <label for="public_email">{{ trans('cruds.institute.fields.public_email') }}</label>
-                <input class="form-control {{ $errors->has('public_email') ? 'is-invalid' : '' }}" type="email" name="public_email" id="public_email" value="{{ old('public_email') }}">
-                @if($errors->has('public_email'))
-                    <span class="text-danger">{{ $errors->first('public_email') }}</span>
-                @endif
-                <span class="help-block">{{ trans('cruds.institute.fields.public_email_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <label for="public_mobile">{{ trans('cruds.institute.fields.public_mobile') }}</label>
-                <input class="form-control {{ $errors->has('public_mobile') ? 'is-invalid' : '' }}" type="text" name="public_mobile" id="public_mobile" value="{{ old('public_mobile', '') }}">
-                @if($errors->has('public_mobile'))
-                    <span class="text-danger">{{ $errors->first('public_mobile') }}</span>
-                @endif
-                <span class="help-block">{{ trans('cruds.institute.fields.public_mobile_helper') }}</span>
-            </div>
-            <div class="form-group">
                 <label for="partner_id">{{ trans('cruds.institute.fields.partner') }}</label>
                 <select class="form-control select2 {{ $errors->has('partner') ? 'is-invalid' : '' }}" name="partner_id" id="partner_id">
                     @foreach($partners as $id => $entry)
@@ -157,6 +181,27 @@
                     <span class="text-danger">{{ $errors->first('partner') }}</span>
                 @endif
                 <span class="help-block">{{ trans('cruds.institute.fields.partner_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label>{{ trans('cruds.institute.fields.status') }}</label>
+                <select class="form-control {{ $errors->has('status') ? 'is-invalid' : '' }}" name="status" id="status">
+                    <option value disabled {{ old('status', null) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
+                    @foreach(App\Models\Institute::STATUS_SELECT as $key => $label)
+                        <option value="{{ $key }}" {{ old('status', '') === (string) $key ? 'selected' : '' }}>{{ $label }}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('status'))
+                    <span class="text-danger">{{ $errors->first('status') }}</span>
+                @endif
+                <span class="help-block">{{ trans('cruds.institute.fields.status_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label for="remarks">{{ trans('cruds.institute.fields.remarks') }}</label>
+                <textarea class="form-control {{ $errors->has('remarks') ? 'is-invalid' : '' }}" name="remarks" id="remarks">{{ old('remarks') }}</textarea>
+                @if($errors->has('remarks'))
+                    <span class="text-danger">{{ $errors->first('remarks') }}</span>
+                @endif
+                <span class="help-block">{{ trans('cruds.institute.fields.remarks_helper') }}</span>
             </div>
             <div class="form-group">
                 <button class="btn btn-danger" type="submit">
@@ -227,4 +272,68 @@
 }
 
 </script>
+<script>
+    $(document).ready(function () {
+  function SimpleUploadAdapter(editor) {
+    editor.plugins.get('FileRepository').createUploadAdapter = function(loader) {
+      return {
+        upload: function() {
+          return loader.file
+            .then(function (file) {
+              return new Promise(function(resolve, reject) {
+                // Init request
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', '{{ route('admin.institutes.storeCKEditorImages') }}', true);
+                xhr.setRequestHeader('x-csrf-token', window._token);
+                xhr.setRequestHeader('Accept', 'application/json');
+                xhr.responseType = 'json';
+
+                // Init listeners
+                var genericErrorText = `Couldn't upload file: ${ file.name }.`;
+                xhr.addEventListener('error', function() { reject(genericErrorText) });
+                xhr.addEventListener('abort', function() { reject() });
+                xhr.addEventListener('load', function() {
+                  var response = xhr.response;
+
+                  if (!response || xhr.status !== 201) {
+                    return reject(response && response.message ? `${genericErrorText}\n${xhr.status} ${response.message}` : `${genericErrorText}\n ${xhr.status} ${xhr.statusText}`);
+                  }
+
+                  $('form').append('<input type="hidden" name="ck-media[]" value="' + response.id + '">');
+
+                  resolve({ default: response.url });
+                });
+
+                if (xhr.upload) {
+                  xhr.upload.addEventListener('progress', function(e) {
+                    if (e.lengthComputable) {
+                      loader.uploadTotal = e.total;
+                      loader.uploaded = e.loaded;
+                    }
+                  });
+                }
+
+                // Send request
+                var data = new FormData();
+                data.append('upload', file);
+                data.append('crud_id', '{{ $institute->id ?? 0 }}');
+                xhr.send(data);
+              });
+            })
+        }
+      };
+    }
+  }
+
+  var allEditors = document.querySelectorAll('.ckeditor');
+  for (var i = 0; i < allEditors.length; ++i) {
+    ClassicEditor.create(
+      allEditors[i], {
+        extraPlugins: [SimpleUploadAdapter]
+      }
+    );
+  }
+});
+</script>
+
 @endsection

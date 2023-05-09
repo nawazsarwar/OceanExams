@@ -39,11 +39,8 @@ class Student extends Model implements HasMedia
         'fathers_name',
         'mothers_name',
         'parents_contact',
-        'course_id',
-        'batch_id',
         'date_of_birth',
         'date_of_joining',
-        'email',
         'image_verified',
         'archived',
         'enrollment_no',
@@ -65,16 +62,6 @@ class Student extends Model implements HasMedia
     {
         $this->addMediaConversion('thumb')->fit('crop', 50, 50);
         $this->addMediaConversion('preview')->fit('crop', 120, 120);
-    }
-
-    public function course()
-    {
-        return $this->belongsTo(Course::class, 'course_id');
-    }
-
-    public function batch()
-    {
-        return $this->belongsTo(Batch::class, 'batch_id');
     }
 
     public function getDateOfBirthAttribute($value)
@@ -107,6 +94,16 @@ class Student extends Model implements HasMedia
         }
 
         return $file;
+    }
+
+    public function sections()
+    {
+        return $this->belongsToMany(Section::class);
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
     }
 
     public function transport_route()

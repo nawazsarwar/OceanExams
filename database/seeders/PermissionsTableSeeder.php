@@ -104,147 +104,147 @@ class PermissionsTableSeeder extends Seeder
             ],
             [
                 'id'    => 24,
-                'title' => 'institute_create',
-            ],
-            [
-                'id'    => 25,
-                'title' => 'institute_edit',
-            ],
-            [
-                'id'    => 26,
-                'title' => 'institute_show',
-            ],
-            [
-                'id'    => 27,
-                'title' => 'institute_delete',
-            ],
-            [
-                'id'    => 28,
-                'title' => 'institute_access',
-            ],
-            [
-                'id'    => 29,
-                'title' => 'institute_type_create',
-            ],
-            [
-                'id'    => 30,
-                'title' => 'institute_type_edit',
-            ],
-            [
-                'id'    => 31,
-                'title' => 'institute_type_show',
-            ],
-            [
-                'id'    => 32,
-                'title' => 'institute_type_delete',
-            ],
-            [
-                'id'    => 33,
-                'title' => 'institute_type_access',
-            ],
-            [
-                'id'    => 34,
-                'title' => 'institute_level_create',
-            ],
-            [
-                'id'    => 35,
-                'title' => 'institute_level_edit',
-            ],
-            [
-                'id'    => 36,
-                'title' => 'institute_level_show',
-            ],
-            [
-                'id'    => 37,
-                'title' => 'institute_level_delete',
-            ],
-            [
-                'id'    => 38,
-                'title' => 'institute_level_access',
-            ],
-            [
-                'id'    => 39,
-                'title' => 'affiliationer_create',
-            ],
-            [
-                'id'    => 40,
-                'title' => 'affiliationer_edit',
-            ],
-            [
-                'id'    => 41,
-                'title' => 'affiliationer_show',
-            ],
-            [
-                'id'    => 42,
-                'title' => 'affiliationer_delete',
-            ],
-            [
-                'id'    => 43,
-                'title' => 'affiliationer_access',
-            ],
-            [
-                'id'    => 44,
                 'title' => 'miscellaneou_access',
             ],
             [
+                'id'    => 25,
+                'title' => 'institute_type_create',
+            ],
+            [
+                'id'    => 26,
+                'title' => 'institute_type_edit',
+            ],
+            [
+                'id'    => 27,
+                'title' => 'institute_type_show',
+            ],
+            [
+                'id'    => 28,
+                'title' => 'institute_type_delete',
+            ],
+            [
+                'id'    => 29,
+                'title' => 'institute_type_access',
+            ],
+            [
+                'id'    => 30,
+                'title' => 'institute_level_create',
+            ],
+            [
+                'id'    => 31,
+                'title' => 'institute_level_edit',
+            ],
+            [
+                'id'    => 32,
+                'title' => 'institute_level_show',
+            ],
+            [
+                'id'    => 33,
+                'title' => 'institute_level_delete',
+            ],
+            [
+                'id'    => 34,
+                'title' => 'institute_level_access',
+            ],
+            [
+                'id'    => 35,
+                'title' => 'affiliationer_create',
+            ],
+            [
+                'id'    => 36,
+                'title' => 'affiliationer_edit',
+            ],
+            [
+                'id'    => 37,
+                'title' => 'affiliationer_show',
+            ],
+            [
+                'id'    => 38,
+                'title' => 'affiliationer_delete',
+            ],
+            [
+                'id'    => 39,
+                'title' => 'affiliationer_access',
+            ],
+            [
+                'id'    => 40,
+                'title' => 'institute_create',
+            ],
+            [
+                'id'    => 41,
+                'title' => 'institute_edit',
+            ],
+            [
+                'id'    => 42,
+                'title' => 'institute_show',
+            ],
+            [
+                'id'    => 43,
+                'title' => 'institute_delete',
+            ],
+            [
+                'id'    => 44,
+                'title' => 'institute_access',
+            ],
+            [
                 'id'    => 45,
-                'title' => 'course_create',
+                'title' => 'subject_create',
             ],
             [
                 'id'    => 46,
-                'title' => 'course_edit',
+                'title' => 'subject_edit',
             ],
             [
                 'id'    => 47,
-                'title' => 'course_show',
+                'title' => 'subject_show',
             ],
             [
                 'id'    => 48,
-                'title' => 'course_delete',
+                'title' => 'subject_delete',
             ],
             [
                 'id'    => 49,
-                'title' => 'course_access',
+                'title' => 'subject_access',
             ],
             [
                 'id'    => 50,
-                'title' => 'academic_session_create',
+                'title' => 'course_create',
             ],
             [
                 'id'    => 51,
-                'title' => 'academic_session_edit',
+                'title' => 'course_edit',
             ],
             [
                 'id'    => 52,
-                'title' => 'academic_session_show',
+                'title' => 'course_show',
             ],
             [
                 'id'    => 53,
-                'title' => 'academic_session_delete',
+                'title' => 'course_delete',
             ],
             [
                 'id'    => 54,
-                'title' => 'academic_session_access',
+                'title' => 'course_access',
             ],
             [
                 'id'    => 55,
-                'title' => 'grade_create',
+                'title' => 'academic_session_create',
             ],
             [
                 'id'    => 56,
-                'title' => 'grade_edit',
+                'title' => 'academic_session_edit',
             ],
             [
                 'id'    => 57,
-                'title' => 'grade_show',
+                'title' => 'academic_session_show',
             ],
             [
                 'id'    => 58,
-                'title' => 'grade_delete',
+                'title' => 'academic_session_delete',
             ],
             [
                 'id'    => 59,
-                'title' => 'grade_access',
+                'title' => 'academic_session_access',
             ],
             [
                 'id'    => 60,
@@ -268,47 +268,47 @@ class PermissionsTableSeeder extends Seeder
             ],
             [
                 'id'    => 65,
-                'title' => 'subject_create',
+                'title' => 'transportation_management_access',
             ],
             [
                 'id'    => 66,
-                'title' => 'subject_edit',
+                'title' => 'transport_route_create',
             ],
             [
                 'id'    => 67,
-                'title' => 'subject_show',
+                'title' => 'transport_route_edit',
             ],
             [
                 'id'    => 68,
-                'title' => 'subject_delete',
+                'title' => 'transport_route_show',
             ],
             [
                 'id'    => 69,
-                'title' => 'subject_access',
+                'title' => 'transport_route_delete',
             ],
             [
                 'id'    => 70,
-                'title' => 'batch_create',
+                'title' => 'transport_route_access',
             ],
             [
                 'id'    => 71,
-                'title' => 'batch_edit',
+                'title' => 'route_stop_create',
             ],
             [
                 'id'    => 72,
-                'title' => 'batch_show',
+                'title' => 'route_stop_edit',
             ],
             [
                 'id'    => 73,
-                'title' => 'batch_delete',
+                'title' => 'route_stop_show',
             ],
             [
                 'id'    => 74,
-                'title' => 'batch_access',
+                'title' => 'route_stop_delete',
             ],
             [
                 'id'    => 75,
-                'title' => 'coaching_data_access',
+                'title' => 'route_stop_access',
             ],
             [
                 'id'    => 76,
@@ -384,43 +384,43 @@ class PermissionsTableSeeder extends Seeder
             ],
             [
                 'id'    => 94,
-                'title' => 'fees_structure_create',
+                'title' => 'fee_head_create',
             ],
             [
                 'id'    => 95,
-                'title' => 'fees_structure_edit',
+                'title' => 'fee_head_edit',
             ],
             [
                 'id'    => 96,
-                'title' => 'fees_structure_show',
+                'title' => 'fee_head_show',
             ],
             [
                 'id'    => 97,
-                'title' => 'fees_structure_delete',
+                'title' => 'fee_head_delete',
             ],
             [
                 'id'    => 98,
-                'title' => 'fees_structure_access',
+                'title' => 'fee_head_access',
             ],
             [
                 'id'    => 99,
-                'title' => 'grade_subject_create',
+                'title' => 'fee_structure_create',
             ],
             [
                 'id'    => 100,
-                'title' => 'grade_subject_edit',
+                'title' => 'fee_structure_edit',
             ],
             [
                 'id'    => 101,
-                'title' => 'grade_subject_show',
+                'title' => 'fee_structure_show',
             ],
             [
                 'id'    => 102,
-                'title' => 'grade_subject_delete',
+                'title' => 'fee_structure_delete',
             ],
             [
                 'id'    => 103,
-                'title' => 'grade_subject_access',
+                'title' => 'fee_structure_access',
             ],
             [
                 'id'    => 104,
@@ -524,50 +524,218 @@ class PermissionsTableSeeder extends Seeder
             ],
             [
                 'id'    => 129,
-                'title' => 'transport_route_create',
+                'title' => 'employee_management_access',
             ],
             [
                 'id'    => 130,
-                'title' => 'transport_route_edit',
+                'title' => 'address_create',
             ],
             [
                 'id'    => 131,
-                'title' => 'transport_route_show',
+                'title' => 'address_edit',
             ],
             [
                 'id'    => 132,
-                'title' => 'transport_route_delete',
+                'title' => 'address_show',
             ],
             [
                 'id'    => 133,
-                'title' => 'transport_route_access',
+                'title' => 'address_delete',
             ],
             [
                 'id'    => 134,
-                'title' => 'route_stop_create',
+                'title' => 'address_access',
             ],
             [
                 'id'    => 135,
-                'title' => 'route_stop_edit',
+                'title' => 'phone_create',
             ],
             [
                 'id'    => 136,
-                'title' => 'route_stop_show',
+                'title' => 'phone_edit',
             ],
             [
                 'id'    => 137,
-                'title' => 'route_stop_delete',
+                'title' => 'phone_show',
             ],
             [
                 'id'    => 138,
-                'title' => 'route_stop_access',
+                'title' => 'phone_delete',
             ],
             [
                 'id'    => 139,
-                'title' => 'transportation_management_access',
+                'title' => 'phone_access',
             ],
             [
                 'id'    => 140,
+                'title' => 'country_create',
+            ],
+            [
+                'id'    => 141,
+                'title' => 'country_edit',
+            ],
+            [
+                'id'    => 142,
+                'title' => 'country_show',
+            ],
+            [
+                'id'    => 143,
+                'title' => 'country_delete',
+            ],
+            [
+                'id'    => 144,
+                'title' => 'country_access',
+            ],
+            [
+                'id'    => 145,
+                'title' => 'province_create',
+            ],
+            [
+                'id'    => 146,
+                'title' => 'province_edit',
+            ],
+            [
+                'id'    => 147,
+                'title' => 'province_show',
+            ],
+            [
+                'id'    => 148,
+                'title' => 'province_delete',
+            ],
+            [
+                'id'    => 149,
+                'title' => 'province_access',
+            ],
+            [
+                'id'    => 150,
+                'title' => 'postal_code_create',
+            ],
+            [
+                'id'    => 151,
+                'title' => 'postal_code_edit',
+            ],
+            [
+                'id'    => 152,
+                'title' => 'postal_code_show',
+            ],
+            [
+                'id'    => 153,
+                'title' => 'postal_code_delete',
+            ],
+            [
+                'id'    => 154,
+                'title' => 'postal_code_access',
+            ],
+            [
+                'id'    => 155,
+                'title' => 'blood_group_create',
+            ],
+            [
+                'id'    => 156,
+                'title' => 'blood_group_edit',
+            ],
+            [
+                'id'    => 157,
+                'title' => 'blood_group_show',
+            ],
+            [
+                'id'    => 158,
+                'title' => 'blood_group_delete',
+            ],
+            [
+                'id'    => 159,
+                'title' => 'blood_group_access',
+            ],
+            [
+                'id'    => 160,
+                'title' => 'religion_create',
+            ],
+            [
+                'id'    => 161,
+                'title' => 'religion_edit',
+            ],
+            [
+                'id'    => 162,
+                'title' => 'religion_show',
+            ],
+            [
+                'id'    => 163,
+                'title' => 'religion_delete',
+            ],
+            [
+                'id'    => 164,
+                'title' => 'religion_access',
+            ],
+            [
+                'id'    => 165,
+                'title' => 'caste_create',
+            ],
+            [
+                'id'    => 166,
+                'title' => 'caste_edit',
+            ],
+            [
+                'id'    => 167,
+                'title' => 'caste_show',
+            ],
+            [
+                'id'    => 168,
+                'title' => 'caste_delete',
+            ],
+            [
+                'id'    => 169,
+                'title' => 'caste_access',
+            ],
+            [
+                'id'    => 170,
+                'title' => 'mark_attendance_create',
+            ],
+            [
+                'id'    => 171,
+                'title' => 'mark_attendance_edit',
+            ],
+            [
+                'id'    => 172,
+                'title' => 'mark_attendance_show',
+            ],
+            [
+                'id'    => 173,
+                'title' => 'mark_attendance_delete',
+            ],
+            [
+                'id'    => 174,
+                'title' => 'mark_attendance_access',
+            ],
+            [
+                'id'    => 175,
+                'title' => 'questions_bank_access',
+            ],
+            [
+                'id'    => 176,
+                'title' => 'question_create',
+            ],
+            [
+                'id'    => 177,
+                'title' => 'question_edit',
+            ],
+            [
+                'id'    => 178,
+                'title' => 'question_show',
+            ],
+            [
+                'id'    => 179,
+                'title' => 'question_delete',
+            ],
+            [
+                'id'    => 180,
+                'title' => 'question_access',
+            ],
+            [
+                'id'    => 181,
+                'title' => 'communication_centre_access',
+            ],
+            [
+                'id'    => 182,
                 'title' => 'profile_password_edit',
             ],
         ];

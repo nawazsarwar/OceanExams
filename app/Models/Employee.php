@@ -23,25 +23,30 @@ class Employee extends Model implements HasMedia
         'signature',
     ];
 
-    protected $dates = [
-        'date_of_birth',
-        'created_at',
-        'updated_at',
-        'deleted_at',
-    ];
-
     public const GENDER_SELECT = [
         'Female' => 'Female',
         'Male'   => 'Male',
         'Other'  => 'Other',
     ];
 
+    protected $dates = [
+        'date_of_birth',
+        'date_of_joining',
+        'created_at',
+        'updated_at',
+        'deleted_at',
+    ];
+
     protected $fillable = [
         'name',
         'contact',
-        'email',
         'date_of_birth',
         'gender',
+        'date_of_joining',
+        'designation_id',
+        'employee_type_id',
+        'institution_id',
+        'user_id',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -92,8 +97,38 @@ class Employee extends Model implements HasMedia
         return $file;
     }
 
+    public function getDateOfJoiningAttribute($value)
+    {
+        return $value ? Carbon::parse($value)->format(config('panel.date_format')) : null;
+    }
+
+    public function setDateOfJoiningAttribute($value)
+    {
+        $this->attributes['date_of_joining'] = $value ? Carbon::createFromFormat(config('panel.date_format'), $value)->format('Y-m-d') : null;
+    }
+
     public function subjects()
     {
         return $this->belongsToMany(Subject::class);
+    }
+
+    public function designation()
+    {
+        return $this->belongsTo(Designation::class, 'designation_id');
+    }
+
+    public function employee_type()
+    {
+        return $this->belongsTo(EmployeeType::class, 'employee_type_id');
+    }
+
+    public function institution()
+    {
+        return $this->belongsTo(Institute::class, 'institution_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

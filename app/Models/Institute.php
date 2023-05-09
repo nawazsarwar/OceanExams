@@ -27,21 +27,31 @@ class Institute extends Model implements HasMedia
         'deleted_at',
     ];
 
+    public const STATUS_SELECT = [
+        'Active'    => 'Active',
+        'In-active' => 'In-active',
+    ];
+
     protected $fillable = [
         'name',
         'email',
         'subdomain',
         'hostname',
+        'public_email',
+        'public_mobile',
+        'address',
+        'header_background_color',
+        'footer_background_color',
+        'about',
         'type_id',
         'level_id',
         'affiliation_no',
         'template',
         'latitude',
         'longitude',
-        'about',
-        'public_email',
-        'public_mobile',
         'partner_id',
+        'status',
+        'remarks',
         'created_at',
         'updated_at',
         'deleted_at',

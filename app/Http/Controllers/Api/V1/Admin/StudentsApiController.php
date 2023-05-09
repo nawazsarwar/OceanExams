@@ -20,13 +20,14 @@ class StudentsApiController extends Controller
     {
         abort_if(Gate::denies('student_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new StudentResource(Student::with(['course', 'batch', 'transport_route', 'transport_stop'])->get());
+        return new StudentResource(Student::with(['sections', 'users', 'transport_route', 'transport_stop'])->get());
     }
 
     public function store(StoreStudentRequest $request)
     {
         $student = Student::create($request->all());
-
+        $student->sections()->sync($request->input('sections', []));
+        $student->users()->sync($request->input('users', []));
         if ($request->input('image', false)) {
             $student->addMedia(storage_path('tmp/uploads/' . basename($request->input('image'))))->toMediaCollection('image');
         }
@@ -40,13 +41,14 @@ class StudentsApiController extends Controller
     {
         abort_if(Gate::denies('student_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new StudentResource($student->load(['course', 'batch', 'transport_route', 'transport_stop']));
+        return new StudentResource($student->load(['sections', 'users', 'transport_route', 'transport_stop']));
     }
 
     public function update(UpdateStudentRequest $request, Student $student)
     {
         $student->update($request->all());
-
+        $student->sections()->sync($request->input('sections', []));
+        $student->users()->sync($request->input('users', []));
         if ($request->input('image', false)) {
             if (! $student->image || $request->input('image') !== $student->image->file_name) {
                 if ($student->image) {

@@ -29,16 +29,37 @@
                                         {{ trans('cruds.partner.fields.name') }}
                                     </th>
                                     <th>
-                                        {{ trans('cruds.partner.fields.prefix') }}
+                                        {{ trans('cruds.partner.fields.product_name') }}
                                     </th>
                                     <th>
-                                        {{ trans('cruds.partner.fields.primary_url') }}
+                                        {{ trans('cruds.partner.fields.logo') }}
                                     </th>
                                     <th>
-                                        {{ trans('cruds.partner.fields.header_logo') }}
+                                        {{ trans('cruds.partner.fields.subdomain') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.partner.fields.hostname') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.partner.fields.public_email') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.partner.fields.public_mobile') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.partner.fields.address') }}
                                     </th>
                                     <th>
                                         {{ trans('cruds.partner.fields.header_background_color') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.partner.fields.footer_background_color') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.partner.fields.status') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.partner.fields.remarks') }}
                                     </th>
                                     <th>
                                         &nbsp;
@@ -55,20 +76,41 @@
                                             {{ $partner->name ?? '' }}
                                         </td>
                                         <td>
-                                            {{ $partner->prefix ?? '' }}
+                                            {{ $partner->product_name ?? '' }}
                                         </td>
                                         <td>
-                                            {{ $partner->primary_url ?? '' }}
-                                        </td>
-                                        <td>
-                                            @if($partner->header_logo)
-                                                <a href="{{ $partner->header_logo->getUrl() }}" target="_blank" style="display: inline-block">
-                                                    <img src="{{ $partner->header_logo->getUrl('thumb') }}">
+                                            @if($partner->logo)
+                                                <a href="{{ $partner->logo->getUrl() }}" target="_blank" style="display: inline-block">
+                                                    <img src="{{ $partner->logo->getUrl('thumb') }}">
                                                 </a>
                                             @endif
                                         </td>
                                         <td>
+                                            {{ $partner->subdomain ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $partner->hostname ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $partner->public_email ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $partner->public_mobile ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $partner->address ?? '' }}
+                                        </td>
+                                        <td>
                                             {{ $partner->header_background_color ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $partner->footer_background_color ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ App\Models\Partner::STATUS_SELECT[$partner->status] ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $partner->remarks ?? '' }}
                                         </td>
                                         <td>
                                             @can('partner_show')

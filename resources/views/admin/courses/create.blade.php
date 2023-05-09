@@ -42,14 +42,6 @@
                 <span class="help-block">{{ trans('cruds.course.fields.description_helper') }}</span>
             </div>
             <div class="form-group">
-                <label for="price">{{ trans('cruds.course.fields.price') }}</label>
-                <input class="form-control {{ $errors->has('price') ? 'is-invalid' : '' }}" type="number" name="price" id="price" value="{{ old('price', '') }}" step="0.01">
-                @if($errors->has('price'))
-                    <span class="text-danger">{{ $errors->first('price') }}</span>
-                @endif
-                <span class="help-block">{{ trans('cruds.course.fields.price_helper') }}</span>
-            </div>
-            <div class="form-group">
                 <label for="thumbnail">{{ trans('cruds.course.fields.thumbnail') }}</label>
                 <div class="needsclick dropzone {{ $errors->has('thumbnail') ? 'is-invalid' : '' }}" id="thumbnail-dropzone">
                 </div>
@@ -68,6 +60,18 @@
                     <span class="text-danger">{{ $errors->first('is_published') }}</span>
                 @endif
                 <span class="help-block">{{ trans('cruds.course.fields.is_published_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label class="required" for="institute_id">{{ trans('cruds.course.fields.institute') }}</label>
+                <select class="form-control select2 {{ $errors->has('institute') ? 'is-invalid' : '' }}" name="institute_id" id="institute_id" required>
+                    @foreach($institutes as $id => $entry)
+                        <option value="{{ $id }}" {{ old('institute_id') == $id ? 'selected' : '' }}>{{ $entry }}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('institute'))
+                    <span class="text-danger">{{ $errors->first('institute') }}</span>
+                @endif
+                <span class="help-block">{{ trans('cruds.course.fields.institute_helper') }}</span>
             </div>
             <div class="form-group">
                 <button class="btn btn-danger" type="submit">

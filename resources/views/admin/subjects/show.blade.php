@@ -33,6 +33,14 @@
                     </tr>
                     <tr>
                         <th>
+                            {{ trans('cruds.subject.fields.category') }}
+                        </th>
+                        <td>
+                            {{ App\Models\Subject::CATEGORY_SELECT[$subject->category] ?? '' }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
                             {{ trans('cruds.subject.fields.status') }}
                         </th>
                         <td>
@@ -53,6 +61,16 @@
                         </th>
                         <td>
                             {{ $subject->institute->name ?? '' }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.subject.fields.sections') }}
+                        </th>
+                        <td>
+                            @foreach($subject->sections as $key => $sections)
+                                <span class="label label-info">{{ $sections->title }}</span>
+                            @endforeach
                         </td>
                     </tr>
                 </tbody>

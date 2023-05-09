@@ -17,12 +17,13 @@ class SubjectsApiController extends Controller
     {
         abort_if(Gate::denies('subject_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new SubjectResource(Subject::with(['institute'])->get());
+        return new SubjectResource(Subject::with(['institute', 'sections'])->get());
     }
 
     public function store(StoreSubjectRequest $request)
     {
         $subject = Subject::create($request->all());
+        $subject->sections()->sync($request->input('sections', []));
 
         return (new SubjectResource($subject))
             ->response()
@@ -33,12 +34,13 @@ class SubjectsApiController extends Controller
     {
         abort_if(Gate::denies('subject_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new SubjectResource($subject->load(['institute']));
+        return new SubjectResource($subject->load(['institute', 'sections']));
     }
 
     public function update(UpdateSubjectRequest $request, Subject $subject)
     {
         $subject->update($request->all());
+        $subject->sections()->sync($request->input('sections', []));
 
         return (new SubjectResource($subject))
             ->response()

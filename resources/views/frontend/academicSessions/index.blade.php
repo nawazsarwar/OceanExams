@@ -29,6 +29,9 @@
                                         {{ trans('cruds.academicSession.fields.name') }}
                                     </th>
                                     <th>
+                                        {{ trans('cruds.academicSession.fields.position') }}
+                                    </th>
+                                    <th>
                                         &nbsp;
                                     </th>
                                 </tr>
@@ -41,6 +44,9 @@
                                         </td>
                                         <td>
                                             {{ $academicSession->name ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $academicSession->position ?? '' }}
                                         </td>
                                         <td>
                                             @can('academic_session_show')

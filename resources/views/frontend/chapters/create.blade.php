@@ -14,28 +14,14 @@
                         @method('POST')
                         @csrf
                         <div class="form-group">
-                            <label class="required" for="name">{{ trans('cruds.chapter.fields.name') }}</label>
-                            <input class="form-control" type="text" name="name" id="name" value="{{ old('name', '') }}" required>
-                            @if($errors->has('name'))
+                            <label class="required" for="title">{{ trans('cruds.chapter.fields.title') }}</label>
+                            <input class="form-control" type="text" name="title" id="title" value="{{ old('title', '') }}" required>
+                            @if($errors->has('title'))
                                 <div class="invalid-feedback">
-                                    {{ $errors->first('name') }}
+                                    {{ $errors->first('title') }}
                                 </div>
                             @endif
-                            <span class="help-block">{{ trans('cruds.chapter.fields.name_helper') }}</span>
-                        </div>
-                        <div class="form-group">
-                            <label class="required" for="grade_subject_id">{{ trans('cruds.chapter.fields.grade_subject') }}</label>
-                            <select class="form-control select2" name="grade_subject_id" id="grade_subject_id" required>
-                                @foreach($grade_subjects as $id => $entry)
-                                    <option value="{{ $id }}" {{ old('grade_subject_id') == $id ? 'selected' : '' }}>{{ $entry }}</option>
-                                @endforeach
-                            </select>
-                            @if($errors->has('grade_subject'))
-                                <div class="invalid-feedback">
-                                    {{ $errors->first('grade_subject') }}
-                                </div>
-                            @endif
-                            <span class="help-block">{{ trans('cruds.chapter.fields.grade_subject_helper') }}</span>
+                            <span class="help-block">{{ trans('cruds.chapter.fields.title_helper') }}</span>
                         </div>
                         <div class="form-group">
                             <label for="status">{{ trans('cruds.chapter.fields.status') }}</label>
@@ -46,6 +32,20 @@
                                 </div>
                             @endif
                             <span class="help-block">{{ trans('cruds.chapter.fields.status_helper') }}</span>
+                        </div>
+                        <div class="form-group">
+                            <label class="required" for="subject_id">{{ trans('cruds.chapter.fields.subject') }}</label>
+                            <select class="form-control select2" name="subject_id" id="subject_id" required>
+                                @foreach($subjects as $id => $entry)
+                                    <option value="{{ $id }}" {{ old('subject_id') == $id ? 'selected' : '' }}>{{ $entry }}</option>
+                                @endforeach
+                            </select>
+                            @if($errors->has('subject'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('subject') }}
+                                </div>
+                            @endif
+                            <span class="help-block">{{ trans('cruds.chapter.fields.subject_helper') }}</span>
                         </div>
                         <div class="form-group">
                             <button class="btn btn-danger" type="submit">

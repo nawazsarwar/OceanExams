@@ -8,6 +8,7 @@ use App\Http\Requests\MassDestroyCourseRequest;
 use App\Http\Requests\StoreCourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
 use App\Models\Course;
+use App\Models\Institute;
 use App\Models\Subject;
 use Gate;
 use Illuminate\Http\Request;
@@ -24,7 +25,7 @@ class CoursesController extends Controller
         abort_if(Gate::denies('course_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         if ($request->ajax()) {
-            $query = Course::with(['subjects'])->select(sprintf('%s.*', (new Course)->table));
+            $query = Course::with(['subjects', 'institute'])->select(sprintf('%s.*', (new Course)->table));
             $table = Datatables::of($query);
 
             $table->addColumn('placeholder', '&nbsp;');
@@ -62,9 +63,6 @@ class CoursesController extends Controller
             $table->editColumn('description', function ($row) {
                 return $row->description ? $row->description : '';
             });
-            $table->editColumn('price', function ($row) {
-                return $row->price ? $row->price : '';
-            });
             $table->editColumn('thumbnail', function ($row) {
                 if (! $row->thumbnail) {
                     return '';
@@ -79,8 +77,11 @@ class CoursesController extends Controller
             $table->editColumn('is_published', function ($row) {
                 return '<input type="checkbox" disabled ' . ($row->is_published ? 'checked' : null) . '>';
             });
+            $table->addColumn('institute_name', function ($row) {
+                return $row->institute ? $row->institute->name : '';
+            });
 
-            $table->rawColumns(['actions', 'placeholder', 'subjects', 'thumbnail', 'is_published']);
+            $table->rawColumns(['actions', 'placeholder', 'subjects', 'thumbnail', 'is_published', 'institute']);
 
             return $table->make(true);
         }
@@ -94,7 +95,9 @@ class CoursesController extends Controller
 
         $subjects = Subject::pluck('name', 'id');
 
-        return view('admin.courses.create', compact('subjects'));
+        $institutes = Institute::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+
+        return view('admin.courses.create', compact('institutes', 'subjects'));
     }
 
     public function store(StoreCourseRequest $request)
@@ -118,9 +121,11 @@ class CoursesController extends Controller
 
         $subjects = Subject::pluck('name', 'id');
 
-        $course->load('subjects');
+        $institutes = Institute::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        return view('admin.courses.edit', compact('course', 'subjects'));
+        $course->load('subjects', 'institute');
+
+        return view('admin.courses.edit', compact('course', 'institutes', 'subjects'));
     }
 
     public function update(UpdateCourseRequest $request, Course $course)
@@ -148,7 +153,7 @@ class CoursesController extends Controller
     {
         abort_if(Gate::denies('course_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $course->load('subjects');
+        $course->load('subjects', 'institute');
 
         return view('admin.courses.show', compact('course'));
     }

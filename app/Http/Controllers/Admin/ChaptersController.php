@@ -8,7 +8,7 @@ use App\Http\Requests\MassDestroyChapterRequest;
 use App\Http\Requests\StoreChapterRequest;
 use App\Http\Requests\UpdateChapterRequest;
 use App\Models\Chapter;
-use App\Models\GradeSubject;
+use App\Models\Subject;
 use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -23,7 +23,7 @@ class ChaptersController extends Controller
         abort_if(Gate::denies('chapter_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         if ($request->ajax()) {
-            $query = Chapter::with(['grade_subject'])->select(sprintf('%s.*', (new Chapter)->table));
+            $query = Chapter::with(['subject'])->select(sprintf('%s.*', (new Chapter)->table));
             $table = Datatables::of($query);
 
             $table->addColumn('placeholder', '&nbsp;');
@@ -47,18 +47,17 @@ class ChaptersController extends Controller
             $table->editColumn('id', function ($row) {
                 return $row->id ? $row->id : '';
             });
-            $table->editColumn('name', function ($row) {
-                return $row->name ? $row->name : '';
+            $table->editColumn('title', function ($row) {
+                return $row->title ? $row->title : '';
             });
-            $table->addColumn('grade_subject_title', function ($row) {
-                return $row->grade_subject ? $row->grade_subject->title : '';
-            });
-
             $table->editColumn('status', function ($row) {
                 return $row->status ? $row->status : '';
             });
+            $table->addColumn('subject_name', function ($row) {
+                return $row->subject ? $row->subject->name : '';
+            });
 
-            $table->rawColumns(['actions', 'placeholder', 'grade_subject']);
+            $table->rawColumns(['actions', 'placeholder', 'subject']);
 
             return $table->make(true);
         }
@@ -70,9 +69,9 @@ class ChaptersController extends Controller
     {
         abort_if(Gate::denies('chapter_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $grade_subjects = GradeSubject::pluck('title', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $subjects = Subject::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        return view('admin.chapters.create', compact('grade_subjects'));
+        return view('admin.chapters.create', compact('subjects'));
     }
 
     public function store(StoreChapterRequest $request)
@@ -86,11 +85,11 @@ class ChaptersController extends Controller
     {
         abort_if(Gate::denies('chapter_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $grade_subjects = GradeSubject::pluck('title', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $subjects = Subject::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $chapter->load('grade_subject');
+        $chapter->load('subject');
 
-        return view('admin.chapters.edit', compact('chapter', 'grade_subjects'));
+        return view('admin.chapters.edit', compact('chapter', 'subjects'));
     }
 
     public function update(UpdateChapterRequest $request, Chapter $chapter)
@@ -104,7 +103,7 @@ class ChaptersController extends Controller
     {
         abort_if(Gate::denies('chapter_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $chapter->load('grade_subject');
+        $chapter->load('subject');
 
         return view('admin.chapters.show', compact('chapter'));
     }

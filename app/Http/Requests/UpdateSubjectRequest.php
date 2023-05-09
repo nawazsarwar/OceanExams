@@ -29,6 +29,13 @@ class UpdateSubjectRequest extends FormRequest
                 'required',
                 'integer',
             ],
+            'sections.*' => [
+                'integer',
+            ],
+            'sections' => [
+                'required',
+                'array',
+            ],
         ];
     }
 }

@@ -8,6 +8,7 @@ use App\Http\Requests\MassDestroySubjectRequest;
 use App\Http\Requests\StoreSubjectRequest;
 use App\Http\Requests\UpdateSubjectRequest;
 use App\Models\Institute;
+use App\Models\Section;
 use App\Models\Subject;
 use Gate;
 use Illuminate\Http\Request;
@@ -21,7 +22,7 @@ class SubjectsController extends Controller
     {
         abort_if(Gate::denies('subject_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $subjects = Subject::with(['institute'])->get();
+        $subjects = Subject::with(['institute', 'sections'])->get();
 
         return view('frontend.subjects.index', compact('subjects'));
     }
@@ -32,12 +33,15 @@ class SubjectsController extends Controller
 
         $institutes = Institute::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        return view('frontend.subjects.create', compact('institutes'));
+        $sections = Section::pluck('title', 'id');
+
+        return view('frontend.subjects.create', compact('institutes', 'sections'));
     }
 
     public function store(StoreSubjectRequest $request)
     {
         $subject = Subject::create($request->all());
+        $subject->sections()->sync($request->input('sections', []));
 
         return redirect()->route('frontend.subjects.index');
     }
@@ -48,14 +52,17 @@ class SubjectsController extends Controller
 
         $institutes = Institute::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $subject->load('institute');
+        $sections = Section::pluck('title', 'id');
 
-        return view('frontend.subjects.edit', compact('institutes', 'subject'));
+        $subject->load('institute', 'sections');
+
+        return view('frontend.subjects.edit', compact('institutes', 'sections', 'subject'));
     }
 
     public function update(UpdateSubjectRequest $request, Subject $subject)
     {
         $subject->update($request->all());
+        $subject->sections()->sync($request->input('sections', []));
 
         return redirect()->route('frontend.subjects.index');
     }
@@ -64,7 +71,7 @@ class SubjectsController extends Controller
     {
         abort_if(Gate::denies('subject_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $subject->load('institute');
+        $subject->load('institute', 'sections');
 
         return view('frontend.subjects.show', compact('subject'));
     }

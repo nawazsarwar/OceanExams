@@ -33,6 +33,10 @@ class UpdateCourseRequest extends FormRequest
             'thumbnail' => [
                 'array',
             ],
+            'institute_id' => [
+                'required',
+                'integer',
+            ],
         ];
     }
 }
