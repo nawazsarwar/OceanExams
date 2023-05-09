@@ -10,13 +10,13 @@ class AddRelationshipFieldsToAddressesTable extends Migration
     {
         Schema::table('addresses', function (Blueprint $table) {
             $table->unsignedBigInteger('postal_code_id')->nullable();
-            $table->foreign('postal_code_id', 'postal_code_fk_8455247')->references('id')->on('postal_codes');
+            $table->foreign('postal_code_id', 'postal_code_fk_8457241')->references('id')->on('postal_codes');
             $table->unsignedBigInteger('province_id')->nullable();
-            $table->foreign('province_id', 'province_fk_8455248')->references('id')->on('provinces');
+            $table->foreign('province_id', 'province_fk_8457242')->references('id')->on('provinces');
             $table->unsignedBigInteger('country_id')->nullable();
-            $table->foreign('country_id', 'country_fk_8455249')->references('id')->on('countries');
+            $table->foreign('country_id', 'country_fk_8457243')->references('id')->on('countries');
             $table->unsignedBigInteger('user_id')->nullable();
-            $table->foreign('user_id', 'user_fk_8450370')->references('id')->on('users');
+            $table->foreign('user_id', 'user_fk_8457240')->references('id')->on('users');
         });
     }
 }

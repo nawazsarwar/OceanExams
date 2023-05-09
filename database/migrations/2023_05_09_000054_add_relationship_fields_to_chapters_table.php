@@ -10,7 +10,7 @@ class AddRelationshipFieldsToChaptersTable extends Migration
     {
         Schema::table('chapters', function (Blueprint $table) {
             $table->unsignedBigInteger('subject_id')->nullable();
-            $table->foreign('subject_id', 'subject_fk_8454922')->references('id')->on('subjects');
+            $table->foreign('subject_id', 'subject_fk_8457155')->references('id')->on('subjects');
         });
     }
 }

@@ -10,9 +10,9 @@ class CreateFeeHeadFeeStructurePivotTable extends Migration
     {
         Schema::create('fee_head_fee_structure', function (Blueprint $table) {
             $table->unsignedBigInteger('fee_structure_id');
-            $table->foreign('fee_structure_id', 'fee_structure_id_fk_8450195')->references('id')->on('fee_structures')->onDelete('cascade');
+            $table->foreign('fee_structure_id', 'fee_structure_id_fk_8457148')->references('id')->on('fee_structures')->onDelete('cascade');
             $table->unsignedBigInteger('fee_head_id');
-            $table->foreign('fee_head_id', 'fee_head_id_fk_8450195')->references('id')->on('fee_heads')->onDelete('cascade');
+            $table->foreign('fee_head_id', 'fee_head_id_fk_8457148')->references('id')->on('fee_heads')->onDelete('cascade');
         });
     }
 }

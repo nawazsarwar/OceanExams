@@ -4,10 +4,6 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
     // Users
     Route::apiResource('users', 'UsersApiController');
 
-    // Partners
-    Route::post('partners/media', 'PartnersApiController@storeMedia')->name('partners.storeMedia');
-    Route::apiResource('partners', 'PartnersApiController');
-
     // Institute Types
     Route::apiResource('institute-types', 'InstituteTypesApiController');
 
@@ -17,16 +13,20 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
     // Affiliationers
     Route::apiResource('affiliationers', 'AffiliationersApiController');
 
+    // Partners
+    Route::post('partners/media', 'PartnersApiController@storeMedia')->name('partners.storeMedia');
+    Route::apiResource('partners', 'PartnersApiController');
+
     // Institutes
     Route::post('institutes/media', 'InstitutesApiController@storeMedia')->name('institutes.storeMedia');
     Route::apiResource('institutes', 'InstitutesApiController');
 
-    // Subjects
-    Route::apiResource('subjects', 'SubjectsApiController');
-
     // Courses
     Route::post('courses/media', 'CoursesApiController@storeMedia')->name('courses.storeMedia');
     Route::apiResource('courses', 'CoursesApiController');
+
+    // Subjects
+    Route::apiResource('subjects', 'SubjectsApiController');
 
     // Transport Routes
     Route::apiResource('transport-routes', 'TransportRoutesApiController');
@@ -56,21 +56,15 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
     // Designations
     Route::apiResource('designations', 'DesignationsApiController');
 
+    // Employee Types
+    Route::apiResource('employee-types', 'EmployeeTypesApiController');
+
     // Employees
     Route::post('employees/media', 'EmployeesApiController@storeMedia')->name('employees.storeMedia');
     Route::apiResource('employees', 'EmployeesApiController');
 
-    // Employee Types
-    Route::apiResource('employee-types', 'EmployeeTypesApiController');
-
     // Transport Vehicles
     Route::apiResource('transport-vehicles', 'TransportVehiclesApiController');
-
-    // Addresses
-    Route::apiResource('addresses', 'AddressesApiController');
-
-    // Phones
-    Route::apiResource('phones', 'PhonesApiController');
 
     // Countries
     Route::apiResource('countries', 'CountriesApiController');
@@ -80,6 +74,12 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
 
     // Postal Code
     Route::apiResource('postal-codes', 'PostalCodeApiController');
+
+    // Addresses
+    Route::apiResource('addresses', 'AddressesApiController');
+
+    // Phones
+    Route::apiResource('phones', 'PhonesApiController');
 
     // Blood Groups
     Route::apiResource('blood-groups', 'BloodGroupsApiController');

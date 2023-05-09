@@ -10,9 +10,9 @@ class CreateStudentUserPivotTable extends Migration
     {
         Schema::create('student_user', function (Blueprint $table) {
             $table->unsignedBigInteger('student_id');
-            $table->foreign('student_id', 'student_id_fk_8455236')->references('id')->on('students')->onDelete('cascade');
+            $table->foreign('student_id', 'student_id_fk_8457114')->references('id')->on('students')->onDelete('cascade');
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id', 'user_id_fk_8455236')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id', 'user_id_fk_8457114')->references('id')->on('users')->onDelete('cascade');
         });
     }
 }

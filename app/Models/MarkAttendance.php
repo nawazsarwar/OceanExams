@@ -25,8 +25,8 @@ class MarkAttendance extends Model
     protected $fillable = [
         'institute_id',
         'section_id',
-        'date',
         'students',
+        'date',
         'user_id',
         'created_at',
         'updated_at',

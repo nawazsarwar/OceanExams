@@ -57,6 +57,7 @@ class MarkAttendanceController extends Controller
             $table->editColumn('students', function ($row) {
                 return $row->students ? $row->students : '';
             });
+
             $table->addColumn('user_name', function ($row) {
                 return $row->user ? $row->user->name : '';
             });

@@ -28,9 +28,6 @@
                         {{ trans('cruds.course.fields.title') }}
                     </th>
                     <th>
-                        {{ trans('cruds.course.fields.subjects') }}
-                    </th>
-                    <th>
                         {{ trans('cruds.course.fields.description') }}
                     </th>
                     <th>
@@ -100,7 +97,6 @@
       { data: 'placeholder', name: 'placeholder' },
 { data: 'id', name: 'id' },
 { data: 'title', name: 'title' },
-{ data: 'subjects', name: 'subjects.name' },
 { data: 'description', name: 'description' },
 { data: 'thumbnail', name: 'thumbnail', sortable: false, searchable: false },
 { data: 'is_published', name: 'is_published' },

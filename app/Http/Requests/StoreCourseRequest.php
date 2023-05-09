@@ -21,12 +21,6 @@ class StoreCourseRequest extends FormRequest
                 'string',
                 'required',
             ],
-            'subjects.*' => [
-                'integer',
-            ],
-            'subjects' => [
-                'array',
-            ],
             'description' => [
                 'required',
             ],

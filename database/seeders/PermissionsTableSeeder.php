@@ -84,87 +84,87 @@ class PermissionsTableSeeder extends Seeder
             ],
             [
                 'id'    => 19,
-                'title' => 'partner_create',
-            ],
-            [
-                'id'    => 20,
-                'title' => 'partner_edit',
-            ],
-            [
-                'id'    => 21,
-                'title' => 'partner_show',
-            ],
-            [
-                'id'    => 22,
-                'title' => 'partner_delete',
-            ],
-            [
-                'id'    => 23,
-                'title' => 'partner_access',
-            ],
-            [
-                'id'    => 24,
                 'title' => 'miscellaneou_access',
             ],
             [
-                'id'    => 25,
+                'id'    => 20,
                 'title' => 'institute_type_create',
             ],
             [
-                'id'    => 26,
+                'id'    => 21,
                 'title' => 'institute_type_edit',
             ],
             [
-                'id'    => 27,
+                'id'    => 22,
                 'title' => 'institute_type_show',
             ],
             [
-                'id'    => 28,
+                'id'    => 23,
                 'title' => 'institute_type_delete',
             ],
             [
-                'id'    => 29,
+                'id'    => 24,
                 'title' => 'institute_type_access',
             ],
             [
-                'id'    => 30,
+                'id'    => 25,
                 'title' => 'institute_level_create',
             ],
             [
-                'id'    => 31,
+                'id'    => 26,
                 'title' => 'institute_level_edit',
             ],
             [
-                'id'    => 32,
+                'id'    => 27,
                 'title' => 'institute_level_show',
             ],
             [
-                'id'    => 33,
+                'id'    => 28,
                 'title' => 'institute_level_delete',
             ],
             [
-                'id'    => 34,
+                'id'    => 29,
                 'title' => 'institute_level_access',
             ],
             [
-                'id'    => 35,
+                'id'    => 30,
                 'title' => 'affiliationer_create',
             ],
             [
-                'id'    => 36,
+                'id'    => 31,
                 'title' => 'affiliationer_edit',
             ],
             [
-                'id'    => 37,
+                'id'    => 32,
                 'title' => 'affiliationer_show',
             ],
             [
-                'id'    => 38,
+                'id'    => 33,
                 'title' => 'affiliationer_delete',
             ],
             [
-                'id'    => 39,
+                'id'    => 34,
                 'title' => 'affiliationer_access',
+            ],
+            [
+                'id'    => 35,
+                'title' => 'partner_create',
+            ],
+            [
+                'id'    => 36,
+                'title' => 'partner_edit',
+            ],
+            [
+                'id'    => 37,
+                'title' => 'partner_show',
+            ],
+            [
+                'id'    => 38,
+                'title' => 'partner_delete',
+            ],
+            [
+                'id'    => 39,
+                'title' => 'partner_access',
             ],
             [
                 'id'    => 40,
@@ -188,83 +188,83 @@ class PermissionsTableSeeder extends Seeder
             ],
             [
                 'id'    => 45,
-                'title' => 'subject_create',
-            ],
-            [
-                'id'    => 46,
-                'title' => 'subject_edit',
-            ],
-            [
-                'id'    => 47,
-                'title' => 'subject_show',
-            ],
-            [
-                'id'    => 48,
-                'title' => 'subject_delete',
-            ],
-            [
-                'id'    => 49,
-                'title' => 'subject_access',
-            ],
-            [
-                'id'    => 50,
                 'title' => 'course_create',
             ],
             [
-                'id'    => 51,
+                'id'    => 46,
                 'title' => 'course_edit',
             ],
             [
-                'id'    => 52,
+                'id'    => 47,
                 'title' => 'course_show',
             ],
             [
-                'id'    => 53,
+                'id'    => 48,
                 'title' => 'course_delete',
             ],
             [
-                'id'    => 54,
+                'id'    => 49,
                 'title' => 'course_access',
             ],
             [
-                'id'    => 55,
-                'title' => 'academic_session_create',
-            ],
-            [
-                'id'    => 56,
-                'title' => 'academic_session_edit',
-            ],
-            [
-                'id'    => 57,
-                'title' => 'academic_session_show',
-            ],
-            [
-                'id'    => 58,
-                'title' => 'academic_session_delete',
-            ],
-            [
-                'id'    => 59,
-                'title' => 'academic_session_access',
-            ],
-            [
-                'id'    => 60,
+                'id'    => 50,
                 'title' => 'section_create',
             ],
             [
-                'id'    => 61,
+                'id'    => 51,
                 'title' => 'section_edit',
             ],
             [
-                'id'    => 62,
+                'id'    => 52,
                 'title' => 'section_show',
             ],
             [
-                'id'    => 63,
+                'id'    => 53,
                 'title' => 'section_delete',
             ],
             [
-                'id'    => 64,
+                'id'    => 54,
                 'title' => 'section_access',
+            ],
+            [
+                'id'    => 55,
+                'title' => 'subject_create',
+            ],
+            [
+                'id'    => 56,
+                'title' => 'subject_edit',
+            ],
+            [
+                'id'    => 57,
+                'title' => 'subject_show',
+            ],
+            [
+                'id'    => 58,
+                'title' => 'subject_delete',
+            ],
+            [
+                'id'    => 59,
+                'title' => 'subject_access',
+            ],
+            [
+                'id'    => 60,
+                'title' => 'academic_session_create',
+            ],
+            [
+                'id'    => 61,
+                'title' => 'academic_session_edit',
+            ],
+            [
+                'id'    => 62,
+                'title' => 'academic_session_show',
+            ],
+            [
+                'id'    => 63,
+                'title' => 'academic_session_delete',
+            ],
+            [
+                'id'    => 64,
+                'title' => 'academic_session_access',
             ],
             [
                 'id'    => 65,
@@ -464,167 +464,167 @@ class PermissionsTableSeeder extends Seeder
             ],
             [
                 'id'    => 114,
-                'title' => 'employee_create',
-            ],
-            [
-                'id'    => 115,
-                'title' => 'employee_edit',
-            ],
-            [
-                'id'    => 116,
-                'title' => 'employee_show',
-            ],
-            [
-                'id'    => 117,
-                'title' => 'employee_delete',
-            ],
-            [
-                'id'    => 118,
-                'title' => 'employee_access',
-            ],
-            [
-                'id'    => 119,
-                'title' => 'employee_type_create',
-            ],
-            [
-                'id'    => 120,
-                'title' => 'employee_type_edit',
-            ],
-            [
-                'id'    => 121,
-                'title' => 'employee_type_show',
-            ],
-            [
-                'id'    => 122,
-                'title' => 'employee_type_delete',
-            ],
-            [
-                'id'    => 123,
-                'title' => 'employee_type_access',
-            ],
-            [
-                'id'    => 124,
-                'title' => 'transport_vehicle_create',
-            ],
-            [
-                'id'    => 125,
-                'title' => 'transport_vehicle_edit',
-            ],
-            [
-                'id'    => 126,
-                'title' => 'transport_vehicle_show',
-            ],
-            [
-                'id'    => 127,
-                'title' => 'transport_vehicle_delete',
-            ],
-            [
-                'id'    => 128,
-                'title' => 'transport_vehicle_access',
-            ],
-            [
-                'id'    => 129,
                 'title' => 'employee_management_access',
             ],
             [
+                'id'    => 115,
+                'title' => 'employee_type_create',
+            ],
+            [
+                'id'    => 116,
+                'title' => 'employee_type_edit',
+            ],
+            [
+                'id'    => 117,
+                'title' => 'employee_type_show',
+            ],
+            [
+                'id'    => 118,
+                'title' => 'employee_type_delete',
+            ],
+            [
+                'id'    => 119,
+                'title' => 'employee_type_access',
+            ],
+            [
+                'id'    => 120,
+                'title' => 'employee_create',
+            ],
+            [
+                'id'    => 121,
+                'title' => 'employee_edit',
+            ],
+            [
+                'id'    => 122,
+                'title' => 'employee_show',
+            ],
+            [
+                'id'    => 123,
+                'title' => 'employee_delete',
+            ],
+            [
+                'id'    => 124,
+                'title' => 'employee_access',
+            ],
+            [
+                'id'    => 125,
+                'title' => 'transport_vehicle_create',
+            ],
+            [
+                'id'    => 126,
+                'title' => 'transport_vehicle_edit',
+            ],
+            [
+                'id'    => 127,
+                'title' => 'transport_vehicle_show',
+            ],
+            [
+                'id'    => 128,
+                'title' => 'transport_vehicle_delete',
+            ],
+            [
+                'id'    => 129,
+                'title' => 'transport_vehicle_access',
+            ],
+            [
                 'id'    => 130,
-                'title' => 'address_create',
-            ],
-            [
-                'id'    => 131,
-                'title' => 'address_edit',
-            ],
-            [
-                'id'    => 132,
-                'title' => 'address_show',
-            ],
-            [
-                'id'    => 133,
-                'title' => 'address_delete',
-            ],
-            [
-                'id'    => 134,
-                'title' => 'address_access',
-            ],
-            [
-                'id'    => 135,
-                'title' => 'phone_create',
-            ],
-            [
-                'id'    => 136,
-                'title' => 'phone_edit',
-            ],
-            [
-                'id'    => 137,
-                'title' => 'phone_show',
-            ],
-            [
-                'id'    => 138,
-                'title' => 'phone_delete',
-            ],
-            [
-                'id'    => 139,
-                'title' => 'phone_access',
-            ],
-            [
-                'id'    => 140,
                 'title' => 'country_create',
             ],
             [
-                'id'    => 141,
+                'id'    => 131,
                 'title' => 'country_edit',
             ],
             [
-                'id'    => 142,
+                'id'    => 132,
                 'title' => 'country_show',
             ],
             [
-                'id'    => 143,
+                'id'    => 133,
                 'title' => 'country_delete',
             ],
             [
-                'id'    => 144,
+                'id'    => 134,
                 'title' => 'country_access',
             ],
             [
-                'id'    => 145,
+                'id'    => 135,
                 'title' => 'province_create',
             ],
             [
-                'id'    => 146,
+                'id'    => 136,
                 'title' => 'province_edit',
             ],
             [
-                'id'    => 147,
+                'id'    => 137,
                 'title' => 'province_show',
             ],
             [
-                'id'    => 148,
+                'id'    => 138,
                 'title' => 'province_delete',
             ],
             [
-                'id'    => 149,
+                'id'    => 139,
                 'title' => 'province_access',
             ],
             [
-                'id'    => 150,
+                'id'    => 140,
                 'title' => 'postal_code_create',
             ],
             [
-                'id'    => 151,
+                'id'    => 141,
                 'title' => 'postal_code_edit',
             ],
             [
-                'id'    => 152,
+                'id'    => 142,
                 'title' => 'postal_code_show',
             ],
             [
-                'id'    => 153,
+                'id'    => 143,
                 'title' => 'postal_code_delete',
             ],
             [
-                'id'    => 154,
+                'id'    => 144,
                 'title' => 'postal_code_access',
+            ],
+            [
+                'id'    => 145,
+                'title' => 'address_create',
+            ],
+            [
+                'id'    => 146,
+                'title' => 'address_edit',
+            ],
+            [
+                'id'    => 147,
+                'title' => 'address_show',
+            ],
+            [
+                'id'    => 148,
+                'title' => 'address_delete',
+            ],
+            [
+                'id'    => 149,
+                'title' => 'address_access',
+            ],
+            [
+                'id'    => 150,
+                'title' => 'phone_create',
+            ],
+            [
+                'id'    => 151,
+                'title' => 'phone_edit',
+            ],
+            [
+                'id'    => 152,
+                'title' => 'phone_show',
+            ],
+            [
+                'id'    => 153,
+                'title' => 'phone_delete',
+            ],
+            [
+                'id'    => 154,
+                'title' => 'phone_access',
             ],
             [
                 'id'    => 155,

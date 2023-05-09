@@ -10,9 +10,9 @@ class AddRelationshipFieldsToStudentsTable extends Migration
     {
         Schema::table('students', function (Blueprint $table) {
             $table->unsignedBigInteger('transport_route_id')->nullable();
-            $table->foreign('transport_route_id', 'transport_route_fk_8450159')->references('id')->on('transport_routes');
+            $table->foreign('transport_route_id', 'transport_route_fk_8457112')->references('id')->on('transport_routes');
             $table->unsignedBigInteger('transport_stop_id')->nullable();
-            $table->foreign('transport_stop_id', 'transport_stop_fk_8450160')->references('id')->on('route_stops');
+            $table->foreign('transport_stop_id', 'transport_stop_fk_8457113')->references('id')->on('route_stops');
         });
     }
 }
