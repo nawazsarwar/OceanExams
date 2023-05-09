@@ -21,12 +21,6 @@ class UpdateCourseRequest extends FormRequest
                 'string',
                 'required',
             ],
-            'subjects.*' => [
-                'integer',
-            ],
-            'subjects' => [
-                'array',
-            ],
             'description' => [
                 'required',
             ],

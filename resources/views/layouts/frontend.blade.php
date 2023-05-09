@@ -157,6 +157,16 @@
                                             {{ trans('cruds.fileModeOnlineTest.title') }}
                                         </a>
                                     @endcan
+                                    @can('questions_bank_access')
+                                        <a class="dropdown-item disabled" href="#">
+                                            {{ trans('cruds.questionsBank.title') }}
+                                        </a>
+                                    @endcan
+                                    @can('question_access')
+                                        <a class="dropdown-item ml-3" href="{{ route('frontend.questions.index') }}">
+                                            {{ trans('cruds.question.title') }}
+                                        </a>
+                                    @endcan
                                     @can('transportation_management_access')
                                         <a class="dropdown-item disabled" href="#">
                                             {{ trans('cruds.transportationManagement.title') }}
@@ -275,16 +285,6 @@
                                     @can('caste_access')
                                         <a class="dropdown-item ml-3" href="{{ route('frontend.castes.index') }}">
                                             {{ trans('cruds.caste.title') }}
-                                        </a>
-                                    @endcan
-                                    @can('questions_bank_access')
-                                        <a class="dropdown-item disabled" href="#">
-                                            {{ trans('cruds.questionsBank.title') }}
-                                        </a>
-                                    @endcan
-                                    @can('question_access')
-                                        <a class="dropdown-item ml-3" href="{{ route('frontend.questions.index') }}">
-                                            {{ trans('cruds.question.title') }}
                                         </a>
                                     @endcan
 

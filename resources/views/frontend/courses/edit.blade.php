@@ -24,24 +24,6 @@
                             <span class="help-block">{{ trans('cruds.course.fields.title_helper') }}</span>
                         </div>
                         <div class="form-group">
-                            <label for="subjects">{{ trans('cruds.course.fields.subjects') }}</label>
-                            <div style="padding-bottom: 4px">
-                                <span class="btn btn-info btn-xs select-all" style="border-radius: 0">{{ trans('global.select_all') }}</span>
-                                <span class="btn btn-info btn-xs deselect-all" style="border-radius: 0">{{ trans('global.deselect_all') }}</span>
-                            </div>
-                            <select class="form-control select2" name="subjects[]" id="subjects" multiple>
-                                @foreach($subjects as $id => $subject)
-                                    <option value="{{ $id }}" {{ (in_array($id, old('subjects', [])) || $course->subjects->contains($id)) ? 'selected' : '' }}>{{ $subject }}</option>
-                                @endforeach
-                            </select>
-                            @if($errors->has('subjects'))
-                                <div class="invalid-feedback">
-                                    {{ $errors->first('subjects') }}
-                                </div>
-                            @endif
-                            <span class="help-block">{{ trans('cruds.course.fields.subjects_helper') }}</span>
-                        </div>
-                        <div class="form-group">
                             <label class="required" for="description">{{ trans('cruds.course.fields.description') }}</label>
                             <textarea class="form-control" name="description" id="description" required>{{ old('description', $course->description) }}</textarea>
                             @if($errors->has('description'))

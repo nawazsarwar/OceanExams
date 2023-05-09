@@ -48,11 +48,6 @@ class Course extends Model implements HasMedia
         $this->addMediaConversion('preview')->fit('crop', 120, 120);
     }
 
-    public function subjects()
-    {
-        return $this->belongsToMany(Subject::class);
-    }
-
     public function getThumbnailAttribute()
     {
         $files = $this->getMedia('thumbnail');

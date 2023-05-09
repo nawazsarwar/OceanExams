@@ -29,9 +29,6 @@
                                         {{ trans('cruds.course.fields.title') }}
                                     </th>
                                     <th>
-                                        {{ trans('cruds.course.fields.subjects') }}
-                                    </th>
-                                    <th>
                                         {{ trans('cruds.course.fields.description') }}
                                     </th>
                                     <th>
@@ -56,11 +53,6 @@
                                         </td>
                                         <td>
                                             {{ $course->title ?? '' }}
-                                        </td>
-                                        <td>
-                                            @foreach($course->subjects as $key => $item)
-                                                <span>{{ $item->name }}</span>
-                                            @endforeach
                                         </td>
                                         <td>
                                             {{ $course->description ?? '' }}

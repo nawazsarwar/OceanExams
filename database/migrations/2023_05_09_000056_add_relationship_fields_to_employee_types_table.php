@@ -10,9 +10,9 @@ class AddRelationshipFieldsToEmployeeTypesTable extends Migration
     {
         Schema::table('employee_types', function (Blueprint $table) {
             $table->unsignedBigInteger('institute_id')->nullable();
-            $table->foreign('institute_id', 'institute_fk_8450232')->references('id')->on('institutes');
+            $table->foreign('institute_id', 'institute_fk_8457167')->references('id')->on('institutes');
             $table->unsignedBigInteger('institution_id')->nullable();
-            $table->foreign('institution_id', 'institution_fk_8450297')->references('id')->on('institutes');
+            $table->foreign('institution_id', 'institution_fk_8457171')->references('id')->on('institutes');
         });
     }
 }

@@ -36,16 +36,6 @@
                                 </tr>
                                 <tr>
                                     <th>
-                                        {{ trans('cruds.course.fields.subjects') }}
-                                    </th>
-                                    <td>
-                                        @foreach($course->subjects as $key => $subjects)
-                                            <span class="label label-info">{{ $subjects->name }}</span>
-                                        @endforeach
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>
                                         {{ trans('cruds.course.fields.description') }}
                                     </th>
                                     <td>

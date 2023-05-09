@@ -10,9 +10,9 @@ class CreateSectionSubjectPivotTable extends Migration
     {
         Schema::create('section_subject', function (Blueprint $table) {
             $table->unsignedBigInteger('subject_id');
-            $table->foreign('subject_id', 'subject_id_fk_8454900')->references('id')->on('subjects')->onDelete('cascade');
+            $table->foreign('subject_id', 'subject_id_fk_8457071')->references('id')->on('subjects')->onDelete('cascade');
             $table->unsignedBigInteger('section_id');
-            $table->foreign('section_id', 'section_id_fk_8454900')->references('id')->on('sections')->onDelete('cascade');
+            $table->foreign('section_id', 'section_id_fk_8457071')->references('id')->on('sections')->onDelete('cascade');
         });
     }
 }

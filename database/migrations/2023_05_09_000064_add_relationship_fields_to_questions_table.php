@@ -10,17 +10,17 @@ class AddRelationshipFieldsToQuestionsTable extends Migration
     {
         Schema::table('questions', function (Blueprint $table) {
             $table->unsignedBigInteger('institute_id')->nullable();
-            $table->foreign('institute_id', 'institute_fk_8455302')->references('id')->on('institutes');
+            $table->foreign('institute_id', 'institute_fk_8457279')->references('id')->on('institutes');
             $table->unsignedBigInteger('course_id')->nullable();
-            $table->foreign('course_id', 'course_fk_8455303')->references('id')->on('courses');
+            $table->foreign('course_id', 'course_fk_8457280')->references('id')->on('courses');
             $table->unsignedBigInteger('affiliationer_id')->nullable();
-            $table->foreign('affiliationer_id', 'affiliationer_fk_8455304')->references('id')->on('affiliationers');
+            $table->foreign('affiliationer_id', 'affiliationer_fk_8457281')->references('id')->on('affiliationers');
             $table->unsignedBigInteger('chapter_id')->nullable();
-            $table->foreign('chapter_id', 'chapter_fk_8455305')->references('id')->on('chapters');
+            $table->foreign('chapter_id', 'chapter_fk_8457282')->references('id')->on('chapters');
             $table->unsignedBigInteger('created_by_id')->nullable();
-            $table->foreign('created_by_id', 'created_by_fk_8455319')->references('id')->on('users');
+            $table->foreign('created_by_id', 'created_by_fk_8457296')->references('id')->on('users');
             $table->unsignedBigInteger('verified_by_id')->nullable();
-            $table->foreign('verified_by_id', 'verified_by_fk_8455320')->references('id')->on('users');
+            $table->foreign('verified_by_id', 'verified_by_fk_8457297')->references('id')->on('users');
         });
     }
 }

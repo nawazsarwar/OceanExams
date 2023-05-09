@@ -20,13 +20,13 @@ class CoursesApiController extends Controller
     {
         abort_if(Gate::denies('course_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new CourseResource(Course::with(['subjects', 'institute'])->get());
+        return new CourseResource(Course::with(['institute'])->get());
     }
 
     public function store(StoreCourseRequest $request)
     {
         $course = Course::create($request->all());
-        $course->subjects()->sync($request->input('subjects', []));
+
         foreach ($request->input('thumbnail', []) as $file) {
             $course->addMedia(storage_path('tmp/uploads/' . basename($file)))->toMediaCollection('thumbnail');
         }
@@ -40,13 +40,13 @@ class CoursesApiController extends Controller
     {
         abort_if(Gate::denies('course_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new CourseResource($course->load(['subjects', 'institute']));
+        return new CourseResource($course->load(['institute']));
     }
 
     public function update(UpdateCourseRequest $request, Course $course)
     {
         $course->update($request->all());
-        $course->subjects()->sync($request->input('subjects', []));
+
         if (count($course->thumbnail) > 0) {
             foreach ($course->thumbnail as $media) {
                 if (! in_array($media->file_name, $request->input('thumbnail', []))) {

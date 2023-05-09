@@ -10,7 +10,7 @@ class AddRelationshipFieldsToSubjectsTable extends Migration
     {
         Schema::table('subjects', function (Blueprint $table) {
             $table->unsignedBigInteger('institute_id')->nullable();
-            $table->foreign('institute_id', 'institute_fk_8450061')->references('id')->on('institutes');
+            $table->foreign('institute_id', 'institute_fk_8457070')->references('id')->on('institutes');
         });
     }
 }
