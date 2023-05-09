@@ -84,34 +84,6 @@
                             <span class="help-block">{{ trans('cruds.student.fields.parents_contact_helper') }}</span>
                         </div>
                         <div class="form-group">
-                            <label class="required" for="course_id">{{ trans('cruds.student.fields.course') }}</label>
-                            <select class="form-control select2" name="course_id" id="course_id" required>
-                                @foreach($courses as $id => $entry)
-                                    <option value="{{ $id }}" {{ (old('course_id') ? old('course_id') : $student->course->id ?? '') == $id ? 'selected' : '' }}>{{ $entry }}</option>
-                                @endforeach
-                            </select>
-                            @if($errors->has('course'))
-                                <div class="invalid-feedback">
-                                    {{ $errors->first('course') }}
-                                </div>
-                            @endif
-                            <span class="help-block">{{ trans('cruds.student.fields.course_helper') }}</span>
-                        </div>
-                        <div class="form-group">
-                            <label class="required" for="batch_id">{{ trans('cruds.student.fields.batch') }}</label>
-                            <select class="form-control select2" name="batch_id" id="batch_id" required>
-                                @foreach($batches as $id => $entry)
-                                    <option value="{{ $id }}" {{ (old('batch_id') ? old('batch_id') : $student->batch->id ?? '') == $id ? 'selected' : '' }}>{{ $entry }}</option>
-                                @endforeach
-                            </select>
-                            @if($errors->has('batch'))
-                                <div class="invalid-feedback">
-                                    {{ $errors->first('batch') }}
-                                </div>
-                            @endif
-                            <span class="help-block">{{ trans('cruds.student.fields.batch_helper') }}</span>
-                        </div>
-                        <div class="form-group">
                             <label class="required" for="date_of_birth">{{ trans('cruds.student.fields.date_of_birth') }}</label>
                             <input class="form-control date" type="text" name="date_of_birth" id="date_of_birth" value="{{ old('date_of_birth', $student->date_of_birth) }}" required>
                             @if($errors->has('date_of_birth'))

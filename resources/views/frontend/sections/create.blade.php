@@ -34,20 +34,6 @@
                             <span class="help-block">{{ trans('cruds.section.fields.capacity_helper') }}</span>
                         </div>
                         <div class="form-group">
-                            <label class="required" for="grade_id">{{ trans('cruds.section.fields.grade') }}</label>
-                            <select class="form-control select2" name="grade_id" id="grade_id" required>
-                                @foreach($grades as $id => $entry)
-                                    <option value="{{ $id }}" {{ old('grade_id') == $id ? 'selected' : '' }}>{{ $entry }}</option>
-                                @endforeach
-                            </select>
-                            @if($errors->has('grade'))
-                                <div class="invalid-feedback">
-                                    {{ $errors->first('grade') }}
-                                </div>
-                            @endif
-                            <span class="help-block">{{ trans('cruds.section.fields.grade_helper') }}</span>
-                        </div>
-                        <div class="form-group">
                             <button class="btn btn-danger" type="submit">
                                 {{ trans('global.save') }}
                             </button>

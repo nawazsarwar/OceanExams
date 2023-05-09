@@ -45,14 +45,6 @@ class StoreStudentRequest extends FormRequest
                 'string',
                 'required',
             ],
-            'course_id' => [
-                'required',
-                'integer',
-            ],
-            'batch_id' => [
-                'required',
-                'integer',
-            ],
             'date_of_birth' => [
                 'required',
                 'date_format:' . config('panel.date_format'),

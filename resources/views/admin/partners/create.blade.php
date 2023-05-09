@@ -18,6 +18,14 @@
                 <span class="help-block">{{ trans('cruds.partner.fields.name_helper') }}</span>
             </div>
             <div class="form-group">
+                <label class="required" for="product_name">{{ trans('cruds.partner.fields.product_name') }}</label>
+                <input class="form-control {{ $errors->has('product_name') ? 'is-invalid' : '' }}" type="text" name="product_name" id="product_name" value="{{ old('product_name', '') }}" required>
+                @if($errors->has('product_name'))
+                    <span class="text-danger">{{ $errors->first('product_name') }}</span>
+                @endif
+                <span class="help-block">{{ trans('cruds.partner.fields.product_name_helper') }}</span>
+            </div>
+            <div class="form-group">
                 <label class="required" for="prefix">{{ trans('cruds.partner.fields.prefix') }}</label>
                 <input class="form-control {{ $errors->has('prefix') ? 'is-invalid' : '' }}" type="text" name="prefix" id="prefix" value="{{ old('prefix', '') }}" required>
                 @if($errors->has('prefix'))
@@ -49,6 +57,35 @@
                     <span class="text-danger">{{ $errors->first('header_background_color') }}</span>
                 @endif
                 <span class="help-block">{{ trans('cruds.partner.fields.header_background_color_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label for="footer_background_color">{{ trans('cruds.partner.fields.footer_background_color') }}</label>
+                <input class="form-control {{ $errors->has('footer_background_color') ? 'is-invalid' : '' }}" type="text" name="footer_background_color" id="footer_background_color" value="{{ old('footer_background_color', '') }}">
+                @if($errors->has('footer_background_color'))
+                    <span class="text-danger">{{ $errors->first('footer_background_color') }}</span>
+                @endif
+                <span class="help-block">{{ trans('cruds.partner.fields.footer_background_color_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label>{{ trans('cruds.partner.fields.status') }}</label>
+                <select class="form-control {{ $errors->has('status') ? 'is-invalid' : '' }}" name="status" id="status">
+                    <option value disabled {{ old('status', null) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
+                    @foreach(App\Models\Partner::STATUS_SELECT as $key => $label)
+                        <option value="{{ $key }}" {{ old('status', 'Active') === (string) $key ? 'selected' : '' }}>{{ $label }}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('status'))
+                    <span class="text-danger">{{ $errors->first('status') }}</span>
+                @endif
+                <span class="help-block">{{ trans('cruds.partner.fields.status_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label for="remarks">{{ trans('cruds.partner.fields.remarks') }}</label>
+                <textarea class="form-control {{ $errors->has('remarks') ? 'is-invalid' : '' }}" name="remarks" id="remarks">{{ old('remarks') }}</textarea>
+                @if($errors->has('remarks'))
+                    <span class="text-danger">{{ $errors->first('remarks') }}</span>
+                @endif
+                <span class="help-block">{{ trans('cruds.partner.fields.remarks_helper') }}</span>
             </div>
             <div class="form-group">
                 <button class="btn btn-danger" type="submit">

@@ -27,10 +27,6 @@ class UpdateSectionRequest extends FormRequest
                 'min:-2147483648',
                 'max:2147483647',
             ],
-            'grade_id' => [
-                'required',
-                'integer',
-            ],
         ];
     }
 }

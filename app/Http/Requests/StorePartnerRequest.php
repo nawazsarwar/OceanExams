@@ -21,6 +21,11 @@ class StorePartnerRequest extends FormRequest
                 'string',
                 'required',
             ],
+            'product_name' => [
+                'string',
+                'required',
+                'unique:partners',
+            ],
             'prefix' => [
                 'string',
                 'required',
@@ -32,6 +37,10 @@ class StorePartnerRequest extends FormRequest
                 'unique:partners',
             ],
             'header_background_color' => [
+                'string',
+                'nullable',
+            ],
+            'footer_background_color' => [
                 'string',
                 'nullable',
             ],

@@ -22,6 +22,12 @@ class UpdateAcademicSessionRequest extends FormRequest
                 'required',
                 'unique:academic_sessions,name,' . request()->route('academic_session')->id,
             ],
+            'position' => [
+                'nullable',
+                'integer',
+                'min:-2147483648',
+                'max:2147483647',
+            ],
         ];
     }
 }

@@ -21,10 +21,6 @@ class UpdateChapterRequest extends FormRequest
                 'string',
                 'required',
             ],
-            'grade_subject_id' => [
-                'required',
-                'integer',
-            ],
             'status' => [
                 'string',
                 'nullable',

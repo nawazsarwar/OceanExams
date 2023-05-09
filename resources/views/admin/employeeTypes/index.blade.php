@@ -35,6 +35,9 @@
                         {{ trans('cruds.employeeType.fields.institute') }}
                     </th>
                     <th>
+                        {{ trans('cruds.employeeType.fields.institution') }}
+                    </th>
+                    <th>
                         &nbsp;
                     </th>
                 </tr>
@@ -93,6 +96,7 @@
 { data: 'id', name: 'id' },
 { data: 'title', name: 'title' },
 { data: 'institute_name', name: 'institute.name' },
+{ data: 'institution_name', name: 'institution.name' },
 { data: 'actions', name: '{{ trans('global.actions') }}' }
     ],
     orderCellsTop: true,

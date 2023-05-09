@@ -57,7 +57,7 @@ class ChangePasswordController extends Controller
             $message = __('global.two_factor.enabled');
         }
 
-        $user->two_factor = !$user->two_factor;
+        $user->two_factor = ! $user->two_factor;
 
         $user->save();
 

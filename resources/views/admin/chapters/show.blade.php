@@ -33,14 +33,6 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.chapter.fields.grade_subject') }}
-                        </th>
-                        <td>
-                            {{ $chapter->grade_subject->title ?? '' }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
                             {{ trans('cruds.chapter.fields.status') }}
                         </th>
                         <td>

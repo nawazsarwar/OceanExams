@@ -42,6 +42,9 @@ class Employee extends Model implements HasMedia
         'email',
         'date_of_birth',
         'gender',
+        'designation_id',
+        'employee_type_id',
+        'institution_id',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -95,5 +98,20 @@ class Employee extends Model implements HasMedia
     public function subjects()
     {
         return $this->belongsToMany(Subject::class);
+    }
+
+    public function designation()
+    {
+        return $this->belongsTo(Designation::class, 'designation_id');
+    }
+
+    public function employee_type()
+    {
+        return $this->belongsTo(EmployeeType::class, 'employee_type_id');
+    }
+
+    public function institution()
+    {
+        return $this->belongsTo(Institute::class, 'institution_id');
     }
 }

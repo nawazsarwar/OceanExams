@@ -81,22 +81,6 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.student.fields.course') }}
-                        </th>
-                        <td>
-                            {{ $student->course->title ?? '' }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            {{ trans('cruds.student.fields.batch') }}
-                        </th>
-                        <td>
-                            {{ $student->batch->title ?? '' }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
                             {{ trans('cruds.student.fields.date_of_birth') }}
                         </th>
                         <td>

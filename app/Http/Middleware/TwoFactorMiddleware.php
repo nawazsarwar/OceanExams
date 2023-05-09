@@ -20,7 +20,7 @@ class TwoFactorMiddleware
                 return redirect()->route('login')->with('message', __('global.two_factor.expired'));
             }
 
-            if (!$request->is('two-factor*')) {
+            if (! $request->is('two-factor*')) {
                 return redirect()->route('twoFactor.show');
             }
         }

@@ -8,6 +8,7 @@ use App\Http\Requests\MassDestroyDesignationRequest;
 use App\Http\Requests\StoreDesignationRequest;
 use App\Http\Requests\UpdateDesignationRequest;
 use App\Models\Designation;
+use App\Models\Institute;
 use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,7 +21,7 @@ class DesignationsController extends Controller
     {
         abort_if(Gate::denies('designation_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $designations = Designation::all();
+        $designations = Designation::with(['institution'])->get();
 
         return view('frontend.designations.index', compact('designations'));
     }
@@ -29,7 +30,9 @@ class DesignationsController extends Controller
     {
         abort_if(Gate::denies('designation_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return view('frontend.designations.create');
+        $institutions = Institute::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+
+        return view('frontend.designations.create', compact('institutions'));
     }
 
     public function store(StoreDesignationRequest $request)
@@ -43,7 +46,11 @@ class DesignationsController extends Controller
     {
         abort_if(Gate::denies('designation_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return view('frontend.designations.edit', compact('designation'));
+        $institutions = Institute::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+
+        $designation->load('institution');
+
+        return view('frontend.designations.edit', compact('designation', 'institutions'));
     }
 
     public function update(UpdateDesignationRequest $request, Designation $designation)
@@ -56,6 +63,8 @@ class DesignationsController extends Controller
     public function show(Designation $designation)
     {
         abort_if(Gate::denies('designation_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        $designation->load('institution');
 
         return view('frontend.designations.show', compact('designation'));
     }

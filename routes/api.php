@@ -8,10 +8,6 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
     Route::post('partners/media', 'PartnersApiController@storeMedia')->name('partners.storeMedia');
     Route::apiResource('partners', 'PartnersApiController');
 
-    // Institutes
-    Route::post('institutes/media', 'InstitutesApiController@storeMedia')->name('institutes.storeMedia');
-    Route::apiResource('institutes', 'InstitutesApiController');
-
     // Institute Types
     Route::apiResource('institute-types', 'InstituteTypesApiController');
 
@@ -21,18 +17,22 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
     // Affiliationers
     Route::apiResource('affiliationers', 'AffiliationersApiController');
 
-    // Courses
-    Route::post('courses/media', 'CoursesApiController@storeMedia')->name('courses.storeMedia');
-    Route::apiResource('courses', 'CoursesApiController');
-
-    // Grade
-    Route::apiResource('grades', 'GradeApiController');
+    // Institutes
+    Route::post('institutes/media', 'InstitutesApiController@storeMedia')->name('institutes.storeMedia');
+    Route::apiResource('institutes', 'InstitutesApiController');
 
     // Subjects
     Route::apiResource('subjects', 'SubjectsApiController');
 
-    // Batches
-    Route::apiResource('batches', 'BatchesApiController');
+    // Courses
+    Route::post('courses/media', 'CoursesApiController@storeMedia')->name('courses.storeMedia');
+    Route::apiResource('courses', 'CoursesApiController');
+
+    // Transport Routes
+    Route::apiResource('transport-routes', 'TransportRoutesApiController');
+
+    // Route Stops
+    Route::apiResource('route-stops', 'RouteStopsApiController');
 
     // Students
     Route::post('students/media', 'StudentsApiController@storeMedia')->name('students.storeMedia');
@@ -44,11 +44,11 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
     // File Mode Online Test
     Route::apiResource('file-mode-online-tests', 'FileModeOnlineTestApiController');
 
-    // Fees Structure
-    Route::apiResource('fees-structures', 'FeesStructureApiController');
+    // Fee Heads
+    Route::apiResource('fee-heads', 'FeeHeadsApiController');
 
-    // Grade Subjects
-    Route::apiResource('grade-subjects', 'GradeSubjectsApiController');
+    // Fee Structure
+    Route::apiResource('fee-structures', 'FeeStructureApiController');
 
     // Chapters
     Route::apiResource('chapters', 'ChaptersApiController');
@@ -66,9 +66,24 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
     // Transport Vehicles
     Route::apiResource('transport-vehicles', 'TransportVehiclesApiController');
 
-    // Transport Routes
-    Route::apiResource('transport-routes', 'TransportRoutesApiController');
+    // Addresses
+    Route::apiResource('addresses', 'AddressesApiController');
 
-    // Route Stops
-    Route::apiResource('route-stops', 'RouteStopsApiController');
+    // Phones
+    Route::apiResource('phones', 'PhonesApiController');
+
+    // Countries
+    Route::apiResource('countries', 'CountriesApiController');
+
+    // Postal Code
+    Route::apiResource('postal-codes', 'PostalCodeApiController');
+
+    // Blood Groups
+    Route::apiResource('blood-groups', 'BloodGroupsApiController');
+
+    // Religions
+    Route::apiResource('religions', 'ReligionsApiController');
+
+    // Castes
+    Route::apiResource('castes', 'CastesApiController');
 });

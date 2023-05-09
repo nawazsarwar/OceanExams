@@ -29,6 +29,9 @@
                                         {{ trans('cruds.partner.fields.name') }}
                                     </th>
                                     <th>
+                                        {{ trans('cruds.partner.fields.product_name') }}
+                                    </th>
+                                    <th>
                                         {{ trans('cruds.partner.fields.prefix') }}
                                     </th>
                                     <th>
@@ -39,6 +42,15 @@
                                     </th>
                                     <th>
                                         {{ trans('cruds.partner.fields.header_background_color') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.partner.fields.footer_background_color') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.partner.fields.status') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.partner.fields.remarks') }}
                                     </th>
                                     <th>
                                         &nbsp;
@@ -55,6 +67,9 @@
                                             {{ $partner->name ?? '' }}
                                         </td>
                                         <td>
+                                            {{ $partner->product_name ?? '' }}
+                                        </td>
+                                        <td>
                                             {{ $partner->prefix ?? '' }}
                                         </td>
                                         <td>
@@ -69,6 +84,15 @@
                                         </td>
                                         <td>
                                             {{ $partner->header_background_color ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $partner->footer_background_color ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ App\Models\Partner::STATUS_SELECT[$partner->status] ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $partner->remarks ?? '' }}
                                         </td>
                                         <td>
                                             @can('partner_show')

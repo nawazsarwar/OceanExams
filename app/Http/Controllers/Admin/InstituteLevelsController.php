@@ -22,25 +22,25 @@ class InstituteLevelsController extends Controller
         abort_if(Gate::denies('institute_level_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         if ($request->ajax()) {
-            $query = InstituteLevel::query()->select(sprintf('%s.*', (new InstituteLevel())->table));
+            $query = InstituteLevel::query()->select(sprintf('%s.*', (new InstituteLevel)->table));
             $table = Datatables::of($query);
 
             $table->addColumn('placeholder', '&nbsp;');
             $table->addColumn('actions', '&nbsp;');
 
             $table->editColumn('actions', function ($row) {
-                $viewGate = 'institute_level_show';
-                $editGate = 'institute_level_edit';
-                $deleteGate = 'institute_level_delete';
+                $viewGate      = 'institute_level_show';
+                $editGate      = 'institute_level_edit';
+                $deleteGate    = 'institute_level_delete';
                 $crudRoutePart = 'institute-levels';
 
                 return view('partials.datatablesActions', compact(
-                'viewGate',
-                'editGate',
-                'deleteGate',
-                'crudRoutePart',
-                'row'
-            ));
+                    'viewGate',
+                    'editGate',
+                    'deleteGate',
+                    'crudRoutePart',
+                    'row'
+                ));
             });
 
             $table->editColumn('id', function ($row) {
@@ -104,7 +104,11 @@ class InstituteLevelsController extends Controller
 
     public function massDestroy(MassDestroyInstituteLevelRequest $request)
     {
-        InstituteLevel::whereIn('id', request('ids'))->delete();
+        $instituteLevels = InstituteLevel::find(request('ids'));
+
+        foreach ($instituteLevels as $instituteLevel) {
+            $instituteLevel->delete();
+        }
 
         return response(null, Response::HTTP_NO_CONTENT);
     }

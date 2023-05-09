@@ -23,25 +23,25 @@ class PartnersController extends Controller
         abort_if(Gate::denies('partner_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         if ($request->ajax()) {
-            $query = Partner::query()->select(sprintf('%s.*', (new Partner())->table));
+            $query = Partner::query()->select(sprintf('%s.*', (new Partner)->table));
             $table = Datatables::of($query);
 
             $table->addColumn('placeholder', '&nbsp;');
             $table->addColumn('actions', '&nbsp;');
 
             $table->editColumn('actions', function ($row) {
-                $viewGate = 'partner_show';
-                $editGate = 'partner_edit';
-                $deleteGate = 'partner_delete';
+                $viewGate      = 'partner_show';
+                $editGate      = 'partner_edit';
+                $deleteGate    = 'partner_delete';
                 $crudRoutePart = 'partners';
 
                 return view('partials.datatablesActions', compact(
-                'viewGate',
-                'editGate',
-                'deleteGate',
-                'crudRoutePart',
-                'row'
-            ));
+                    'viewGate',
+                    'editGate',
+                    'deleteGate',
+                    'crudRoutePart',
+                    'row'
+                ));
             });
 
             $table->editColumn('id', function ($row) {
@@ -49,6 +49,9 @@ class PartnersController extends Controller
             });
             $table->editColumn('name', function ($row) {
                 return $row->name ? $row->name : '';
+            });
+            $table->editColumn('product_name', function ($row) {
+                return $row->product_name ? $row->product_name : '';
             });
             $table->editColumn('prefix', function ($row) {
                 return $row->prefix ? $row->prefix : '';
@@ -59,16 +62,25 @@ class PartnersController extends Controller
             $table->editColumn('header_logo', function ($row) {
                 if ($photo = $row->header_logo) {
                     return sprintf(
-        '<a href="%s" target="_blank"><img src="%s" width="50px" height="50px"></a>',
-        $photo->url,
-        $photo->thumbnail
-    );
+                        '<a href="%s" target="_blank"><img src="%s" width="50px" height="50px"></a>',
+                        $photo->url,
+                        $photo->thumbnail
+                    );
                 }
 
                 return '';
             });
             $table->editColumn('header_background_color', function ($row) {
                 return $row->header_background_color ? $row->header_background_color : '';
+            });
+            $table->editColumn('footer_background_color', function ($row) {
+                return $row->footer_background_color ? $row->footer_background_color : '';
+            });
+            $table->editColumn('status', function ($row) {
+                return $row->status ? Partner::STATUS_SELECT[$row->status] : '';
+            });
+            $table->editColumn('remarks', function ($row) {
+                return $row->remarks ? $row->remarks : '';
             });
 
             $table->rawColumns(['actions', 'placeholder', 'header_logo']);
@@ -113,7 +125,7 @@ class PartnersController extends Controller
         $partner->update($request->all());
 
         if ($request->input('header_logo', false)) {
-            if (!$partner->header_logo || $request->input('header_logo') !== $partner->header_logo->file_name) {
+            if (! $partner->header_logo || $request->input('header_logo') !== $partner->header_logo->file_name) {
                 if ($partner->header_logo) {
                     $partner->header_logo->delete();
                 }
@@ -144,7 +156,11 @@ class PartnersController extends Controller
 
     public function massDestroy(MassDestroyPartnerRequest $request)
     {
-        Partner::whereIn('id', request('ids'))->delete();
+        $partners = Partner::find(request('ids'));
+
+        foreach ($partners as $partner) {
+            $partner->delete();
+        }
 
         return response(null, Response::HTTP_NO_CONTENT);
     }

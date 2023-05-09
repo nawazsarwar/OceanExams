@@ -19,25 +19,25 @@ class FileModeOnlineTestController extends Controller
         abort_if(Gate::denies('file_mode_online_test_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         if ($request->ajax()) {
-            $query = FileModeOnlineTest::query()->select(sprintf('%s.*', (new FileModeOnlineTest())->table));
+            $query = FileModeOnlineTest::query()->select(sprintf('%s.*', (new FileModeOnlineTest)->table));
             $table = Datatables::of($query);
 
             $table->addColumn('placeholder', '&nbsp;');
             $table->addColumn('actions', '&nbsp;');
 
             $table->editColumn('actions', function ($row) {
-                $viewGate = 'file_mode_online_test_show';
-                $editGate = 'file_mode_online_test_edit';
-                $deleteGate = 'file_mode_online_test_delete';
+                $viewGate      = 'file_mode_online_test_show';
+                $editGate      = 'file_mode_online_test_edit';
+                $deleteGate    = 'file_mode_online_test_delete';
                 $crudRoutePart = 'file-mode-online-tests';
 
                 return view('partials.datatablesActions', compact(
-                'viewGate',
-                'editGate',
-                'deleteGate',
-                'crudRoutePart',
-                'row'
-            ));
+                    'viewGate',
+                    'editGate',
+                    'deleteGate',
+                    'crudRoutePart',
+                    'row'
+                ));
             });
 
             $table->editColumn('id', function ($row) {

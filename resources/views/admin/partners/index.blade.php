@@ -28,6 +28,9 @@
                         {{ trans('cruds.partner.fields.name') }}
                     </th>
                     <th>
+                        {{ trans('cruds.partner.fields.product_name') }}
+                    </th>
+                    <th>
                         {{ trans('cruds.partner.fields.prefix') }}
                     </th>
                     <th>
@@ -38,6 +41,15 @@
                     </th>
                     <th>
                         {{ trans('cruds.partner.fields.header_background_color') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.partner.fields.footer_background_color') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.partner.fields.status') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.partner.fields.remarks') }}
                     </th>
                     <th>
                         &nbsp;
@@ -97,10 +109,14 @@
       { data: 'placeholder', name: 'placeholder' },
 { data: 'id', name: 'id' },
 { data: 'name', name: 'name' },
+{ data: 'product_name', name: 'product_name' },
 { data: 'prefix', name: 'prefix' },
 { data: 'primary_url', name: 'primary_url' },
 { data: 'header_logo', name: 'header_logo', sortable: false, searchable: false },
 { data: 'header_background_color', name: 'header_background_color' },
+{ data: 'footer_background_color', name: 'footer_background_color' },
+{ data: 'status', name: 'status' },
+{ data: 'remarks', name: 'remarks' },
 { data: 'actions', name: '{{ trans('global.actions') }}' }
     ],
     orderCellsTop: true,

@@ -39,14 +39,6 @@
                             {{ $section->capacity }}
                         </td>
                     </tr>
-                    <tr>
-                        <th>
-                            {{ trans('cruds.section.fields.grade') }}
-                        </th>
-                        <td>
-                            {{ $section->grade->title ?? '' }}
-                        </td>
-                    </tr>
                 </tbody>
             </table>
             <div class="form-group">

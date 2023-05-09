@@ -20,8 +20,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class InstitutesController extends Controller
 {
-    use MediaUploadingTrait;
-    use CsvImportTrait;
+    use MediaUploadingTrait, CsvImportTrait;
 
     public function index()
     {
@@ -84,7 +83,7 @@ class InstitutesController extends Controller
         $institute->update($request->all());
         $institute->affiliations()->sync($request->input('affiliations', []));
         if ($request->input('logo', false)) {
-            if (!$institute->logo || $request->input('logo') !== $institute->logo->file_name) {
+            if (! $institute->logo || $request->input('logo') !== $institute->logo->file_name) {
                 if ($institute->logo) {
                     $institute->logo->delete();
                 }

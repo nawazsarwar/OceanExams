@@ -32,9 +32,6 @@
                             {{ trans('cruds.section.fields.capacity') }}
                         </th>
                         <th>
-                            {{ trans('cruds.section.fields.grade') }}
-                        </th>
-                        <th>
                             &nbsp;
                         </th>
                     </tr>
@@ -53,9 +50,6 @@
                             </td>
                             <td>
                                 {{ $section->capacity ?? '' }}
-                            </td>
-                            <td>
-                                {{ $section->grade->title ?? '' }}
                             </td>
                             <td>
                                 @can('section_show')

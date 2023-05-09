@@ -36,6 +36,14 @@
                                 </tr>
                                 <tr>
                                     <th>
+                                        {{ trans('cruds.partner.fields.product_name') }}
+                                    </th>
+                                    <td>
+                                        {{ $partner->product_name }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
                                         {{ trans('cruds.partner.fields.prefix') }}
                                     </th>
                                     <td>
@@ -68,6 +76,30 @@
                                     </th>
                                     <td>
                                         {{ $partner->header_background_color }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        {{ trans('cruds.partner.fields.footer_background_color') }}
+                                    </th>
+                                    <td>
+                                        {{ $partner->footer_background_color }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        {{ trans('cruds.partner.fields.status') }}
+                                    </th>
+                                    <td>
+                                        {{ App\Models\Partner::STATUS_SELECT[$partner->status] ?? '' }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        {{ trans('cruds.partner.fields.remarks') }}
+                                    </th>
+                                    <td>
+                                        {{ $partner->remarks }}
                                     </td>
                                 </tr>
                             </tbody>

@@ -32,9 +32,6 @@
                         {{ trans('cruds.chapter.fields.name') }}
                     </th>
                     <th>
-                        {{ trans('cruds.chapter.fields.grade_subject') }}
-                    </th>
-                    <th>
                         {{ trans('cruds.chapter.fields.status') }}
                     </th>
                     <th>
@@ -95,7 +92,6 @@
       { data: 'placeholder', name: 'placeholder' },
 { data: 'id', name: 'id' },
 { data: 'name', name: 'name' },
-{ data: 'grade_subject_title', name: 'grade_subject.title' },
 { data: 'status', name: 'status' },
 { data: 'actions', name: '{{ trans('global.actions') }}' }
     ],

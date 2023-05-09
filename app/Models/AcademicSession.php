@@ -2,15 +2,14 @@
 
 namespace App\Models;
 
-use \DateTimeInterface;
+use DateTimeInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class AcademicSession extends Model
 {
-    use SoftDeletes;
-    use HasFactory;
+    use SoftDeletes, HasFactory;
 
     public $table = 'academic_sessions';
 
@@ -22,6 +21,7 @@ class AcademicSession extends Model
 
     protected $fillable = [
         'name',
+        'position',
         'created_at',
         'updated_at',
         'deleted_at',

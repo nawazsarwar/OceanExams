@@ -35,6 +35,18 @@ class UpdateEmployeeRequest extends FormRequest
             'subjects' => [
                 'array',
             ],
+            'designation_id' => [
+                'required',
+                'integer',
+            ],
+            'employee_type_id' => [
+                'required',
+                'integer',
+            ],
+            'institution_id' => [
+                'required',
+                'integer',
+            ],
         ];
     }
 }

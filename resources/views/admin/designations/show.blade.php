@@ -47,6 +47,14 @@
                             {{ $designation->pay_grade }}
                         </td>
                     </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.designation.fields.institution') }}
+                        </th>
+                        <td>
+                            {{ $designation->institution->name ?? '' }}
+                        </td>
+                    </tr>
                 </tbody>
             </table>
             <div class="form-group">

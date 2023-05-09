@@ -100,6 +100,30 @@
                                         @endforeach
                                     </td>
                                 </tr>
+                                <tr>
+                                    <th>
+                                        {{ trans('cruds.employee.fields.designation') }}
+                                    </th>
+                                    <td>
+                                        {{ $employee->designation->name ?? '' }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        {{ trans('cruds.employee.fields.employee_type') }}
+                                    </th>
+                                    <td>
+                                        {{ $employee->employee_type->title ?? '' }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        {{ trans('cruds.employee.fields.institution') }}
+                                    </th>
+                                    <td>
+                                        {{ $employee->institution->name ?? '' }}
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                         <div class="form-group">

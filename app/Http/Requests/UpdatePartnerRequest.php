@@ -21,6 +21,11 @@ class UpdatePartnerRequest extends FormRequest
                 'string',
                 'required',
             ],
+            'product_name' => [
+                'string',
+                'required',
+                'unique:partners,product_name,' . request()->route('partner')->id,
+            ],
             'prefix' => [
                 'string',
                 'required',
@@ -32,6 +37,10 @@ class UpdatePartnerRequest extends FormRequest
                 'unique:partners,primary_url,' . request()->route('partner')->id,
             ],
             'header_background_color' => [
+                'string',
+                'nullable',
+            ],
+            'footer_background_color' => [
                 'string',
                 'nullable',
             ],

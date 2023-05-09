@@ -7,8 +7,6 @@ use App\Http\Controllers\Traits\MediaUploadingTrait;
 use App\Http\Requests\MassDestroyStudentRequest;
 use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
-use App\Models\Batch;
-use App\Models\Course;
 use App\Models\RouteStop;
 use App\Models\Student;
 use App\Models\TransportRoute;
@@ -25,7 +23,7 @@ class StudentsController extends Controller
     {
         abort_if(Gate::denies('student_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $students = Student::with(['course', 'batch', 'transport_route', 'transport_stop', 'media'])->get();
+        $students = Student::with(['transport_route', 'transport_stop', 'media'])->get();
 
         return view('frontend.students.index', compact('students'));
     }
@@ -34,15 +32,11 @@ class StudentsController extends Controller
     {
         abort_if(Gate::denies('student_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $courses = Course::pluck('title', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $batches = Batch::pluck('title', 'id')->prepend(trans('global.pleaseSelect'), '');
-
         $transport_routes = TransportRoute::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
         $transport_stops = RouteStop::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        return view('frontend.students.create', compact('batches', 'courses', 'transport_routes', 'transport_stops'));
+        return view('frontend.students.create', compact('transport_routes', 'transport_stops'));
     }
 
     public function store(StoreStudentRequest $request)
@@ -64,17 +58,13 @@ class StudentsController extends Controller
     {
         abort_if(Gate::denies('student_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $courses = Course::pluck('title', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $batches = Batch::pluck('title', 'id')->prepend(trans('global.pleaseSelect'), '');
-
         $transport_routes = TransportRoute::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
         $transport_stops = RouteStop::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $student->load('course', 'batch', 'transport_route', 'transport_stop');
+        $student->load('transport_route', 'transport_stop');
 
-        return view('frontend.students.edit', compact('batches', 'courses', 'student', 'transport_routes', 'transport_stops'));
+        return view('frontend.students.edit', compact('student', 'transport_routes', 'transport_stops'));
     }
 
     public function update(UpdateStudentRequest $request, Student $student)
@@ -99,7 +89,7 @@ class StudentsController extends Controller
     {
         abort_if(Gate::denies('student_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $student->load('course', 'batch', 'transport_route', 'transport_stop');
+        $student->load('transport_route', 'transport_stop');
 
         return view('frontend.students.show', compact('student'));
     }

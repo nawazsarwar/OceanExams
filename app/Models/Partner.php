@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use \DateTimeInterface;
 use App\Traits\Auditable;
+use DateTimeInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -13,10 +13,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class Partner extends Model implements HasMedia
 {
-    use SoftDeletes;
-    use InteractsWithMedia;
-    use Auditable;
-    use HasFactory;
+    use SoftDeletes, InteractsWithMedia, Auditable, HasFactory;
 
     public $table = 'partners';
 
@@ -30,15 +27,29 @@ class Partner extends Model implements HasMedia
         'deleted_at',
     ];
 
+    public const STATUS_SELECT = [
+        'Active'    => 'Active',
+        'In-active' => 'In-active',
+    ];
+
     protected $fillable = [
         'name',
+        'product_name',
         'prefix',
         'primary_url',
         'header_background_color',
+        'footer_background_color',
+        'status',
+        'remarks',
         'created_at',
         'updated_at',
         'deleted_at',
     ];
+
+    protected function serializeDate(DateTimeInterface $date)
+    {
+        return $date->format('Y-m-d H:i:s');
+    }
 
     public function registerMediaConversions(Media $media = null): void
     {
@@ -56,10 +67,5 @@ class Partner extends Model implements HasMedia
         }
 
         return $file;
-    }
-
-    protected function serializeDate(DateTimeInterface $date)
-    {
-        return $date->format('Y-m-d H:i:s');
     }
 }

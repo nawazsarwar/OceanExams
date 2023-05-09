@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\MassDestroySectionRequest;
 use App\Http\Requests\StoreSectionRequest;
 use App\Http\Requests\UpdateSectionRequest;
-use App\Models\Grade;
 use App\Models\Section;
 use Gate;
 use Illuminate\Http\Request;
@@ -18,7 +17,7 @@ class SectionsController extends Controller
     {
         abort_if(Gate::denies('section_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $sections = Section::with(['grade'])->get();
+        $sections = Section::all();
 
         return view('frontend.sections.index', compact('sections'));
     }
@@ -27,9 +26,7 @@ class SectionsController extends Controller
     {
         abort_if(Gate::denies('section_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $grades = Grade::pluck('title', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        return view('frontend.sections.create', compact('grades'));
+        return view('frontend.sections.create');
     }
 
     public function store(StoreSectionRequest $request)
@@ -43,11 +40,7 @@ class SectionsController extends Controller
     {
         abort_if(Gate::denies('section_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $grades = Grade::pluck('title', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $section->load('grade');
-
-        return view('frontend.sections.edit', compact('grades', 'section'));
+        return view('frontend.sections.edit', compact('section'));
     }
 
     public function update(UpdateSectionRequest $request, Section $section)
@@ -60,8 +53,6 @@ class SectionsController extends Controller
     public function show(Section $section)
     {
         abort_if(Gate::denies('section_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $section->load('grade');
 
         return view('frontend.sections.show', compact('section'));
     }

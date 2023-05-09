@@ -60,7 +60,7 @@ class PartnersController extends Controller
         $partner->update($request->all());
 
         if ($request->input('header_logo', false)) {
-            if (!$partner->header_logo || $request->input('header_logo') !== $partner->header_logo->file_name) {
+            if (! $partner->header_logo || $request->input('header_logo') !== $partner->header_logo->file_name) {
                 if ($partner->header_logo) {
                     $partner->header_logo->delete();
                 }

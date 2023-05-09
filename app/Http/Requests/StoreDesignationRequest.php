@@ -29,6 +29,10 @@ class StoreDesignationRequest extends FormRequest
                 'string',
                 'nullable',
             ],
+            'institution_id' => [
+                'required',
+                'integer',
+            ],
         ];
     }
 }

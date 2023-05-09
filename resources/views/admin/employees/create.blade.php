@@ -89,6 +89,42 @@
                 <span class="help-block">{{ trans('cruds.employee.fields.subjects_helper') }}</span>
             </div>
             <div class="form-group">
+                <label class="required" for="designation_id">{{ trans('cruds.employee.fields.designation') }}</label>
+                <select class="form-control select2 {{ $errors->has('designation') ? 'is-invalid' : '' }}" name="designation_id" id="designation_id" required>
+                    @foreach($designations as $id => $entry)
+                        <option value="{{ $id }}" {{ old('designation_id') == $id ? 'selected' : '' }}>{{ $entry }}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('designation'))
+                    <span class="text-danger">{{ $errors->first('designation') }}</span>
+                @endif
+                <span class="help-block">{{ trans('cruds.employee.fields.designation_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label class="required" for="employee_type_id">{{ trans('cruds.employee.fields.employee_type') }}</label>
+                <select class="form-control select2 {{ $errors->has('employee_type') ? 'is-invalid' : '' }}" name="employee_type_id" id="employee_type_id" required>
+                    @foreach($employee_types as $id => $entry)
+                        <option value="{{ $id }}" {{ old('employee_type_id') == $id ? 'selected' : '' }}>{{ $entry }}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('employee_type'))
+                    <span class="text-danger">{{ $errors->first('employee_type') }}</span>
+                @endif
+                <span class="help-block">{{ trans('cruds.employee.fields.employee_type_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label class="required" for="institution_id">{{ trans('cruds.employee.fields.institution') }}</label>
+                <select class="form-control select2 {{ $errors->has('institution') ? 'is-invalid' : '' }}" name="institution_id" id="institution_id" required>
+                    @foreach($institutions as $id => $entry)
+                        <option value="{{ $id }}" {{ old('institution_id') == $id ? 'selected' : '' }}>{{ $entry }}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('institution'))
+                    <span class="text-danger">{{ $errors->first('institution') }}</span>
+                @endif
+                <span class="help-block">{{ trans('cruds.employee.fields.institution_helper') }}</span>
+            </div>
+            <div class="form-group">
                 <button class="btn btn-danger" type="submit">
                     {{ trans('global.save') }}
                 </button>

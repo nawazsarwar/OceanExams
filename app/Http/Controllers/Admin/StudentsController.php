@@ -7,8 +7,6 @@ use App\Http\Controllers\Traits\MediaUploadingTrait;
 use App\Http\Requests\MassDestroyStudentRequest;
 use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
-use App\Models\Batch;
-use App\Models\Course;
 use App\Models\RouteStop;
 use App\Models\Student;
 use App\Models\TransportRoute;
@@ -27,7 +25,7 @@ class StudentsController extends Controller
         abort_if(Gate::denies('student_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         if ($request->ajax()) {
-            $query = Student::with(['course', 'batch', 'transport_route', 'transport_stop'])->select(sprintf('%s.*', (new Student)->table));
+            $query = Student::with(['transport_route', 'transport_stop'])->select(sprintf('%s.*', (new Student)->table));
             $table = Datatables::of($query);
 
             $table->addColumn('placeholder', '&nbsp;');
@@ -65,13 +63,6 @@ class StudentsController extends Controller
             });
             $table->editColumn('parents_contact', function ($row) {
                 return $row->parents_contact ? $row->parents_contact : '';
-            });
-            $table->addColumn('course_title', function ($row) {
-                return $row->course ? $row->course->title : '';
-            });
-
-            $table->addColumn('batch_title', function ($row) {
-                return $row->batch ? $row->batch->title : '';
             });
 
             $table->editColumn('email', function ($row) {
@@ -111,7 +102,7 @@ class StudentsController extends Controller
                 return $row->transport_stop ? $row->transport_stop->name : '';
             });
 
-            $table->rawColumns(['actions', 'placeholder', 'course', 'batch', 'image', 'image_verified', 'archived', 'transport_route', 'transport_stop']);
+            $table->rawColumns(['actions', 'placeholder', 'image', 'image_verified', 'archived', 'transport_route', 'transport_stop']);
 
             return $table->make(true);
         }
@@ -123,15 +114,11 @@ class StudentsController extends Controller
     {
         abort_if(Gate::denies('student_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $courses = Course::pluck('title', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $batches = Batch::pluck('title', 'id')->prepend(trans('global.pleaseSelect'), '');
-
         $transport_routes = TransportRoute::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
         $transport_stops = RouteStop::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        return view('admin.students.create', compact('batches', 'courses', 'transport_routes', 'transport_stops'));
+        return view('admin.students.create', compact('transport_routes', 'transport_stops'));
     }
 
     public function store(StoreStudentRequest $request)
@@ -153,17 +140,13 @@ class StudentsController extends Controller
     {
         abort_if(Gate::denies('student_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $courses = Course::pluck('title', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $batches = Batch::pluck('title', 'id')->prepend(trans('global.pleaseSelect'), '');
-
         $transport_routes = TransportRoute::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
         $transport_stops = RouteStop::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $student->load('course', 'batch', 'transport_route', 'transport_stop');
+        $student->load('transport_route', 'transport_stop');
 
-        return view('admin.students.edit', compact('batches', 'courses', 'student', 'transport_routes', 'transport_stops'));
+        return view('admin.students.edit', compact('student', 'transport_routes', 'transport_stops'));
     }
 
     public function update(UpdateStudentRequest $request, Student $student)
@@ -188,7 +171,7 @@ class StudentsController extends Controller
     {
         abort_if(Gate::denies('student_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $student->load('course', 'batch', 'transport_route', 'transport_stop');
+        $student->load('transport_route', 'transport_stop');
 
         return view('admin.students.show', compact('student'));
     }

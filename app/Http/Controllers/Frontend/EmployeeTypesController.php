@@ -21,7 +21,7 @@ class EmployeeTypesController extends Controller
     {
         abort_if(Gate::denies('employee_type_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $employeeTypes = EmployeeType::with(['institute'])->get();
+        $employeeTypes = EmployeeType::with(['institute', 'institution'])->get();
 
         return view('frontend.employeeTypes.index', compact('employeeTypes'));
     }
@@ -32,7 +32,9 @@ class EmployeeTypesController extends Controller
 
         $institutes = Institute::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        return view('frontend.employeeTypes.create', compact('institutes'));
+        $institutions = Institute::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+
+        return view('frontend.employeeTypes.create', compact('institutes', 'institutions'));
     }
 
     public function store(StoreEmployeeTypeRequest $request)
@@ -48,9 +50,11 @@ class EmployeeTypesController extends Controller
 
         $institutes = Institute::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $employeeType->load('institute');
+        $institutions = Institute::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        return view('frontend.employeeTypes.edit', compact('employeeType', 'institutes'));
+        $employeeType->load('institute', 'institution');
+
+        return view('frontend.employeeTypes.edit', compact('employeeType', 'institutes', 'institutions'));
     }
 
     public function update(UpdateEmployeeTypeRequest $request, EmployeeType $employeeType)
@@ -64,7 +68,7 @@ class EmployeeTypesController extends Controller
     {
         abort_if(Gate::denies('employee_type_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $employeeType->load('institute');
+        $employeeType->load('institute', 'institution');
 
         return view('frontend.employeeTypes.show', compact('employeeType'));
     }

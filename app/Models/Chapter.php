@@ -22,7 +22,6 @@ class Chapter extends Model
 
     protected $fillable = [
         'name',
-        'grade_subject_id',
         'status',
         'created_at',
         'updated_at',
@@ -32,10 +31,5 @@ class Chapter extends Model
     protected function serializeDate(DateTimeInterface $date)
     {
         return $date->format('Y-m-d H:i:s');
-    }
-
-    public function grade_subject()
-    {
-        return $this->belongsTo(GradeSubject::class, 'grade_subject_id');
     }
 }

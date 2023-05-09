@@ -40,12 +40,6 @@
                         {{ trans('cruds.student.fields.parents_contact') }}
                     </th>
                     <th>
-                        {{ trans('cruds.student.fields.course') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.student.fields.batch') }}
-                    </th>
-                    <th>
                         {{ trans('cruds.student.fields.date_of_birth') }}
                     </th>
                     <th>
@@ -140,8 +134,6 @@
 { data: 'fathers_name', name: 'fathers_name' },
 { data: 'mothers_name', name: 'mothers_name' },
 { data: 'parents_contact', name: 'parents_contact' },
-{ data: 'course_title', name: 'course.title' },
-{ data: 'batch_title', name: 'batch.title' },
 { data: 'date_of_birth', name: 'date_of_birth' },
 { data: 'date_of_joining', name: 'date_of_joining' },
 { data: 'email', name: 'email' },

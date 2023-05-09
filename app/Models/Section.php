@@ -22,7 +22,6 @@ class Section extends Model
     protected $fillable = [
         'title',
         'capacity',
-        'grade_id',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -31,10 +30,5 @@ class Section extends Model
     protected function serializeDate(DateTimeInterface $date)
     {
         return $date->format('Y-m-d H:i:s');
-    }
-
-    public function grade()
-    {
-        return $this->belongsTo(Grade::class, 'grade_id');
     }
 }

@@ -8,6 +8,7 @@ use App\Http\Requests\MassDestroyDesignationRequest;
 use App\Http\Requests\StoreDesignationRequest;
 use App\Http\Requests\UpdateDesignationRequest;
 use App\Models\Designation;
+use App\Models\Institute;
 use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,7 +23,7 @@ class DesignationsController extends Controller
         abort_if(Gate::denies('designation_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         if ($request->ajax()) {
-            $query = Designation::query()->select(sprintf('%s.*', (new Designation)->table));
+            $query = Designation::with(['institution'])->select(sprintf('%s.*', (new Designation)->table));
             $table = Datatables::of($query);
 
             $table->addColumn('placeholder', '&nbsp;');
@@ -55,8 +56,11 @@ class DesignationsController extends Controller
             $table->editColumn('pay_grade', function ($row) {
                 return $row->pay_grade ? $row->pay_grade : '';
             });
+            $table->addColumn('institution_name', function ($row) {
+                return $row->institution ? $row->institution->name : '';
+            });
 
-            $table->rawColumns(['actions', 'placeholder']);
+            $table->rawColumns(['actions', 'placeholder', 'institution']);
 
             return $table->make(true);
         }
@@ -68,7 +72,9 @@ class DesignationsController extends Controller
     {
         abort_if(Gate::denies('designation_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return view('admin.designations.create');
+        $institutions = Institute::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+
+        return view('admin.designations.create', compact('institutions'));
     }
 
     public function store(StoreDesignationRequest $request)
@@ -82,7 +88,11 @@ class DesignationsController extends Controller
     {
         abort_if(Gate::denies('designation_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return view('admin.designations.edit', compact('designation'));
+        $institutions = Institute::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+
+        $designation->load('institution');
+
+        return view('admin.designations.edit', compact('designation', 'institutions'));
     }
 
     public function update(UpdateDesignationRequest $request, Designation $designation)
@@ -95,6 +105,8 @@ class DesignationsController extends Controller
     public function show(Designation $designation)
     {
         abort_if(Gate::denies('designation_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        $designation->load('institution');
 
         return view('admin.designations.show', compact('designation'));
     }

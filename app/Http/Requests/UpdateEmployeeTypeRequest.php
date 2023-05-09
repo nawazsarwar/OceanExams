@@ -25,6 +25,10 @@ class UpdateEmployeeTypeRequest extends FormRequest
                 'required',
                 'integer',
             ],
+            'institution_id' => [
+                'required',
+                'integer',
+            ],
         ];
     }
 }

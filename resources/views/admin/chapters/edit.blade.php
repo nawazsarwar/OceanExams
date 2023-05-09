@@ -19,18 +19,6 @@
                 <span class="help-block">{{ trans('cruds.chapter.fields.name_helper') }}</span>
             </div>
             <div class="form-group">
-                <label class="required" for="grade_subject_id">{{ trans('cruds.chapter.fields.grade_subject') }}</label>
-                <select class="form-control select2 {{ $errors->has('grade_subject') ? 'is-invalid' : '' }}" name="grade_subject_id" id="grade_subject_id" required>
-                    @foreach($grade_subjects as $id => $entry)
-                        <option value="{{ $id }}" {{ (old('grade_subject_id') ? old('grade_subject_id') : $chapter->grade_subject->id ?? '') == $id ? 'selected' : '' }}>{{ $entry }}</option>
-                    @endforeach
-                </select>
-                @if($errors->has('grade_subject'))
-                    <span class="text-danger">{{ $errors->first('grade_subject') }}</span>
-                @endif
-                <span class="help-block">{{ trans('cruds.chapter.fields.grade_subject_helper') }}</span>
-            </div>
-            <div class="form-group">
                 <label for="status">{{ trans('cruds.chapter.fields.status') }}</label>
                 <input class="form-control {{ $errors->has('status') ? 'is-invalid' : '' }}" type="text" name="status" id="status" value="{{ old('status', $chapter->status) }}">
                 @if($errors->has('status'))

@@ -17,7 +17,7 @@ class ChaptersApiController extends Controller
     {
         abort_if(Gate::denies('chapter_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new ChapterResource(Chapter::with(['grade_subject'])->get());
+        return new ChapterResource(Chapter::all());
     }
 
     public function store(StoreChapterRequest $request)
@@ -33,7 +33,7 @@ class ChaptersApiController extends Controller
     {
         abort_if(Gate::denies('chapter_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new ChapterResource($chapter->load(['grade_subject']));
+        return new ChapterResource($chapter);
     }
 
     public function update(UpdateChapterRequest $request, Chapter $chapter)
