@@ -32,6 +32,12 @@
                                         {{ trans('cruds.feeStructure.fields.fee') }}
                                     </th>
                                     <th>
+                                        {{ trans('cruds.feeStructure.fields.institute') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.feeStructure.fields.course') }}
+                                    </th>
+                                    <th>
                                         &nbsp;
                                     </th>
                                 </tr>
@@ -49,6 +55,12 @@
                                         </td>
                                         <td>
                                             {{ $feeStructure->fee ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $feeStructure->institute->name ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $feeStructure->course->title ?? '' }}
                                         </td>
                                         <td>
                                             @can('fee_structure_show')

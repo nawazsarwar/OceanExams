@@ -23,6 +23,14 @@ class UpdateFeeStructureRequest extends FormRequest
             'fee_heads' => [
                 'array',
             ],
+            'institute_id' => [
+                'required',
+                'integer',
+            ],
+            'course_id' => [
+                'required',
+                'integer',
+            ],
         ];
     }
 }

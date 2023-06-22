@@ -35,6 +35,30 @@
                 <span class="help-block">{{ trans('cruds.feeStructure.fields.fee_helper') }}</span>
             </div>
             <div class="form-group">
+                <label class="required" for="institute_id">{{ trans('cruds.feeStructure.fields.institute') }}</label>
+                <select class="form-control select2 {{ $errors->has('institute') ? 'is-invalid' : '' }}" name="institute_id" id="institute_id" required>
+                    @foreach($institutes as $id => $entry)
+                        <option value="{{ $id }}" {{ (old('institute_id') ? old('institute_id') : $feeStructure->institute->id ?? '') == $id ? 'selected' : '' }}>{{ $entry }}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('institute'))
+                    <span class="text-danger">{{ $errors->first('institute') }}</span>
+                @endif
+                <span class="help-block">{{ trans('cruds.feeStructure.fields.institute_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label class="required" for="course_id">{{ trans('cruds.feeStructure.fields.course') }}</label>
+                <select class="form-control select2 {{ $errors->has('course') ? 'is-invalid' : '' }}" name="course_id" id="course_id" required>
+                    @foreach($courses as $id => $entry)
+                        <option value="{{ $id }}" {{ (old('course_id') ? old('course_id') : $feeStructure->course->id ?? '') == $id ? 'selected' : '' }}>{{ $entry }}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('course'))
+                    <span class="text-danger">{{ $errors->first('course') }}</span>
+                @endif
+                <span class="help-block">{{ trans('cruds.feeStructure.fields.course_helper') }}</span>
+            </div>
+            <div class="form-group">
                 <button class="btn btn-danger" type="submit">
                     {{ trans('global.save') }}
                 </button>

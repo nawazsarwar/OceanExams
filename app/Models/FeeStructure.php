@@ -22,6 +22,8 @@ class FeeStructure extends Model
 
     protected $fillable = [
         'fee',
+        'institute_id',
+        'course_id',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -35,5 +37,15 @@ class FeeStructure extends Model
     public function fee_heads()
     {
         return $this->belongsToMany(FeeHead::class);
+    }
+
+    public function institute()
+    {
+        return $this->belongsTo(Institute::class, 'institute_id');
+    }
+
+    public function course()
+    {
+        return $this->belongsTo(Course::class, 'course_id');
     }
 }
