@@ -187,6 +187,81 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('questions/process-csv-import', 'QuestionsController@processCsvImport')->name('questions.processCsvImport');
     Route::resource('questions', 'QuestionsController');
 
+    // Test
+    Route::delete('tests/destroy', 'TestController@massDestroy')->name('tests.massDestroy');
+    Route::resource('tests', 'TestController');
+
+    // Asset Category
+    Route::delete('asset-categories/destroy', 'AssetCategoryController@massDestroy')->name('asset-categories.massDestroy');
+    Route::resource('asset-categories', 'AssetCategoryController');
+
+    // Asset Location
+    Route::delete('asset-locations/destroy', 'AssetLocationController@massDestroy')->name('asset-locations.massDestroy');
+    Route::resource('asset-locations', 'AssetLocationController');
+
+    // Asset Status
+    Route::delete('asset-statuses/destroy', 'AssetStatusController@massDestroy')->name('asset-statuses.massDestroy');
+    Route::resource('asset-statuses', 'AssetStatusController');
+
+    // Asset
+    Route::delete('assets/destroy', 'AssetController@massDestroy')->name('assets.massDestroy');
+    Route::post('assets/media', 'AssetController@storeMedia')->name('assets.storeMedia');
+    Route::post('assets/ckmedia', 'AssetController@storeCKEditorImages')->name('assets.storeCKEditorImages');
+    Route::resource('assets', 'AssetController');
+
+    // Assets History
+    Route::resource('assets-histories', 'AssetsHistoryController', ['except' => ['create', 'store', 'edit', 'update', 'show', 'destroy']]);
+
+    // Expense Category
+    Route::delete('expense-categories/destroy', 'ExpenseCategoryController@massDestroy')->name('expense-categories.massDestroy');
+    Route::resource('expense-categories', 'ExpenseCategoryController');
+
+    // Income Category
+    Route::delete('income-categories/destroy', 'IncomeCategoryController@massDestroy')->name('income-categories.massDestroy');
+    Route::resource('income-categories', 'IncomeCategoryController');
+
+    // Expense
+    Route::delete('expenses/destroy', 'ExpenseController@massDestroy')->name('expenses.massDestroy');
+    Route::resource('expenses', 'ExpenseController');
+
+    // Income
+    Route::delete('incomes/destroy', 'IncomeController@massDestroy')->name('incomes.massDestroy');
+    Route::resource('incomes', 'IncomeController');
+
+    // Expense Report
+    Route::delete('expense-reports/destroy', 'ExpenseReportController@massDestroy')->name('expense-reports.massDestroy');
+    Route::resource('expense-reports', 'ExpenseReportController');
+
+    // Book
+    Route::delete('books/destroy', 'BookController@massDestroy')->name('books.massDestroy');
+    Route::post('books/media', 'BookController@storeMedia')->name('books.storeMedia');
+    Route::post('books/ckmedia', 'BookController@storeCKEditorImages')->name('books.storeCKEditorImages');
+    Route::post('books/parse-csv-import', 'BookController@parseCsvImport')->name('books.parseCsvImport');
+    Route::post('books/process-csv-import', 'BookController@processCsvImport')->name('books.processCsvImport');
+    Route::resource('books', 'BookController');
+
+    // Issue Book
+    Route::delete('issue-books/destroy', 'IssueBookController@massDestroy')->name('issue-books.massDestroy');
+    Route::resource('issue-books', 'IssueBookController');
+
+    // Enquiry
+    Route::delete('enquiries/destroy', 'EnquiryController@massDestroy')->name('enquiries.massDestroy');
+    Route::resource('enquiries', 'EnquiryController');
+
+    // Board
+    Route::delete('boards/destroy', 'BoardController@massDestroy')->name('boards.massDestroy');
+    Route::post('boards/parse-csv-import', 'BoardController@parseCsvImport')->name('boards.parseCsvImport');
+    Route::post('boards/process-csv-import', 'BoardController@processCsvImport')->name('boards.processCsvImport');
+    Route::resource('boards', 'BoardController');
+
+    // Class Level
+    Route::delete('class-levels/destroy', 'ClassLevelController@massDestroy')->name('class-levels.massDestroy');
+    Route::resource('class-levels', 'ClassLevelController');
+
+    // Ledger
+    Route::delete('ledgers/destroy', 'LedgerController@massDestroy')->name('ledgers.massDestroy');
+    Route::resource('ledgers', 'LedgerController');
+
     Route::get('global-search', 'GlobalSearchController@search')->name('globalSearch');
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth', '2fa']], function () {
@@ -349,6 +424,73 @@ Route::group(['as' => 'frontend.', 'namespace' => 'Frontend', 'middleware' => ['
     Route::post('questions/media', 'QuestionsController@storeMedia')->name('questions.storeMedia');
     Route::post('questions/ckmedia', 'QuestionsController@storeCKEditorImages')->name('questions.storeCKEditorImages');
     Route::resource('questions', 'QuestionsController');
+
+    // Test
+    Route::delete('tests/destroy', 'TestController@massDestroy')->name('tests.massDestroy');
+    Route::resource('tests', 'TestController');
+
+    // Asset Category
+    Route::delete('asset-categories/destroy', 'AssetCategoryController@massDestroy')->name('asset-categories.massDestroy');
+    Route::resource('asset-categories', 'AssetCategoryController');
+
+    // Asset Location
+    Route::delete('asset-locations/destroy', 'AssetLocationController@massDestroy')->name('asset-locations.massDestroy');
+    Route::resource('asset-locations', 'AssetLocationController');
+
+    // Asset Status
+    Route::delete('asset-statuses/destroy', 'AssetStatusController@massDestroy')->name('asset-statuses.massDestroy');
+    Route::resource('asset-statuses', 'AssetStatusController');
+
+    // Asset
+    Route::delete('assets/destroy', 'AssetController@massDestroy')->name('assets.massDestroy');
+    Route::post('assets/media', 'AssetController@storeMedia')->name('assets.storeMedia');
+    Route::post('assets/ckmedia', 'AssetController@storeCKEditorImages')->name('assets.storeCKEditorImages');
+    Route::resource('assets', 'AssetController');
+
+    // Assets History
+    Route::resource('assets-histories', 'AssetsHistoryController', ['except' => ['create', 'store', 'edit', 'update', 'show', 'destroy']]);
+
+    // Expense Category
+    Route::delete('expense-categories/destroy', 'ExpenseCategoryController@massDestroy')->name('expense-categories.massDestroy');
+    Route::resource('expense-categories', 'ExpenseCategoryController');
+
+    // Income Category
+    Route::delete('income-categories/destroy', 'IncomeCategoryController@massDestroy')->name('income-categories.massDestroy');
+    Route::resource('income-categories', 'IncomeCategoryController');
+
+    // Expense
+    Route::delete('expenses/destroy', 'ExpenseController@massDestroy')->name('expenses.massDestroy');
+    Route::resource('expenses', 'ExpenseController');
+
+    // Income
+    Route::delete('incomes/destroy', 'IncomeController@massDestroy')->name('incomes.massDestroy');
+    Route::resource('incomes', 'IncomeController');
+
+    // Book
+    Route::delete('books/destroy', 'BookController@massDestroy')->name('books.massDestroy');
+    Route::post('books/media', 'BookController@storeMedia')->name('books.storeMedia');
+    Route::post('books/ckmedia', 'BookController@storeCKEditorImages')->name('books.storeCKEditorImages');
+    Route::resource('books', 'BookController');
+
+    // Issue Book
+    Route::delete('issue-books/destroy', 'IssueBookController@massDestroy')->name('issue-books.massDestroy');
+    Route::resource('issue-books', 'IssueBookController');
+
+    // Enquiry
+    Route::delete('enquiries/destroy', 'EnquiryController@massDestroy')->name('enquiries.massDestroy');
+    Route::resource('enquiries', 'EnquiryController');
+
+    // Board
+    Route::delete('boards/destroy', 'BoardController@massDestroy')->name('boards.massDestroy');
+    Route::resource('boards', 'BoardController');
+
+    // Class Level
+    Route::delete('class-levels/destroy', 'ClassLevelController@massDestroy')->name('class-levels.massDestroy');
+    Route::resource('class-levels', 'ClassLevelController');
+
+    // Ledger
+    Route::delete('ledgers/destroy', 'LedgerController@massDestroy')->name('ledgers.massDestroy');
+    Route::resource('ledgers', 'LedgerController');
 
     Route::get('frontend/profile', 'ProfileController@index')->name('profile.index');
     Route::post('frontend/profile', 'ProfileController@update')->name('profile.update');

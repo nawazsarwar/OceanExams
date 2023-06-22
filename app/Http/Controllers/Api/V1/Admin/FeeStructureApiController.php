@@ -17,7 +17,7 @@ class FeeStructureApiController extends Controller
     {
         abort_if(Gate::denies('fee_structure_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new FeeStructureResource(FeeStructure::with(['fee_heads'])->get());
+        return new FeeStructureResource(FeeStructure::with(['fee_heads', 'institute', 'course'])->get());
     }
 
     public function store(StoreFeeStructureRequest $request)
@@ -34,7 +34,7 @@ class FeeStructureApiController extends Controller
     {
         abort_if(Gate::denies('fee_structure_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new FeeStructureResource($feeStructure->load(['fee_heads']));
+        return new FeeStructureResource($feeStructure->load(['fee_heads', 'institute', 'course']));
     }
 
     public function update(UpdateFeeStructureRequest $request, FeeStructure $feeStructure)

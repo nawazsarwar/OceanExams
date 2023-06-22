@@ -96,4 +96,26 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
     // Questions
     Route::post('questions/media', 'QuestionsApiController@storeMedia')->name('questions.storeMedia');
     Route::apiResource('questions', 'QuestionsApiController');
+
+    // Assets History
+    Route::apiResource('assets-histories', 'AssetsHistoryApiController', ['except' => ['store', 'show', 'update', 'destroy']]);
+
+    // Book
+    Route::post('books/media', 'BookApiController@storeMedia')->name('books.storeMedia');
+    Route::apiResource('books', 'BookApiController');
+
+    // Issue Book
+    Route::apiResource('issue-books', 'IssueBookApiController');
+
+    // Enquiry
+    Route::apiResource('enquiries', 'EnquiryApiController');
+
+    // Board
+    Route::apiResource('boards', 'BoardApiController');
+
+    // Class Level
+    Route::apiResource('class-levels', 'ClassLevelApiController');
+
+    // Ledger
+    Route::apiResource('ledgers', 'LedgerApiController');
 });

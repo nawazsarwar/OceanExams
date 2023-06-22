@@ -736,6 +736,346 @@ class PermissionsTableSeeder extends Seeder
             ],
             [
                 'id'    => 182,
+                'title' => 'test_create',
+            ],
+            [
+                'id'    => 183,
+                'title' => 'test_edit',
+            ],
+            [
+                'id'    => 184,
+                'title' => 'test_show',
+            ],
+            [
+                'id'    => 185,
+                'title' => 'test_delete',
+            ],
+            [
+                'id'    => 186,
+                'title' => 'test_access',
+            ],
+            [
+                'id'    => 187,
+                'title' => 'asset_management_access',
+            ],
+            [
+                'id'    => 188,
+                'title' => 'asset_category_create',
+            ],
+            [
+                'id'    => 189,
+                'title' => 'asset_category_edit',
+            ],
+            [
+                'id'    => 190,
+                'title' => 'asset_category_show',
+            ],
+            [
+                'id'    => 191,
+                'title' => 'asset_category_delete',
+            ],
+            [
+                'id'    => 192,
+                'title' => 'asset_category_access',
+            ],
+            [
+                'id'    => 193,
+                'title' => 'asset_location_create',
+            ],
+            [
+                'id'    => 194,
+                'title' => 'asset_location_edit',
+            ],
+            [
+                'id'    => 195,
+                'title' => 'asset_location_show',
+            ],
+            [
+                'id'    => 196,
+                'title' => 'asset_location_delete',
+            ],
+            [
+                'id'    => 197,
+                'title' => 'asset_location_access',
+            ],
+            [
+                'id'    => 198,
+                'title' => 'asset_status_create',
+            ],
+            [
+                'id'    => 199,
+                'title' => 'asset_status_edit',
+            ],
+            [
+                'id'    => 200,
+                'title' => 'asset_status_show',
+            ],
+            [
+                'id'    => 201,
+                'title' => 'asset_status_delete',
+            ],
+            [
+                'id'    => 202,
+                'title' => 'asset_status_access',
+            ],
+            [
+                'id'    => 203,
+                'title' => 'asset_create',
+            ],
+            [
+                'id'    => 204,
+                'title' => 'asset_edit',
+            ],
+            [
+                'id'    => 205,
+                'title' => 'asset_show',
+            ],
+            [
+                'id'    => 206,
+                'title' => 'asset_delete',
+            ],
+            [
+                'id'    => 207,
+                'title' => 'asset_access',
+            ],
+            [
+                'id'    => 208,
+                'title' => 'assets_history_access',
+            ],
+            [
+                'id'    => 209,
+                'title' => 'expense_management_access',
+            ],
+            [
+                'id'    => 210,
+                'title' => 'expense_category_create',
+            ],
+            [
+                'id'    => 211,
+                'title' => 'expense_category_edit',
+            ],
+            [
+                'id'    => 212,
+                'title' => 'expense_category_show',
+            ],
+            [
+                'id'    => 213,
+                'title' => 'expense_category_delete',
+            ],
+            [
+                'id'    => 214,
+                'title' => 'expense_category_access',
+            ],
+            [
+                'id'    => 215,
+                'title' => 'income_category_create',
+            ],
+            [
+                'id'    => 216,
+                'title' => 'income_category_edit',
+            ],
+            [
+                'id'    => 217,
+                'title' => 'income_category_show',
+            ],
+            [
+                'id'    => 218,
+                'title' => 'income_category_delete',
+            ],
+            [
+                'id'    => 219,
+                'title' => 'income_category_access',
+            ],
+            [
+                'id'    => 220,
+                'title' => 'expense_create',
+            ],
+            [
+                'id'    => 221,
+                'title' => 'expense_edit',
+            ],
+            [
+                'id'    => 222,
+                'title' => 'expense_show',
+            ],
+            [
+                'id'    => 223,
+                'title' => 'expense_delete',
+            ],
+            [
+                'id'    => 224,
+                'title' => 'expense_access',
+            ],
+            [
+                'id'    => 225,
+                'title' => 'income_create',
+            ],
+            [
+                'id'    => 226,
+                'title' => 'income_edit',
+            ],
+            [
+                'id'    => 227,
+                'title' => 'income_show',
+            ],
+            [
+                'id'    => 228,
+                'title' => 'income_delete',
+            ],
+            [
+                'id'    => 229,
+                'title' => 'income_access',
+            ],
+            [
+                'id'    => 230,
+                'title' => 'expense_report_create',
+            ],
+            [
+                'id'    => 231,
+                'title' => 'expense_report_edit',
+            ],
+            [
+                'id'    => 232,
+                'title' => 'expense_report_show',
+            ],
+            [
+                'id'    => 233,
+                'title' => 'expense_report_delete',
+            ],
+            [
+                'id'    => 234,
+                'title' => 'expense_report_access',
+            ],
+            [
+                'id'    => 235,
+                'title' => 'book_create',
+            ],
+            [
+                'id'    => 236,
+                'title' => 'book_edit',
+            ],
+            [
+                'id'    => 237,
+                'title' => 'book_show',
+            ],
+            [
+                'id'    => 238,
+                'title' => 'book_delete',
+            ],
+            [
+                'id'    => 239,
+                'title' => 'book_access',
+            ],
+            [
+                'id'    => 240,
+                'title' => 'library_management_access',
+            ],
+            [
+                'id'    => 241,
+                'title' => 'issue_book_create',
+            ],
+            [
+                'id'    => 242,
+                'title' => 'issue_book_edit',
+            ],
+            [
+                'id'    => 243,
+                'title' => 'issue_book_show',
+            ],
+            [
+                'id'    => 244,
+                'title' => 'issue_book_delete',
+            ],
+            [
+                'id'    => 245,
+                'title' => 'issue_book_access',
+            ],
+            [
+                'id'    => 246,
+                'title' => 'enquiry_create',
+            ],
+            [
+                'id'    => 247,
+                'title' => 'enquiry_edit',
+            ],
+            [
+                'id'    => 248,
+                'title' => 'enquiry_show',
+            ],
+            [
+                'id'    => 249,
+                'title' => 'enquiry_delete',
+            ],
+            [
+                'id'    => 250,
+                'title' => 'enquiry_access',
+            ],
+            [
+                'id'    => 251,
+                'title' => 'board_create',
+            ],
+            [
+                'id'    => 252,
+                'title' => 'board_edit',
+            ],
+            [
+                'id'    => 253,
+                'title' => 'board_show',
+            ],
+            [
+                'id'    => 254,
+                'title' => 'board_delete',
+            ],
+            [
+                'id'    => 255,
+                'title' => 'board_access',
+            ],
+            [
+                'id'    => 256,
+                'title' => 'enquiry_management_access',
+            ],
+            [
+                'id'    => 257,
+                'title' => 'class_level_create',
+            ],
+            [
+                'id'    => 258,
+                'title' => 'class_level_edit',
+            ],
+            [
+                'id'    => 259,
+                'title' => 'class_level_show',
+            ],
+            [
+                'id'    => 260,
+                'title' => 'class_level_delete',
+            ],
+            [
+                'id'    => 261,
+                'title' => 'class_level_access',
+            ],
+            [
+                'id'    => 262,
+                'title' => 'transaction_create',
+            ],
+            [
+                'id'    => 263,
+                'title' => 'transaction_edit',
+            ],
+            [
+                'id'    => 264,
+                'title' => 'transaction_show',
+            ],
+            [
+                'id'    => 265,
+                'title' => 'transaction_delete',
+            ],
+            [
+                'id'    => 266,
+                'title' => 'transaction_access',
+            ],
+            [
+                'id'    => 267,
                 'title' => 'profile_password_edit',
             ],
         ];

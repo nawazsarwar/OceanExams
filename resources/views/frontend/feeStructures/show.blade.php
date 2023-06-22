@@ -44,6 +44,22 @@
                                         {{ $feeStructure->fee }}
                                     </td>
                                 </tr>
+                                <tr>
+                                    <th>
+                                        {{ trans('cruds.feeStructure.fields.institute') }}
+                                    </th>
+                                    <td>
+                                        {{ $feeStructure->institute->name ?? '' }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        {{ trans('cruds.feeStructure.fields.course') }}
+                                    </th>
+                                    <td>
+                                        {{ $feeStructure->course->title ?? '' }}
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                         <div class="form-group">

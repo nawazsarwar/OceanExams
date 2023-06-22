@@ -31,6 +31,12 @@
                         {{ trans('cruds.feeStructure.fields.fee') }}
                     </th>
                     <th>
+                        {{ trans('cruds.feeStructure.fields.institute') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.feeStructure.fields.course') }}
+                    </th>
+                    <th>
                         &nbsp;
                     </th>
                 </tr>
@@ -89,6 +95,8 @@
 { data: 'id', name: 'id' },
 { data: 'fee_head', name: 'fee_heads.name' },
 { data: 'fee', name: 'fee' },
+{ data: 'institute_name', name: 'institute.name' },
+{ data: 'course_title', name: 'course.title' },
 { data: 'actions', name: '{{ trans('global.actions') }}' }
     ],
     orderCellsTop: true,
